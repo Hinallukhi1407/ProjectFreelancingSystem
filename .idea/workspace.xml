@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DatabaseScript/freelancingscape (1).sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Client/RegistrationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Client/StatusRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Controller/Authentication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/DemoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Bid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/City.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Freelancerskill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/FreelancerskillId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Logininfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Membership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Paymentdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Project.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Projectskill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/ProjectskillId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Skilllevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Statedetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Statusdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Subscribersdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Userprofile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Models/Usertype.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Services/RegistrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/test/java/com/example/demo/DemoApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/DemoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Bid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/City.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Freelancerskill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/FreelancerskillId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Logininfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Membership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Paymentdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Project.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Projectskill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/ProjectskillId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Skilllevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Statedetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Statusdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Subscribersdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Userprofile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Usertype.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/test/java/com/example/demo/DemoApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Client/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/DemoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/JacksonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Bid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/City.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Freelancerskill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/FreelancerskillId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Logininfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Membership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Paymentdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Project.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Projectskill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/ProjectskillId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Skilllevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Statedetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Statusdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Subscribersdetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Userprofile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Models/Usertype.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/java/com/example/demo/Services/UserServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/UserManagement/src/test/java/com/example/demo/DemoApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="27m8wVI4N6SZiRQCJHsIfKdE9ec" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="" />
+      <created>1649914139676</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649914139676</updated>
+    </task>
+    <servers />
+  </component>
+</project>

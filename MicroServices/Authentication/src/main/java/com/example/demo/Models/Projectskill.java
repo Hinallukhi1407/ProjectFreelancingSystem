@@ -13,9 +13,9 @@ public class Projectskill {
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill;
 
-    @MapsId("projectId")
+    @MapsId("project_id")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
+    @JoinColumn(name = "project_id", nullable = false, referencedColumnName = "project_id")
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

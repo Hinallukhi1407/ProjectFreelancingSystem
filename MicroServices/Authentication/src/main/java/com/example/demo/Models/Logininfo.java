@@ -1,5 +1,10 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.Instant;
@@ -8,6 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "logininfo")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Logininfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +28,7 @@ public class Logininfo {
     private String email;
 
     @Column(name = "password", nullable = false, length = 40)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "registration_date", nullable = false)

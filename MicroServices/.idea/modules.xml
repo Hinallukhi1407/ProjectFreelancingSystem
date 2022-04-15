@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MicroServices.iml" filepath="$PROJECT_DIR$/.idea/MicroServices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Authentication/freelancingscape.iml" filepath="$PROJECT_DIR$/Authentication/freelancingscape.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProjectServices/freelancingscape (1).iml" filepath="$PROJECT_DIR$/ProjectServices/freelancingscape (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserManagement/freelancingspace.iml" filepath="$PROJECT_DIR$/UserManagement/freelancingspace.iml" />
+    </modules>
+  </component>
+</project>

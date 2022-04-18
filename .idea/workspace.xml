@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="add Admin Services">
+      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/MembershipplanController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Services/MemberShipPlanServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/SkillController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +54,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Java\FreelancingScape\MicroServices\Admin\src\main\java\com\example\demo" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650264360329</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add Admin Services">
+      <created>1650266100502</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650266100502</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

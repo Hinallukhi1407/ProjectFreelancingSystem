@@ -4,10 +4,7 @@ import com.example.demo.Client.SkillRepository;
 import com.example.demo.Models.Skill;
 import com.example.demo.Services.SkillServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +21,9 @@ public class SkillController {
     public List<Skill> getall(){return skillRepository.findAll();}
 
     @PostMapping("/add")
-    public Skill insert(Skill s1)
+    public Skill insert(@RequestBody Skill s1)
     {
-        return s1;
+        return skillServices.InsertSkill(s1);
     }
 
 }

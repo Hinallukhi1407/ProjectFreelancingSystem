@@ -5,9 +5,6 @@ import com.example.demo.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.Optional;
-
 @RestController
 public class UserController {
 
@@ -21,9 +18,10 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody Userprofile findbyId(@PathVariable Integer id)
+    public @ResponseBody
+    Userprofile findById(@PathVariable Integer id)
     {
-        return  userServices.findAllById(id);
+        return  userServices.findDataById(id);
     }
 
     @DeleteMapping(path = "/{id}")

@@ -1,6 +1,7 @@
 package com.example.demo.Models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Logininfo {
     @Column(name = "login_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_type_id", nullable = false)
     private Usertype userType;
 
@@ -27,12 +28,13 @@ public class Logininfo {
     private String email;
 
     @Column(name = "password", nullable = false, length = 40)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "registration_date", nullable = false)
     private Date registrationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 

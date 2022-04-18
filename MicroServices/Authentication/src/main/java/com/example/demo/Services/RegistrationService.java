@@ -20,6 +20,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class RegistrationService {
@@ -34,6 +36,10 @@ public class RegistrationService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
     public boolean chklogin(String email, String password, HttpServletRequest request)
     {
@@ -63,6 +69,10 @@ public class RegistrationService {
 
     public Logininfo newRegistration(Logininfo registration, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 
+        if(!validate(registration.getEmail()) || registration.getPassword().length() < 8)
+        {
+            return  null;
+        }
         registration.setVerificationCode(RandomString.make(64));
         registration.setPassword(encryptionPassword(registration.getPassword()));
         Logininfo reg1=registrationRepository.save(registration);
@@ -141,5 +151,10 @@ public class RegistrationService {
             return true;
         }
 
+    }
+
+    public static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
     }
 }

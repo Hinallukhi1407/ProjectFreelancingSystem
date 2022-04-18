@@ -21,7 +21,7 @@ public class City {
     @Column(name = "city_name", nullable = false, length = 20)
     private String cityName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "state_id", nullable = false)
     private Statedetail state;
 

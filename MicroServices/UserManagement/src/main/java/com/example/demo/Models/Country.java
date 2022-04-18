@@ -21,9 +21,6 @@ public class Country {
     @Column(name = "country_name", nullable = false, length = 20)
     private String countryName;
 
-    @Column(name = "coumtry_name")
-    private String coumtryName;
-
     @OneToMany(mappedBy = "country")
     private Set<Statedetail> statedetails = new LinkedHashSet<>();
 
@@ -33,14 +30,6 @@ public class Country {
 
     public void setStatedetails(Set<Statedetail> statedetails) {
         this.statedetails = statedetails;
-    }
-
-    public String getCoumtryName() {
-        return coumtryName;
-    }
-
-    public void setCoumtryName(String coumtryName) {
-        this.coumtryName = coumtryName;
     }
 
     public String getCountryName() {

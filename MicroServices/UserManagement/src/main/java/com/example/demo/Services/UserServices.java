@@ -25,8 +25,8 @@ public class UserServices {
     {
         return repository.save(user);
     }
-    public Userprofile findAllById(Integer id){
-        return repository.getById(id);
+    public Userprofile findDataById(Integer id){
+        return repository.findUserById(id);
     }
 
     public String Delete(Integer id)

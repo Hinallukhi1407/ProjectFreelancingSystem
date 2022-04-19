@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="add Admin Services">
-      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/MembershipplanController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Services/MemberShipPlanServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Client/CityRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/CityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Services/CityServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/SkillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Statedetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Statedetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/WebSecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

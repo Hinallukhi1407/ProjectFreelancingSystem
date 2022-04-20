@@ -1,8 +1,6 @@
 package com.example.demo.Client;
 
 import com.example.demo.Models.Project;
-import com.example.demo.Models.Task;
-import com.example.demo.Models.Userprofile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

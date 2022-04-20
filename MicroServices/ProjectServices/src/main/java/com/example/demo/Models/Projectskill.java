@@ -22,20 +22,12 @@ public class Projectskill {
     @JoinColumn(name = "skill_level_id", nullable = false)
     private Skilllevel skillLevel;
 
-    public Skilllevel getSkillLevel() {
-        return skillLevel;
+    public ProjectskillId getId() {
+        return id;
     }
 
-    public void setSkillLevel(Skilllevel skillLevel) {
-        this.skillLevel = skillLevel;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
+    public void setId(ProjectskillId id) {
+        this.id = id;
     }
 
     public Skill getSkill() {
@@ -46,11 +38,20 @@ public class Projectskill {
         this.skill = skill;
     }
 
-    public ProjectskillId getId() {
-        return id;
+    public Project getProject() {
+        return project;
     }
 
-    public void setId(ProjectskillId id) {
-        this.id = id;
+    public void setProject(Project project) {
+        this.project = project;
     }
+
+    public Skilllevel getSkillLevel() {
+        return skillLevel;
+    }
+
+    public void setSkillLevel(Skilllevel skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
 }

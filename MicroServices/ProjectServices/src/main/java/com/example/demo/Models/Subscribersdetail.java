@@ -1,7 +1,7 @@
 package com.example.demo.Models;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.sql.Date;
 
 @Entity
 @Table(name = "subscribersdetails")
@@ -20,7 +20,7 @@ public class Subscribersdetail {
     private Membership plan;
 
     @Column(name = "start_date", nullable = false)
-    private Instant startDate;
+    private Date startDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "payment_id", nullable = false)
@@ -30,38 +30,12 @@ public class Subscribersdetail {
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
-
-
-    public Statusdetail getStatus() {
-        return status;
+    public Integer getId() {
+        return id;
     }
 
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
-
-    public Paymentdetail getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Paymentdetail payment) {
-        this.payment = payment;
-    }
-
-    public Instant getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Instant startDate) {
-        this.startDate = startDate;
-    }
-
-    public Membership getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Membership plan) {
-        this.plan = plan;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Userprofile getUser() {
@@ -72,11 +46,36 @@ public class Subscribersdetail {
         this.user = user;
     }
 
-    public Integer getId() {
-        return id;
+    public Membership getPlan() {
+        return plan;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPlan(Membership plan) {
+        this.plan = plan;
     }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Paymentdetail getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Paymentdetail payment) {
+        this.payment = payment;
+    }
+
+    public Statusdetail getStatus() {
+        return status;
+    }
+
+    public void setStatus(Statusdetail status) {
+        this.status = status;
+    }
+
 }

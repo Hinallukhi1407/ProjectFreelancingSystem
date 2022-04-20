@@ -19,7 +19,7 @@ public class BidsController {
     @PostMapping("/add")
     public Bid add(@RequestBody Bid bid)
     {
-        return bid;
+        return bidsServices.insertData(bid);
     }
 
     @PutMapping("/update/{id}")

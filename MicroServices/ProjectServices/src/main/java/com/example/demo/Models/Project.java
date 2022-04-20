@@ -1,20 +1,30 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "projects")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(scope = Project.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
     private Userprofile user;
 
     @Column(name = "project_name", nullable = false, length = 100)
@@ -30,17 +40,30 @@ public class Project {
     private String attachment;
 
     @Column(name = "post_date", nullable = false)
-    private Instant postDate;
+    private Date postDate;
 
     @Column(name = "completion_date", nullable = false)
-    private Instant completionDate;
+    private Date completionDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
     @OneToMany(mappedBy = "project")
+//    @JsonBackReference
     private Set<Task> tasks = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "project")
+//    @JsonBackReference(value = "projRef")
+    private Set<Bid> bids = new LinkedHashSet<>();
+
+    public Set<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(Set<Bid> bids) {
+        this.bids = bids;
+    }
 
     public Set<Task> getTasks() {
         return tasks;
@@ -58,19 +81,19 @@ public class Project {
         this.status = status;
     }
 
-    public Instant getCompletionDate() {
+    public Date getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(Instant completionDate) {
+    public void setCompletionDate(Date completionDate) {
         this.completionDate = completionDate;
     }
 
-    public Instant getPostDate() {
+    public Date getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Instant postDate) {
+    public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
 

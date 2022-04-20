@@ -1,5 +1,10 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.LinkedHashSet;
@@ -7,6 +12,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "logininfo")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(scope = Logininfo.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Logininfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +43,7 @@ public class Logininfo {
     private String verificationCode;
 
     @OneToMany(mappedBy = "login")
+    @JsonBackReference
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 
 

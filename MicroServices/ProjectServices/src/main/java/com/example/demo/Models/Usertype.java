@@ -1,11 +1,20 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "usertype")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(scope = Usertype.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+
 public class Usertype {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

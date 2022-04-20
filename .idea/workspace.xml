@@ -4,15 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="add Admin Services">
-      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Client/CityRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Controller/CityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Services/CityServices.java" afterDir="false" />
+    <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="add City in Admin Services">
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Client/BidSRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Client/ProjectRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Client/TaskRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Controlller/BidsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Controlller/ProjectController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Controlller/TaskController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/JacksonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Services/BidsServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Services/ProjectServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Services/TaskServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Statedetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo/Models/Statedetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Authentication/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Controller/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Controller/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/Services/JwtUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/JwtRequestFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/java/com/example/demo/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/Authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/Authentication/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Bid.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Bid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Logininfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Logininfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Statedetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Statedetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Statusdetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Statusdetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Userprofile.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Userprofile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Usertype.java" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/java/com/example/demo/Models/Usertype.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +81,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/MicroServices/Admin/src/main/java/com/example/demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MicroServices/ProjectServices" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -109,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650266100502</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add City in Admin Services">
+      <created>1650362922760</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1650362922760</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +155,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add Admin Services" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Admin Services" />
+    <MESSAGE value="add City in Admin Services" />
+    <option name="LAST_COMMIT_MESSAGE" value="add City in Admin Services" />
   </component>
 </project>

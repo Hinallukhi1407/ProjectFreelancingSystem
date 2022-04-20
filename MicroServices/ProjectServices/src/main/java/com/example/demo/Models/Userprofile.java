@@ -1,5 +1,10 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
@@ -7,6 +12,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "userprofile")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(scope = Userprofile.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Userprofile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,12 +46,15 @@ public class Userprofile {
     private BigDecimal mobileNo;
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private Set<Project> projects = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
+//    @JsonBackReference
     private Set<Bid> bids = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")

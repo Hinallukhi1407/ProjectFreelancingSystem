@@ -1,11 +1,20 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "city")
+@JsonIdentityInfo(scope = City.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +29,7 @@ public class City {
     private Statedetail state;
 
     @OneToMany(mappedBy = "city")
+    @JsonBackReference
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 
     public Set<Userprofile> getUserprofiles() {

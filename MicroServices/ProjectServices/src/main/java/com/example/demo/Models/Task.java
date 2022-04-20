@@ -1,11 +1,19 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.sql.Date;
 
 @Entity
 @Table(name = "task")
+//@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(scope = Task.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,19 +31,21 @@ public class Task {
     private String taskDescription;
 
     @Column(name = "start_date", nullable = false)
-    private Instant startDate;
+    private Date startDate;
 
     @Column(name = "end_date", nullable = false)
-    private Instant endDate;
+    private Date endDate;
 
     @Column(name = "attachment", length = 100)
     private String attachment;
 
     @Column(name = "post_date", nullable = false)
-    private Instant postDate;
+    private Date postDate;
 
-    @Column(name = "payment_status", nullable = false)
-    private Integer paymentStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "payment_status", nullable = false,referencedColumnName = "status_id")
+    private Statusdetail paymentStatus;
 
     @Column(name = "min_budget", nullable = false, precision = 5, scale = 2)
     private BigDecimal minBudget;
@@ -46,6 +56,25 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
+
+    public Task() {
+    }
+
+    public Task(Project project1, String projectName, String projectDescription, Date postDate, Date completionDate, String attachment, Date postDate1, Statusdetail status, double i, double i1, Statusdetail status1) {
+        this.project=project1;
+        this.taskName = projectName;
+        this.taskDescription = projectDescription;
+        this.startDate = postDate;
+        this.endDate = completionDate;
+        this.attachment= attachment;
+        this.postDate = postDate1;
+        this.paymentStatus=status;
+        this.minBudget = BigDecimal.valueOf(i);
+        this.maxBudget = BigDecimal.valueOf(i1);
+        this.status = status1;
+
+    }
+
 
     public Statusdetail getStatus() {
         return status;
@@ -71,19 +100,19 @@ public class Task {
         this.minBudget = minBudget;
     }
 
-    public Integer getPaymentStatus() {
+    public Statusdetail getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(Integer paymentStatus) {
+    public void setPaymentStatus(Statusdetail paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
-    public Instant getPostDate() {
+    public Date getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Instant postDate) {
+    public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
 
@@ -95,19 +124,19 @@ public class Task {
         this.attachment = attachment;
     }
 
-    public Instant getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Instant endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public Instant getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Instant startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

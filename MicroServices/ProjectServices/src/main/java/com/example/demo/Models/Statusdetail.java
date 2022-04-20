@@ -1,11 +1,20 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "statusdetails")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(scope = Statusdetail.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Statusdetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,18 +25,23 @@ public class Statusdetail {
     private String statusName;
 
     @OneToMany(mappedBy = "status")
+    @JsonBackReference
     private Set<Task> tasks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "status")
+    @JsonBackReference
     private Set<Project> projects = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "status")
+    @JsonBackReference
     private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "status")
+//    @JsonBackReference(value = "statusRef")
     private Set<Bid> bids = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "status")
+    @JsonBackReference
     private Set<Logininfo> logininfos = new LinkedHashSet<>();
 
     public Set<Logininfo> getLogininfos() {

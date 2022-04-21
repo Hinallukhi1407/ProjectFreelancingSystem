@@ -5,12 +5,14 @@ import com.example.demo.Client.StatusRepository;
 import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Statusdetail;
 import com.example.demo.Models.Usertype;
+import com.example.demo.config.Config;
 import lombok.extern.java.Log;
 import net.bytebuddy.utility.RandomString;
 import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -33,6 +35,8 @@ public class RegistrationService {
     @Autowired
     StatusRepository statusRepository;
 
+   /* @Autowired
+    private PasswordEncoder passwordEncoder;*/
 
     @Autowired
     private JavaMailSender mailSender;
@@ -75,6 +79,8 @@ public class RegistrationService {
         }
         registration.setVerificationCode(RandomString.make(64));
         registration.setPassword(encryptionPassword(registration.getPassword()));
+        //String pwd = registration.getPassword();
+        //registration.setPassword(passwordEncoder.encode(pwd));
         Logininfo reg1=registrationRepository.save(registration);
         if(registration.getUserType().getId() != 1)
         {

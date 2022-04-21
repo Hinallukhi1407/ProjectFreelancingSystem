@@ -11,7 +11,7 @@ public class Userprofile {
     @Column(name = "user_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "login_id", nullable = false)
     private Logininfo login;
 
@@ -27,7 +27,7 @@ public class Userprofile {
     @Column(name = "tag_line", length = 50)
     private String tagLine;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 

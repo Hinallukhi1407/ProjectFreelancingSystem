@@ -1,4 +1,4 @@
-package com.example.demo.Client;
+package com.example.demo.Repository;
 
 import com.example.demo.Models.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;

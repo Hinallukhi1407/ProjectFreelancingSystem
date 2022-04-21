@@ -1,5 +1,7 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -11,7 +13,7 @@ public class Logininfo {
     @Column(name = "login_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_type_id", nullable = false)
     private Usertype userType;
 

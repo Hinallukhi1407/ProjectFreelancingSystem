@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Client.MemberShipPlanRepository;
+import com.example.demo.Repository.MemberShipPlanRepository;
 import com.example.demo.Models.Membership;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

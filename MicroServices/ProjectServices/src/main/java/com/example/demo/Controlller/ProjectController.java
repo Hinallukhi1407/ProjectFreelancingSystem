@@ -25,7 +25,7 @@ public class ProjectController {
     public List<Project> all(){ return projectServices.all();}
 
     @GetMapping("/{id}")
-    public Optional<Project> getDataById(@PathVariable Integer id){ return projectServices.getDataById(id); }
+    public Project getDataById(@PathVariable Integer id){ return projectServices.getDataById(id).get(); }
 
     @DeleteMapping("/{id}")
     public Boolean deleteProject(@PathVariable Integer id)

@@ -40,8 +40,8 @@ public class BidsController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Bid> fetchById(Integer id)
+    public Bid fetchById(@PathVariable Integer id)
     {
-        return bidsServices.getDataById(id);
+        return bidsServices.getDataById(id).get();
     }
 }

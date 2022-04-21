@@ -30,10 +30,14 @@ public class UserServices {
         return repository.findUserById(id);
     }
 
-    public String Delete(Integer id)
+    public Boolean Delete(Integer id)
     {
-        repository.deleteById(id);
-        return "Deleted..";
+        if(repository.findById(id).isPresent())
+        {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
     public Userprofile Update(Userprofile user,Integer id)
     {

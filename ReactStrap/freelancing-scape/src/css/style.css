@@ -1,12 +1,16 @@
 html{
     width: 100%;
-   overflow: hidden;
+  
+}
+body{
 }
 header {
+    z-index: 1;
+    position: sticky !important;
+    top: 0%;
     height: 80px;
     background-color: white;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    position:relative;
 }
 #topMenu {
   height: 100%;
@@ -32,7 +36,7 @@ header {
     top:15%;
     height: 50px;
     font-weight: lighter;
-    opacity: 0.8;
+    opacity: 1;
     font-size: 1px;
 }
 #topMenu ul {
@@ -53,7 +57,7 @@ header {
 }
 
 #topMenu ul li a:hover {
-    opacity: 100%;
+    opacity: 1;
 }
 #topMenu ul ul li {
     position: relative;
@@ -79,7 +83,7 @@ header {
     right: 15%;
     color: lightgray;
     font-weight: lighter;
-    opacity: 0.5;
+    opacity: 0.7;
     font-family: 'Radio Canada', sans-serif;
 }
 .arrow-icon {
@@ -124,12 +128,12 @@ header {
 }
 #loginSection{
     position: absolute;
-    height: 80px;
+    height: 75px;
     top: 5%;
     text-decoration: none;
     font-family: 'Radio Canada', sans-serif;
     border-left: solid #E0E0E0 1px;
-    padding-left: 2%;
+    padding-left: 1%;
     padding-right: 2%;
 }
 #loginSection a{
@@ -138,7 +142,123 @@ header {
     color: #777777;
     top: 25%;
 }
-@media (max-width:860px) {
+#barIcon{
+    position: relative;
+    visibility: hidden;
+}
+/*SIDE BAR*/
+#sidebarnav{
+    position: relative;
+    background-color: #2A2A2A;
+    width: 400px;
+    max-width: 45%;
+    height: 100vh;
+    float: left;
+    padding: 0%;
+    z-index: 2;
+}
+#sidebarTitle{
+    color: white;
+    background-color: #2A2A2A;
+    height: 80px;
+    align-items: center;
+    padding: 0%;
+    margin: 0%;
+    justify-content: center;
+    border-bottom: #E0E0E0 solid 1px;
+}
+#sidebarul{
+    position: relative;
+    right: 0%;
+    color: white;
+    padding: 0%;
+    margin: -5%;
+}
+#sidebarul li{
+    position: relative;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    border-bottom: lightgray solid 1px;
+    line-height: 60px;
+    width: 100%;
+}
+/*Banner*/
+.introBanner{
+    position: relative;
+    background-image: url("../Images/introBanner1.jpeg");
+    height: 500px;
+    width: 100%;
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    
+}
+#banner-content{
+    position: relative;
+    top: 10%;
+}
+.banner-headline{
+    position: relative;
+    left: 5%;
+    display: block;
+    max-width: 60%;
+    margin-bottom:2%;
+}
+
+.banner-headline h3 {
+    font-size: 28px;
+    font-weight: 300;
+    color: #777;
+    line-height: 42px;
+}
+#search-bar{
+    position: relative;
+    padding:0% ;
+    max-width: 60%;
+    height: 55px;
+    left: 5%;
+    margin-bottom: 50px;
+}
+#job-count
+{
+    position: relative;
+    max-width: 20%;
+    position: relative;
+    left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.banner-list-item
+{
+    border: none !important;
+    background-color: transparent !important;
+    border-right:1px solid lightgray !important ;
+    justify-content: center;
+    align-items: center;
+
+}
+.count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+  /*End Banner*/
+
+ /*Media starts*/ 
+@media (max-width:1125px) {
+
+    html{
+        overflow-x: hidden;
+    }
+
+
     #ulMain{
         display: none;
     }
@@ -151,15 +271,29 @@ header {
     }
     #barIcon{
         visibility: visible !important;
-        top: 25%;
+        top: 0%;
         left: 50%;
     }
     #logosection{
         border: none;
     }
-
+    #search-bar{
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 90%;
+    }
+    .banner-headline{
+       max-width: 90%;
+    }
+    .banner-headline h3 {
+        font-size: 1.5em;
+    }
+    #banner-content{
+        position: relative;
+        top: 5%;
+    }
+    #job-count{
+        display: none;
+    }
 }
-#barIcon{
-    position: relative;
-  visibility: hidden;
-}
+/*Media Ends*/

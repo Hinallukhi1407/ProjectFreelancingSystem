@@ -1,25 +1,26 @@
-import React from "react";
+import React,{useState} from "react";
 import logo from "../../Images/logo.png";
 import { Container, Row, Col } from "reactstrap";
-import { FaBeer } from "react-icons/fa";
 import * as AIicons from "react-icons/ai";
-
+import SideBar from "./SideBar";
+import { motion ,AnimatePresence} from "framer-motion";
 function NavBar() {
+  const [sideBar, setSideBar] = useState(false)
   return (
     <React.Fragment>
-      
-
-
-
+      <AnimatePresence>
+        {sideBar ? <SideBar></SideBar> : ""}
+      </AnimatePresence>
       <header>
         <Container fluid tag="nav">
           <nav id="topMenu">
             <Row>
-              <Col xs="1">
-                <section id="logosection">
-                  <img src={logo} className="logo" />
-                </section>
-              </Col>
+              {sideBar ?""
+              :  <Col xs="1">
+              <section id="logosection">
+                <img src={logo} className="logo" />
+              </section>
+            </Col>}
               <Col xs="10">
                 <ul id="ulMain">
                   <li>
@@ -88,12 +89,19 @@ function NavBar() {
                     <span
                       className="material-icons"
                       style={{ position: "relative", top: 7 }}
-                      id="LoginIcon">
+                      id="LoginIcon"
+                    >
                       login
                     </span>
                     <span id="loginText">Login</span>
                   </a>
-                    <AIicons.AiOutlineBars size={25} id="barIcon"/>
+                  <a
+                    onClick={() => {
+                      setSideBar((v) => !v);
+                    }}
+                  >
+                    <AIicons.AiOutlineBars size={25} id="barIcon" />
+                  </a>
                 </section>
               </Col>
             </Row>

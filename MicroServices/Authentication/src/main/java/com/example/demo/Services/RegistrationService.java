@@ -5,7 +5,6 @@ import com.example.demo.Client.StatusRepository;
 import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Statusdetail;
 import com.example.demo.Models.Usertype;
-import com.example.demo.config.Config;
 import lombok.extern.java.Log;
 import net.bytebuddy.utility.RandomString;
 import org.hibernate.usertype.UserType;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -30,6 +30,7 @@ public class RegistrationService {
 
     @Autowired
     public RegistrationRepository registrationRepository;
+    public BCryptPasswordEncoder passwordEncoder;
 
 
     @Autowired
@@ -66,6 +67,10 @@ public class RegistrationService {
         }
     }
 
+    public Logininfo chkLogin(String email){
+        return registrationRepository.findByEmail(email);
+    }
+
     public void Logout(HttpServletRequest request)
     {
         request.getSession().invalidate();
@@ -78,7 +83,7 @@ public class RegistrationService {
             return  null;
         }
         registration.setVerificationCode(RandomString.make(64));
-        registration.setPassword(encryptionPassword(registration.getPassword()));
+        registration.setPassword(new BCryptPasswordEncoder().encode(registration.getPassword()));
         //String pwd = registration.getPassword();
         //registration.setPassword(passwordEncoder.encode(pwd));
         Logininfo reg1=registrationRepository.save(registration);

@@ -3,17 +3,10 @@ import logo from "../../Images/logo.png";
 import { Container, Row, Col } from "reactstrap";
 import * as AIicons from "react-icons/ai";
 import SideBar from "./SideBar";
-import RegistrationContainer from "./RegistrationContainer";
 import { motion ,AnimatePresence} from "framer-motion";
 import {Link} from "react-router-dom";
 function NavBar() {
   const [sideBar, setSideBar] = useState(false)
-
-  const [RegVisible,SetRegVisible] = useState(false);
-
-  const toggleReg = () => {
-      SetRegVisible(!RegVisible)
-  }
 
   return (
     <React.Fragment>
@@ -35,14 +28,11 @@ function NavBar() {
                   <li>
                     <a href="#" className="headerLinkStyle">
                       Home
-                      <span className="material-icons arrow-icon">
-                        arrow_drop_down
-                      </span>
                     </a>
                   </li>
                   <li>
                     <a href="#" className="headerLinkStyle">
-                      Dropdwon
+                      Employeer
                       <span className="material-icons arrow-icon">
                         arrow_drop_down
                       </span>
@@ -94,7 +84,7 @@ function NavBar() {
               </Col>
               <Col xs="1">
                 <section id="loginSection">
-                  <a onClick={toggleReg}>
+                  <a>
                     <span
                       className="material-icons"
                       style={{ position: "relative", top: 7 }}
@@ -112,7 +102,6 @@ function NavBar() {
           </nav>
         </Container>
       </header>
-        {RegVisible ? <RegistrationContainer toggleReg={toggleReg}></RegistrationContainer> : ""}
     </React.Fragment>
   );
 }

@@ -1,12 +1,13 @@
 html{
     width: 100%;
-  
+    overflow-x: hidden;
+    font-family: "Nunito", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body{
 }
 header {
-    z-index: 1;
-    position: sticky !important;
+    z-index: 5;
+    position: sticky;        
     top: 0%;
     height: 80px;
     background-color: white;
@@ -142,20 +143,26 @@ header {
     color: #777777;
     top: 25%;
 }
+#loginSection :hover{
+    color: #2A41EC;
+
+}
 #barIcon{
     position: relative;
     visibility: hidden;
 }
 /*SIDE BAR*/
 #sidebarnav{
-    position: relative;
+    position: absolute;
+    top: 0%;
+    left: 0%;
     background-color: #2A2A2A;
-    width: 400px;
+    width: 300px;
     max-width: 45%;
     height: 100vh;
     float: left;
     padding: 0%;
-    z-index: 2;
+    z-index: 10;
 }
 #sidebarTitle{
     color: white;
@@ -188,17 +195,17 @@ header {
 .introBanner{
     position: relative;
     background-image: url("../Images/introBanner1.jpeg");
-    height: 500px;
+    height: 600px;
     width: 100%;
     background-position: center;
     background-size:cover ;
     background-repeat: no-repeat;
     object-fit: cover;
-    
 }
 #banner-content{
     position: relative;
-    top: 10%;
+    top: 20%;
+    left: 2%;
 }
 .banner-headline{
     position: relative;
@@ -220,12 +227,12 @@ header {
     max-width: 60%;
     height: 55px;
     left: 5%;
-    margin-bottom: 50px;
+    margin-bottom: 90px;
 }
 #job-count
 {
     position: relative;
-    max-width: 20%;
+    max-width: 40%;
     position: relative;
     left: 5%;
     display: flex;
@@ -240,25 +247,134 @@ header {
     border-right:1px solid lightgray !important ;
     justify-content: center;
     align-items: center;
-
 }
 .count{
     display: flex;
     justify-content: center;
     align-items: center;
-  
 }
-
+#small-searchbar{
+    display: none;
+    width: 90%;
+}
+#badge1-color{
+    background-color: #2A41E8 !important;
+}
+#badge2-color{
+    background-color: #2A41E8 !important;
+}
   /*End Banner*/
 
+/*Registration - Login*/
+
+#reg-container{
+    position: fixed;
+    padding-bottom: 2%;
+    top: 10%;
+    left: 0%;
+    right: 0%;
+    z-index:6;
+    height: auto;
+    padding-bottom: 2%;
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 100px 100px 100px rgba(0, 0, 0, 0.5);
+}
+
+#user-select{
+    position: relative;
+    top: 2%;
+    padding-bottom: 2%;
+    margin: 0%;
+    border-bottom: 1px lightgray solid;
+}
+#login-reg-form{
+    margin-top: 1%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#welcome-text{
+    position: relative;
+    top: 5%;
+    text-align: center;
+}
+#welcome-text span{
+    color: #666;
+}
+#welcome-text h3{
+    font-size: 24px;
+}
+#welcome-text a{
+    text-decoration: none;
+}
+#login-form{
+    margin-top: 5%;
+    width: 90%;
+}
+#user-button{
+    background-color: #47BB67 ;
+    color: white;
+}
+
+#form-type-button{
+    color: #0B5ED7;
+    background-color: white;
+    font-weight: bolder;
+    box-shadow: none;
+}
+.default-from-type-button:hover
+{
+    background-color: #0B5ED7 !important;
+    color: white !important;
+}
+
+.user-button-defualt
+{
+    margin: 10px;
+    border-radius: 5px;
+    height: 80%;
+}
+.user-button-defualt:hover
+{
+    background-color: #E4F6E9 !important;
+    color: #47BB67 !important;
+}
+
+/*Reg  End*/
+
+/*Employeer*/
+.Employeer-introBanner
+{
+    position: relative; 
+   top: 0%;
+    background-image: url("../Images/home-background-02.jpg");
+    height: 600px;
+    width: 100%;
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+#background-dark{
+    position: relative;
+    background-color: red;
+    height: 100px;
+    opacity: 0.75;
+}
+
+
+/*End*/
  /*Media starts*/ 
 @media (max-width:1125px) {
-
+    #sidebarnav{
+          max-width: 45%;
+    }
     html{
         overflow-x: hidden;
     }
-
-
     #ulMain{
         display: none;
     }
@@ -270,7 +386,7 @@ header {
         display: none;
     }
     #barIcon{
-        visibility: visible !important;
+        visibility: visible;
         top: 0%;
         left: 50%;
     }
@@ -278,21 +394,43 @@ header {
         border: none;
     }
     #search-bar{
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 90%;
+        display: none;
     }
     .banner-headline{
        max-width: 90%;
+       left: 0%;
     }
     .banner-headline h3 {
         font-size: 1.5em;
     }
     #banner-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         position: relative;
         top: 5%;
+        right: 2%;
     }
     #job-count{
+        display: none;
+    }
+    #small-searchbar{
+        position: relative;
+        left: 0%;
+        right: 5%;
+        display: block;
+        max-width: 100%;
+    }
+    #reg-container{
+        top:5%;
+        width: 95%;
+        height: auto;
+    }
+    #login-reg-form{
+        position: relative;
+    }
+    .hide-in-small-screen{
         display: none;
     }
 }

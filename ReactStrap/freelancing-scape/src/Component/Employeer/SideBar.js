@@ -23,7 +23,7 @@ function SideBar() {
           <Row id="sidebarul">
             <ul>
               <li>Home</li>
-              <li>About Us</li>
+              <li>Employeer</li>
               <li>Membership Plans</li>
               <li>Featured Jobs</li>
               <li>Featured Cities</li>

@@ -1,14 +1,21 @@
-import React from 'react';
-import NavBar from './Component/Guest/NavBar';
+import React from "react";
 import "./css/style.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import IntroBanner from './Component/Guest/IntroBanner';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Guest from "./Component/Guest/Guest";
+import Employeer from "./Component/Employeer/Employeer";
+import { Route, Link, Routes,BrowserRouter as  Router } from "react-router-dom";
 function App() {
   return (
-  <React.Fragment>
-    <NavBar/>
-    <IntroBanner/>
-  </React.Fragment>
+    <React.Fragment>
+      <Router>
+        <Routes>
+          <Route path="/Employeer" element={<Employeer />}/>
+          <Route path="/Guest" element={<Guest />}/>
+        </Routes>
+      </Router>
+      {/* <Guest />
+      <Employeer /> */}
+    </React.Fragment>
   );
 }
 

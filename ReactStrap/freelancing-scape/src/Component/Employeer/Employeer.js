@@ -1,11 +1,13 @@
 import React from 'react'
-import NavBar from './NavBar'
-import IntroBanner from './IntroBanner'
+import NavBar from '../Guest/NavBar'
+import IntroBanner from '../Employeer/IntroBanner'
+import ListFreelancer from './ListFreelancer'
 function Employeer() {
   return (
     <div>
-      <NavBar/>
-      <IntroBanner/>
+       <NavBar/>
+       {/* <IntroBanner/> */}
+       <ListFreelancer/>
     </div>
   )
 }

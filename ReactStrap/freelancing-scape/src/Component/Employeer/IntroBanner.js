@@ -16,24 +16,17 @@ import {
 function IntroBanner() {
   return (
     <React.Fragment>
-
-    <section id="background-dark">
-    </section>
-      <Container fluid className="Employeer-introBanner" tag={"section"}>
+      <Container fluid className="Employeer-introBanner" style={{padding:"0"}}>
+        <section id="background-dark">
+        </section>
         <section id="banner-content">
           <Row className="banner-headline">
             <article>
               <h3>
-                <strong style={{ fontWeight: "600", color: "#333" }}>
-                  Hire experts or be hired for any job, any time.
-                </strong>
-                <br />
-                <span>
-                  Thousands of small businesses use{" "}
-                  <strong style={{ color: "#2a41e8" }}>Hireo</strong> to turn
-                  their ideas into reality.
-                </span>
-              </h3>
+						    <strong style={{ fontWeight: "600", color: "white" }}>Hire experts freelancers for any job, any time.</strong>
+						    <br/>
+						    <span style={{color: "rgba(255,255,255,0.7)"}}>Huge community of designers, developers and creatives ready for your project.</span>
+					    </h3>
             </article>
           </Row>
           <Row id="small-searchbar">
@@ -95,6 +88,7 @@ function IntroBanner() {
                     width: "50px",
                     paddingLeft: "15px",
                     backgroundColor: "#2A41E8",
+                    border:"none"
                   }}
                 >
                   <Ioicons.IoLocationSharp></Ioicons.IoLocationSharp>
@@ -112,7 +106,7 @@ function IntroBanner() {
                 id="badge2-color"
                 style={{ height: "30px", width: "auto", fontSize: "16px" }}
               >
-                What Job You Want ?
+                What You Need To Done ?
               </Badge>
               <InputGroup
                 style={{ height: "50px", position: "relative", right: "5%" }}
@@ -128,23 +122,24 @@ function IntroBanner() {
               </InputGroup>
             </Col>
           </Row>
-          <Row id="job-count">
-            <ListGroup horizontal style={{ display: "flex" }}>
-              <ListGroupItem className="justify-content-between banner-list-item">
+          <Row id="job-count" >
+            <ListGroup horizontal style={{ display: "flex"}}>
+              <ListGroupItem className="justify-content-between banner-list-item" style={{color:"white"}}>
                 <section className="count">1000</section>
                 Jobs Posted
               </ListGroupItem>
-              <ListGroupItem className="justify-content-between banner-list-item">
+              <ListGroupItem className="justify-content-between banner-list-item" style={{color:"white"}}>
                 <section className="count">1000</section>
                 Task Posted
               </ListGroupItem>
-              <ListGroupItem className="justify-content-between banner-list-item">
+              <ListGroupItem className="justify-content-between banner-list-item" style={{color:"white"}}>
                 <section className="count">1000</section>
                 Freelancer
               </ListGroupItem>
             </ListGroup>
           </Row>
         </section>
+       
       </Container>
     </React.Fragment>
 

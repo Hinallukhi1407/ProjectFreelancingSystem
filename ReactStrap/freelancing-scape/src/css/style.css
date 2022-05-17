@@ -34,14 +34,14 @@ header {
 #ulMain {
     display: flex;
     position: relative;
-    top:15%;
     height: 50px;
     font-weight: lighter;
     opacity: 1;
     font-size: 1px;
 }
 #topMenu ul {
-    height: 80px;
+    top: 10%;
+    height: 60px;
     margin: 0;
 }
 #topMenu ul li {
@@ -51,7 +51,7 @@ header {
 
 #topMenu ul li a {
     display: block;
-    padding: 0 20px;
+    padding: 0 25px;
     text-decoration: none;
     line-height: 60px;
     font-size: 16px;
@@ -63,15 +63,17 @@ header {
 #topMenu ul ul li {
     position: relative;
     display: block;
+    right: 30%;
 }
 #topMenu ul ul {
     position: relative;
-    width: 80%;
+    top: -10%;
     display: none;
 }
 #topMenu ul li:hover>ul {
     position: relative;
-    left: 14%;
+    width: 140px;
+    left: 5%;
     height: auto;
     background-color: #303030;
     color: white;
@@ -81,7 +83,8 @@ header {
 
 #topMenu ul li ul li a {
     position: relative;
-    right: 15%;
+    right: 10%;
+    width: 160px;
     color: lightgray;
     font-weight: lighter;
     opacity: 0.7;
@@ -129,13 +132,13 @@ header {
 }
 #loginSection{
     position: absolute;
-    height: 75px;
-    top: 5%;
+    width: auto;
+    height: 80px;
     text-decoration: none;
     font-family: 'Radio Canada', sans-serif;
     border-left: solid #E0E0E0 1px;
-    padding-left: 1%;
-    padding-right: 2%;
+    padding-left: 1.5%;
+    
 }
 #loginSection a{
     position: relative;
@@ -279,7 +282,7 @@ header {
     width: 35%;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 100px 100px 100px rgba(0, 0, 0, 0.5);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 #user-select{
@@ -349,7 +352,7 @@ header {
 .Employeer-introBanner
 {
     position: relative; 
-   top: 0%;
+    top: 0%;
     background-image: url("../Images/home-background-02.jpg");
     height: 600px;
     width: 100%;
@@ -359,13 +362,57 @@ header {
     object-fit: cover;
 }
 #background-dark{
-    position: relative;
-    background-color: red;
-    height: 100px;
+    position: absolute;
+    background: #333;
+    width: 100vw;
+    height: 600px;
     opacity: 0.75;
 }
-
-
+#userAvatar{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    
+}
+#profile-popup{
+    position: absolute;
+    padding: 10px;
+    right: 0%;
+    background-color:  #303030;
+    color: white;
+    top: 100%;
+    border-radius: 10px;
+    height: 200%;
+    width: 200px;
+}
+#profile-popup ul{
+    list-style: none;
+    display: block;
+}
+#profile-popup ul li{
+    position: relative;
+    padding: 5%;
+    right: 29%;
+    display: block;
+    border-bottom: white solid 1px;
+    width: 200px;
+  
+}
+#profile-popup :hover
+{
+    /* color: white; */
+}
+.list-freelancer-form{
+}
+.list-freelancer-form h3{  
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #333;
+    font-weight: 400;
+  
+}
 /*End*/
  /*Media starts*/ 
 @media (max-width:1125px) {
@@ -379,15 +426,23 @@ header {
         display: none;
     }
     #loginSection{
-        right: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border: none;
+        right: 5%;
     }
     #loginText{
         display: none;
     }
     #barIcon{
         visibility: visible;
-        top: 0%;
+        margin-bottom:130% ;
+        left: 50%;
+    }
+    #login-icon{
+        visibility: visible;
+        margin-bottom:130% ;
         left: 50%;
     }
     #logosection{
@@ -423,15 +478,23 @@ header {
         max-width: 100%;
     }
     #reg-container{
-        top:5%;
+        top:10%;
         width: 95%;
         height: auto;
     }
     #login-reg-form{
         position: relative;
     }
+    #userAvatar{
+        top: 0%;
+    }
     .hide-in-small-screen{
         display: none;
+    }
+    #profile-popup{
+        position: absolute;
+        top: 100%;
+       
     }
 }
 /*Media Ends*/

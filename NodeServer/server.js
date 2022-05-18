@@ -64,6 +64,11 @@ app.post('/register', urlEncodedParser, (req, res) => {
 
 });
 
+app.route('/users/:userId')
+    .get((req, res) => {
+        res.send(req.params);
+    });
+
 app.listen(port, () => {
     console.log(`Server started at ${port}`);
 })

@@ -251,6 +251,10 @@ header {
     justify-content: center;
     align-items: center;
 }
+.border-left{
+    border-left:1px solid lightgray !important ;
+    
+}
 .count{
     display: flex;
     justify-content: center;
@@ -404,6 +408,7 @@ header {
     /* color: white; */
 }
 .list-freelancer-form{
+   
 }
 .list-freelancer-form h3{  
     font-size: 20px;
@@ -412,6 +417,181 @@ header {
     color: #333;
     font-weight: 400;
   
+}
+#free-list-button{
+    display: flex;
+    justify-content: center;
+}
+#free-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#single-freelancer{
+    background-image: url("../Images/single-freelancer.jpg");
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    height: 250px;
+}
+#background-white{
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right,rgba(247,247,247,1) 50%,rgba(247,247,247,0.8) 70%,rgba(247,247,247,0.8) 90%);
+    width: 100vw;
+    height: 250px;
+    padding-left: 6%;
+}
+#big-avatar{
+    border-radius: 100%;
+    height: 65%;
+    width: 65%;
+    min-height: 40%;
+    min-width: 40%;
+    border: 1px solid lightgray;
+}
+#single-free-name h3{
+   font-weight: 400;
+}
+#single-free-name h4{
+    font-weight: 400;
+ }
+ #star i{
+    padding: 0%;
+    margin: 0%;
+ }
+ #free-aboutme{
+     margin-left: 10%;
+     margin-top: 5%;
+ }
+ #free-job-details{ 
+    margin-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.skill-badge{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 40px;
+    background-color:  #F0F2FD !important;
+    color: #0B5ED7;
+    border-radius: 5%;
+    margin: 1%;
+}
+#makeanoffer{
+    margin-top: 10%;
+}
+#dashboardSidebar
+{
+    height: 100vh;
+    width: 100%;
+    box-shadow:
+    inset 0 -3em 3em rgba(0,0,0,0.1),
+          0 0  0 2px rgb(255,255,255),
+          0.3em 0.3em 1em rgba(0,0,0,0.3);
+    padding: 0%;
+}
+
+#dashboardSidebar li 
+{
+  padding-left: 5%;
+  border: none;
+  display: block;
+  
+}
+#dashboardSidebar li:hover
+{
+  color: #0B5ED7;
+  background-color: #F7F8FE;
+}
+#dashboard-topnav{
+    background-color: #333333;
+    margin: 1% ;
+    border-radius: 10px;
+    display: none;
+}
+#postproject-form{
+    margin: 5%;
+  
+}
+#single-task{
+    display: flex ;
+    align-items: center;
+    background-image: url("../Images/single-task.jpg");
+    background-position: inherit;
+    background-size:cover ;
+    background-repeat: repeat;
+    object-fit: cover;
+    height: 250px;
+}
+#single-task-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-color: white;
+    width: auto;
+    height: 150px;
+    left: 10%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5%;
+}
+#single-task-name h3{
+    font-weight: 400;
+    font-size: 2rem;
+
+ }
+ #single-task-name h4{
+     font-weight: 400;
+  }
+  #attachment-span{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: aliceblue;
+      width: 20%;
+      height: 100px;
+      border-radius: 5px;
+  }
+  #attachment-span:hover{
+    background-color: #E0E0E0;
+}
+#days-left{
+    background-color: #E7F8EC;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #4CA358;
+}
+#budget{
+    background-color: #F0F0F0;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+#bid-form{
+    height: 400px;
+    background-color: #F9F9F9;    
+}
+#bid-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F0F0;
+    height: 15%;
+}
+#bid-controls{
+    margin-bottom: 40%;
 }
 /*End*/
  /*Media starts*/ 
@@ -494,7 +674,55 @@ header {
     #profile-popup{
         position: absolute;
         top: 100%;
-       
+    }
+    #filter-form{
+        min-width: 100%;
+    }
+    #list-freelancer{
+        min-width: 100%;
+    }
+    .text-align-center{
+        text-align: center;
+    }
+    
+    #free-list-button{
+        width: 100%;
+    }
+    #free-name{
+        padding-left: 5%;
+        min-width: 90%;
+    }
+    #background-white{
+        margin-left: 0%;
+    }
+    #free-aboutme{
+        width: 100%;
+        margin-left: 0%;
+    }
+    #makeanoffer{
+        margin-top: 10%;
+    }
+    #big-avatar{
+       background-color: #0B5ED7;
+       width: 100px;
+       height: 100px;
+    }
+    #profile-section{
+        position: relative;
+        bottom: 20%;
+        left: -3%;
+    }
+    #single-free-name{
+        position: relative;
+        width: 100%;
+        left: -20%;
+        top: 30%;
+    }
+    #dashboard-topnav{
+        display: block;
+    }
+    #form-col{
+      width: 100%;
     }
 }
 /*Media Ends*/

@@ -5,13 +5,13 @@ import * as AIicons from "react-icons/ai";
 import * as FIicons from "react-icons/fi"
 import * as BSicons from "react-icons/bs"
 import SideBar from "./SideBar";
-import RegistrationContainer from "./RegistrationContainer";
+import RegistrationContainer from "../Guest/RegistrationContainer";
 import { motion, AnimatePresence } from "framer-motion";
 import avatar from '../../Images/user-avatar-small-02.jpg'
 import { Link } from "react-router-dom";
 
 
-function NavBar() {
+function NavBar(props) {
   const [sideBar, setSideBar] = useState(false);
 
   const [RegVisible, SetRegVisible] = useState(false);
@@ -19,8 +19,8 @@ function NavBar() {
   const toggleReg = () => {
     SetRegVisible(!RegVisible);
   };
-  var MenuType = "Guest";
-
+  
+  const userLink = props.pageType ? props.pageType : "DropDown";
 
   
   const [test,settest]= useState(false);
@@ -38,7 +38,7 @@ function NavBar() {
         <Container fluid tag="nav">
           <nav id="topMenu">
             {/***********************Guest Menu***********************/}
-            {MenuType == "Guest" && (
+            {userLink == "Guest" && (
               <Row>
                 {sideBar ? (
                   ""
@@ -129,7 +129,7 @@ function NavBar() {
               </Row>
             )}
             {/***********************Employer Menu***********************/}
-            {MenuType == "Employer" && (
+            {userLink == "Employer" && (
               <Row>
                 {sideBar ? (
                   ""
@@ -143,9 +143,9 @@ function NavBar() {
                 <Col xs="10">
                   <ul id="ulMain">
                     <li>
-                      <a href="#" className="headerLinkStyle">
+                      <Link to="Home"  className="headerLinkStyle">
                         Home
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
@@ -153,24 +153,23 @@ function NavBar() {
                         <span className="material-icons arrow-icon">
                           arrow_drop_down
                         </span>
-                      
                       </a>
                       <ul>
                         <span className="arrow" />
                         <li>
-                          <a href="#">Find Freelancer</a>
+                          <Link to="freelancerlist">Find Freelancer</Link>
                         </li>
                         <li>
-                          <a href="#">list1</a>
+                          <Link to="postproject">Post Project</Link>
                         </li>
                         <li>
-                          <a href="#">list1</a>
+                          <a href="#">View Projects</a>
                         </li>
                       </ul>
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
-                        Dropdwon
+                       Dashboard
                         <span className="material-icons arrow-icon">
                           arrow_drop_down
                         </span>
@@ -190,12 +189,12 @@ function NavBar() {
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
-                        Menu item 3
+                       Membership Plans
                       </a>
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
-                        Menu item 4
+                       Contact Us
                       </a>
                     </li>
                   </ul>
@@ -247,7 +246,7 @@ function NavBar() {
               </Row>
             )}
             {/**********************Freelancer Menu***********************/}
-            {MenuType == "Freelancer" && (
+            {userLink == "Freelancer" && (
               <Row>
                 {sideBar ? (
                   ""
@@ -275,7 +274,7 @@ function NavBar() {
                       <ul>
                         <span className="arrow" />
                         <li>
-                          <a href="#">list1</a>
+                          <Link to ="browseproject">Browse Project</Link>
                         </li>
                         <li>
                           <a href="#">list1</a>
@@ -319,16 +318,38 @@ function NavBar() {
                 </Col>
                 <Col xs="1">
                   <section id="loginSection">
-                    <a onClick={toggleReg}>
-                      <span
-                        className="material-icons"
-                        style={{ position: "relative", top: 7 }}
-                        id="LoginIcon"
-                      >
-                        login
-                      </span>
-                      <span id="loginText">Login</span>
-                    </a>
+                    <section
+                      style={{
+                        height: "80px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                      onMouseEnter={onHover}
+                      onMouseLeave={onHoverLeave} >
+                      <img src={avatar} alt="" id="userAvatar" />
+                      {test && (
+                     
+                        <motion.div
+                        initial={{ scale: 1, width: 100 }}
+                        animate={{ scale: 1, width: 0 }}
+                        exit={{ scale: 0.5, width: 0 }}>
+                             <AnimatePresence>
+                          <span
+                            className="arrow"
+                            style={{ top: "80%", left: "50%" }}/>
+                          <section id="profile-popup">
+                            <h5>Jack Harlow</h5>
+                            <ul>
+                              <li>Dashboard</li>
+                              <li>Settings</li>
+                            </ul>
+                          </section>
+                          </AnimatePresence>
+                        </motion.div>
+                       
+                      )}
+                    </section>
+
                     <a
                       onClick={() => {
                         setSideBar((v) => !v);

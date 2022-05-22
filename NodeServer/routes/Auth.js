@@ -7,7 +7,6 @@ const connection = require('../_helpers/db');
 const { loginValidation } = require('../_helpers/validation');
 const jwt = require('jsonwebtoken');
 
-
 router.post('/login', loginValidation, (req, res, next) => {
     let query = "select login_id, password from logininfo where email = ?";
     connection.query(query, [req.body.email], (error, result) => {
@@ -28,7 +27,8 @@ router.post('/login', loginValidation, (req, res, next) => {
                 });
             }
             if(data) {
-                const token = jwt.sign({id: result[0].login_id}, 'secret1234', {expiresIn: '1d'});
+                req.session.loginId = result[0].login_id;
+                const token = jwt.sign({id: result[0].login_id}, process.env.secret, {expiresIn: '1d'});
                 connection.query(`UPDATE logininfo SET last_login = NOW() WHERE login_id = '${result[0].login_id}'`);
                 return res.status(200).send({
                     msg: 'Logged in!',
@@ -51,10 +51,12 @@ router.post('/register', urlEncodedParser, (req, res) => {
         connection.query(query, [req.body.email, hashedPassword, req.body.userType, req.body.status], (err, result)=>{
             if (err)  throw err;
 
-            res.send(result);
+            res.status(201).send(result);
         });
     });
 
 });
+
+
 
 module.exports = router;

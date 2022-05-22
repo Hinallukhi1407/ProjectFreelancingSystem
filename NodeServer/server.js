@@ -1,16 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const cors = require('cors');
-const authRoute = require('./routes/Auth');
+const session = require('express-session');
 
+dotenv.config();
 const app = express();
 const urlEncodedParser = bodyParser.urlencoded({extended:false});
-const port = 4500;
 
+const authRoute = require('./routes/Auth');
+const freelancerRoute = require('./routes/Freelancer');
+
+app.use(session({
+    secret : process.env.session_secret,
+    resave : true,
+    saveUninitialized : true
+}));
 app.use(urlEncodedParser);
-app.use('/auth', authRoute);
 app.use(express.json());
 app.use(cors());
+
+
+app.use('/auth', authRoute);
+app.use('/freelancer', freelancerRoute);
+
 
 app.use((err, req, res) => {
     err.statusCode = err.statusCode || 500;
@@ -20,6 +33,6 @@ app.use((err, req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server started at ${port}`);
+app.listen(process.env.port, () => {
+    console.log(`Server started at ${process.env.port}`);
 })

@@ -1,6 +1,5 @@
 const express = require("express");
 const connection = require("../_helpers/db");
-const jwt = require("../_helpers/jwt");
 const router = express.Router();
 
 const { accessTokenValidator } = require("../_helpers/jwtvalidator");
@@ -43,8 +42,7 @@ router.route("/:userId?").get(accessTokenValidator, (req, res, next) => {
 });
 
 router.get('/fetch/:userName?', (req, res)=>{
-    let query = `select * from userprofile where first_name like \'${req.params.userName}%\'`
-    console.log(query);
+    let query = `select * from userprofile where first_name like \'${req.params.userName}%\'`;
     connection.query(query, (err, result) => {
         if (err) {
           return res.status(404).send({

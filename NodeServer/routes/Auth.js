@@ -20,6 +20,10 @@ router.post('/login', loginValidation, (req, res, next) => {
                 msg : "Email or password is incorrect :("
             });
         }
+        let userProfile;
+        connection.query(`select * from userprofile where login_id = ?`, result[0].login_id, (pErr, pData) => {
+                    if(pData) userProfile = pData;
+        })
         bcrypt.compare(req.body.password, result[0].password, (err, data) => {
             if (err) {
                 return res.status(401).send({
@@ -33,7 +37,7 @@ router.post('/login', loginValidation, (req, res, next) => {
                 return res.status(200).send({
                     msg: 'Logged in!',
                     token,
-                    user: result[0]
+                    user: userProfile
                   });
             }
             return res.status(401).send({

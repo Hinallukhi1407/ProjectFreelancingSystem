@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Container,
   Row,
@@ -9,6 +10,7 @@ import {
   InputGroupText,
   Input,
 } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import * as Hiicons from "react-icons/hi";
 import * as Aiicons from "react-icons/ai";
 import * as Biicons from "react-icons/bi";
@@ -16,17 +18,44 @@ import * as Mdicons from "react-icons/md";
 import * as Faicons from "react-icons/fa";
 
 function Registration() {
-  const [isActive, setActive] = useState({
-    Employeer: false,
-    Freelancer: true,
+  let navigate = useNavigate();
+  const [userType, setuserType] = useState("Freelancer");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [usrType, setusrType] = useState(3);
+  const [usercred,setusercred] = useState({
+    email: "",
+    password: "",
+    status:11,
+    usrtype:usrType
   });
+  
 
   const toggleClass = () => {
-    setActive((prevState) => ({
-      Employeer: !prevState.Employeer,
-      Freelancer: !prevState.Freelancer,
-    }));
+    if(userType=="Freelancer"){
+      setuserType("Employer");
+    }
+    else{
+      setuserType("Freelancer");
+    }
   };
+  
+
+  const onRegistrationBtnClick = () => {
+    if(userType=="Freelancer"){
+       setusrType(2);
+    }
+    else{
+      setusrType(3);
+    }
+    
+    if(confirmPassword==usercred.password){
+      axios.post("/auth/register",usercred).then((res) => res.data.data=="Record Inserted." ? registersuccess():"");
+    }
+    const registersuccess = () =>{
+      alert("User registered successfully.");
+      window.location.reload();
+    }
+  }
 
   return (
     <React.Fragment>
@@ -37,7 +66,7 @@ function Registration() {
         <ButtonGroup>
           <Button
             className="user-button-defualt"
-            id={isActive.Employeer ? "user-button" : ""}
+            id={userType=="Employer" ? "user-button" : ""}
             onClick={toggleClass}
             outline
           >
@@ -47,10 +76,10 @@ function Registration() {
                 size={25}
               />
             </span>
-            Employeer
+            Employer
           </Button>
           <Button
-            id={isActive.Freelancer ? "user-button" : ""}
+            id={userType=="Freelancer" ? "user-button" : ""}
             className="user-button-defualt"
             onClick={toggleClass}
             outline
@@ -67,19 +96,19 @@ function Registration() {
           <InputGroupText style={{ padding: "15px" }}>
             <Hiicons.HiOutlineMail />
           </InputGroupText>
-          <Input placeholder="Email" style={{ padding: "10px" }} />
+          <Input placeholder="Email" style={{ padding: "10px" }} onChange={(e) => { setusercred({ ...usercred, email: e.target.value }) }} />
         </InputGroup>
         <InputGroup className="mt-3">
           <InputGroupText>
             <Aiicons.AiOutlineLock></Aiicons.AiOutlineLock>
           </InputGroupText>
-          <Input placeholder="Password" style={{ padding: "10px" }} />
+          <Input type="password" placeholder="Password" style={{ padding: "10px" }} onChange={(e) => { setusercred({ ...usercred, password: e.target.value }) }}  />
         </InputGroup>
         <InputGroup className="mt-3">
           <InputGroupText>
             <Aiicons.AiOutlineLock></Aiicons.AiOutlineLock>
           </InputGroupText>
-          <Input placeholder="Password" style={{ padding: "10px" }} />
+          <Input type="password" placeholder="confirm Password" style={{ padding: "10px" }} onChange={(e) => setconfirmPassword(e.target.value)} />
         </InputGroup>
         <a
           href="#"
@@ -91,7 +120,7 @@ function Registration() {
         >
           Already Have Account Login?
         </a>
-        <Button color="primary" style={{ marginTop: "5%", padding: "2%" }}>
+        <Button color="primary" style={{ marginTop: "5%", padding: "2%" }} onClick={() => onRegistrationBtnClick()}>
           Register
         </Button>
       </Row>

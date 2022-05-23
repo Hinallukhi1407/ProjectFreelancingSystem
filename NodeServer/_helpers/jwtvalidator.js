@@ -7,7 +7,7 @@ module.exports = {
       try {
         let token = _getKeyValue(req.headers, 'authorization', null);
   
-        if (!token) return res.status(403).send("Not authorized!!");
+        if (!token) return res.send("Not authorized!!");
         token = token.split(' ')[1]
         req.payload = await verifyJwtToken({ token, secret: process.env.secret })
         next()

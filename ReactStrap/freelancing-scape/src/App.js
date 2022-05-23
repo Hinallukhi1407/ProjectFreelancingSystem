@@ -13,9 +13,17 @@ import PostProject from "./Component/Employeer/PostProject";
 import FindProject from "./Component/Freelancer/FindProject";
 import TaskList from "./Component/Freelancer/TaskList";
 import TaskDescription from "./Component/Freelancer/TaskDescription";
+import { UserContext } from "./UserContext";
+import { useState } from "react";
 function App() {
+  const [loginstatus, setloginstatus] = useState(false);
+  const [username, setusername] = useState("");
+  const [token, settoken] = useState("");
+  const [userid, setuserid] = useState("");
+  const [image, setimage] = useState("");
   return (
     <React.Fragment>
+      <UserContext.Provider value={{loginstat: [loginstatus,setloginstatus], usrname : [username,setusername], token:[token,settoken],userid:[userid,setuserid],image:[image,setimage]}}>
       <Router>
         <Routes>
           <Route path="/" exact element={<Guest />} />
@@ -33,6 +41,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      </UserContext.Provider>
     </React.Fragment>
   );
 }

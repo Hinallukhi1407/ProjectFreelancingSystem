@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../Images/logo.png";
 import { Container, Row, Col,Popover,PopoverHeader,PopoverBody } from "reactstrap";
 import * as AIicons from "react-icons/ai";
@@ -9,7 +9,8 @@ import RegistrationContainer from "../Guest/RegistrationContainer";
 import { motion, AnimatePresence } from "framer-motion";
 import avatar from '../../Images/user-avatar-small-02.jpg'
 import { Link } from "react-router-dom";
-
+import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 
 function NavBar(props) {
   const [sideBar, setSideBar] = useState(false);
@@ -21,8 +22,13 @@ function NavBar(props) {
   };
   
   const userLink = props.pageType ? props.pageType : "DropDown";
+  const {loginstat,usrname,image,token} = useContext(UserContext);
+  const [loginstatus,setloginstatus] = loginstat;
+  const [username,setusername] = usrname;
+  const [img] = image;
+  const [tokenstr,settokenstr] = token;
+  let navigate = useNavigate();
 
-  
   const [test,settest]= useState(false);
   const onHover = () => {
     settest(true)
@@ -31,6 +37,16 @@ function NavBar(props) {
   const onHoverLeave = () => {
     settest(false)
   }
+  const logOutbtnclicked = () =>{
+    setusername("");
+    setloginstatus(false);
+    settokenstr("");
+  }
+  useEffect(() =>{
+    if(!loginstatus){
+        navigate("/");
+    }
+  },[loginstatus]);
   return (
     <React.Fragment>
       <header>
@@ -210,7 +226,8 @@ function NavBar(props) {
                       onMouseEnter={onHover}
                       onMouseLeave={onHoverLeave}
                     >
-                      <img src={avatar} alt="" id="userAvatar" />
+                      
+                      <img src={"../Images/" + img} alt="" id="userAvatar" />
                       {test && (
                      
                         <motion.div
@@ -222,10 +239,11 @@ function NavBar(props) {
                             className="arrow"
                             style={{ top: "80%", left: "50%" }}/>
                           <section id="profile-popup">
-                            <h5>Jack Harlow</h5>
+                            <h5>{loginstatus?username:""}</h5>
                             <ul>
                               <li>Dashboard</li>
                               <li>Settings</li>
+                              <li onClick={logOutbtnclicked}>Log Out</li>
                             </ul>
                           </section>
                           </AnimatePresence>
@@ -326,7 +344,7 @@ function NavBar(props) {
                       }}
                       onMouseEnter={onHover}
                       onMouseLeave={onHoverLeave} >
-                      <img src={avatar} alt="" id="userAvatar" />
+                      <img src={"../Images/" + img} alt="" id="userAvatar" />
                       {test && (
                      
                         <motion.div
@@ -338,10 +356,11 @@ function NavBar(props) {
                             className="arrow"
                             style={{ top: "80%", left: "50%" }}/>
                           <section id="profile-popup">
-                            <h5>Jack Harlow</h5>
+                          <h5>{loginstatus?username:""}</h5>
                             <ul>
                               <li>Dashboard</li>
                               <li>Settings</li>
+                              <li onClick={logOutbtnclicked}>Log Out</li>
                             </ul>
                           </section>
                           </AnimatePresence>

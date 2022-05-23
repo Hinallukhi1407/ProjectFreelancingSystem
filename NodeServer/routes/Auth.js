@@ -1,4 +1,8 @@
+const {json} = require('express');
 const express = require('express');
+const app = express();
+app.use(express.json());
+//const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
@@ -8,28 +12,23 @@ const { loginValidation } = require('../_helpers/validation');
 const jwt = require('jsonwebtoken');
 
 router.post('/login', loginValidation, (req, res, next) => {
-    let query = "select login_id, password from logininfo where email = ?";
+    let query = "select login.login_id, login.password,user.user_type from logininfo as login ,usertype as user where login.user_type_id=user.user_type_id AND login.email = ?";
     connection.query(query, [req.body.email], (error, result) => {
         if (error) {
-            return res.status(400).send({
-                msg : err
-            });
+            res.status(500);
+            return res.json({data : "Error : " + error});
         }
         if(!result.length) {
-            return res.status(401).send({
-                msg : "Email or password is incorrect :("
-            });
+            res.status(401);
+            return res.json({data : "Invalid username."});
         }
         let userProfile;
         connection.query(`select * from userprofile where login_id = ?`, result[0].login_id, (pErr, pData) => {
                     if(pData) userProfile = pData;
-        })
+        });
+        let userType =result[0].user_type;
         bcrypt.compare(req.body.password, result[0].password, (err, data) => {
-            if (err) {
-                return res.status(401).send({
-                    msg: "Email or password incorrect!!"
-                });
-            }
+           
             if(data) {
                 req.session.loginId = result[0].login_id;
                 const token = jwt.sign({id: result[0].login_id}, process.env.secret, {expiresIn: '1d'});
@@ -37,12 +36,11 @@ router.post('/login', loginValidation, (req, res, next) => {
                 return res.status(200).send({
                     msg: 'Logged in!',
                     token,
-                    user: userProfile
+                    user: userProfile,
+                    userType : userType
                   });
             }
-            return res.status(401).send({
-                msg: 'Username or password is incorrect!'
-              });
+            return res.json({data : "Incorrect Password."});
         });
     });
 });
@@ -52,10 +50,9 @@ router.post('/register', urlEncodedParser, (req, res) => {
 
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
         let query = "insert into logininfo(email, password, user_type_id,status_id) values(?,?,?,?)";
-        connection.query(query, [req.body.email, hashedPassword, req.body.userType, req.body.status], (err, result)=>{
+        connection.query(query, [req.body.email, hashedPassword, req.body.usrtype, req.body.status], (err, result)=>{
             if (err)  throw err;
-
-            res.status(201).send(result);
+            return res.json({data : "Record Inserted."});
         });
     });
 

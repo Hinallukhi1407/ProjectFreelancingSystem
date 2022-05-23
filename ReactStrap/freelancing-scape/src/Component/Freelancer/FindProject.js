@@ -20,12 +20,36 @@ import * as FAicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
 import * as Aiicons from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../UserContext";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 function FindProject() {
   const navigate = useNavigate();
+  const {loginstat,usrname,token} = useContext(UserContext);
+  const [loginstatus] = loginstat;
+  const [tokenstr] = token;
   const goToTaskList = () => {
     navigate('tasklist');
   }
+  const [data, setdata] = useState([]);
+  const setList = () => {
+    axios.get("/project", { headers: {"Authorization" : `Bearer ${tokenstr}`} }).then((res) =>{
+    setdata(res.data);
+    console.log(res.data);
+     data.map((e) => console.log(" data : " + e.project_id)); 
+    });
+  }
+  useEffect(() =>{
+    if(!loginstatus){
+        navigate("/");
+    }else{
+      setList();
+      console.log(data);
+    }
+  },[loginstatus]);
   return (
     <React.Fragment>
       <Container tag={"section"} className="list-freelancer-form">
@@ -70,17 +94,15 @@ function FindProject() {
             <section className="mt-5">
               <Row>
                 <Col>
+                {data.map((e) => 
                   <Card body style={{marginBottom:"10px"}}>
                     <CardBody>
                       <CardTitle tag="h5">
-                        Food Delivery Mobile Application
+                        {e.project_name}
                       </CardTitle>
                       <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        <Mdicons.MdOutlineLocationOn
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />{" "}
-                        <span>London</span>
+                        {"Duration : "}
+                        <span>{e.duration + "  Months"}</span>
                         <Aiicons.AiOutlineClockCircle
                           size={20}
                           style={{ margin: "10px" }}
@@ -88,9 +110,7 @@ function FindProject() {
                         <span>5 mintues ago</span>
                       </CardSubtitle>
                       <CardText className="mt-3">
-                        Leverage agile frameworks to provide a robust synopsis
-                        for high level overviews. Iterative approaches to
-                        corporate strategy foste
+                        {e.project_discription}
                         <section
                           className="inline mt-3"
                           style={{ display: "flex", flexWrap: "wrap" }}
@@ -105,13 +125,13 @@ function FindProject() {
                             className="skill-badge"
                             style={{ width: "100px" }}
                           >
-                            css
+                            Html
                           </span>{" "}
                           <span
                             className="skill-badge"
                             style={{ width: "100px" }}
                           >
-                            css
+                            Java
                           </span>
                         </section>
                         <Button
@@ -124,7 +144,8 @@ function FindProject() {
                       </CardText>
                     </CardBody>
                   </Card>
-                  <Card body style={{marginBottom:"10px"}}>
+                )}
+                  {/*  <Card body style={{marginBottom:"10px"}}>
                     <CardBody>
                       <CardTitle tag="h5">
                         Food Delivery Mobile Application
@@ -177,118 +198,9 @@ function FindProject() {
                         </Button>
                       </CardText>
                     </CardBody>
-                  </Card>
+                  </Card>  */}
                 </Col>
-                <Col>
-                  <Card body style={{marginBottom:"10px"}}>
-                    <CardBody>
-                      <CardTitle tag="h5">
-                        Food Delivery Mobile Application
-                      </CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        <Mdicons.MdOutlineLocationOn
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />{" "}
-                        <span>London</span>
-                        <Aiicons.AiOutlineClockCircle
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />
-                        <span>5 mintues ago</span>
-                      </CardSubtitle>
-                      <CardText className="mt-3">
-                        Leverage agile frameworks to provide a robust synopsis
-                        for high level overviews. Iterative approaches to
-                        corporate strategy foste
-                        <section
-                          className="inline mt-3"
-                          style={{ display: "flex", flexWrap: "wrap" }}
-                        >
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>{" "}
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                        </section>
-                        <Button
-                          color="primary"
-                          className="mt-4"
-                          style={{ width: "100%" }}
-                        >
-                          View Tasks
-                        </Button>
-                      </CardText>
-                    </CardBody>
-                  </Card>
-                  <Card body style={{marginBottom:"10px"}}>
-                    <CardBody>
-                      <CardTitle tag="h5">
-                        Food Delivery Mobile Application
-                      </CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        <Mdicons.MdOutlineLocationOn
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />{" "}
-                        <span>London</span>
-                        <Aiicons.AiOutlineClockCircle
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />
-                        <span>5 mintues ago</span>
-                      </CardSubtitle>
-                      <CardText className="mt-3">
-                        Leverage agile frameworks to provide a robust synopsis
-                        for high level overviews. Iterative approaches to
-                        corporate strategy foste
-                        <section
-                          className="inline mt-3"
-                          style={{ display: "flex", flexWrap: "wrap" }}
-                        >
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>{" "}
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                        </section>
-                        <Button
-                          color="primary"
-                          className="mt-4"
-                          style={{ width: "100%" }}
-                        >
-                          View Tasks
-                        </Button>
-                      </CardText>
-                    </CardBody>
-                  </Card>
-                </Col>
+                
               </Row>
             </section>
           </Col>

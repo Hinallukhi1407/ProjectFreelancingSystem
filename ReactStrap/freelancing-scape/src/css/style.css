@@ -725,4 +725,9 @@ header {
       width: 100%;
     }
 }
+.wrongcred{
+    margin-top: 3%;
+    font-size: 1.1rem;
+    color: red;
+  }
 /*Media Ends*/

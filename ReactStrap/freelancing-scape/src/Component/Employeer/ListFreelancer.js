@@ -17,12 +17,37 @@ import {
   ListGroupItem,
 } from "reactstrap";
 import * as FAicons from "react-icons/fa";
+import { UserContext } from "../../UserContext";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import axios from "axios";
 function ListFreelancer() {
   const navigate = useNavigate();
+  const {loginstat,usrname,token} = useContext(UserContext);
+  const [loginstatus] = loginstat;
+  const [tokenstr] = token;
   const goToProfileDesc = () => {
-    console.log("ajbdashj")
-    navigate('profiledesc');
+    /* console.log("ajbdashj")
+    navigate('profiledesc'); */
   }
+  const [data, setdata] = useState([]);
+  const setList = () => {
+    axios.get("/freelancer", { headers: {"Authorization" : `Bearer ${tokenstr}`} }).then((res) =>{
+    setdata(res.data);
+    /* console.log(data);
+     data.map((e) => console.log(" data : " + e[0]));  */
+    });
+  }
+  useEffect(() =>{
+    if(!loginstatus){
+        navigate("/");
+    }else{
+      setList();
+      console.log(data);
+    }
+  },[loginstatus]);
+  
   return (
     <React.Fragment>
       <Container tag={"section"} className="list-freelancer-form">
@@ -65,14 +90,17 @@ function ListFreelancer() {
               <Button color="primary">Search</Button>
             </InputGroup>
             <section className="mt-5">
+              {data.map((e) => 
               <Card body id="free-profile-list-card">
                 <Row>
                   <Col xs="1" id="free-avatar">
                     <img
-                      src={avatar}
+                      src={"../Images/" + e.profile_image}
                       alt=""
                       style={{
                         borderRadius: "100px",
+                        width:"100px",
+                        height:"100px"
                       }}
                     />
                   </Col>
@@ -80,8 +108,8 @@ function ListFreelancer() {
                     xs="5"
                     className=" text-align-center"
                     id="free-name">
-                    <h5>Jack Harlow</h5>
-                    <h6 className="fw-lighter">UI/UX Designer</h6>
+                    <h5>{e.first_name + " " + e.last_name}</h5>
+                    <h6 className="fw-lighter">{e.tag_line}</h6>
                   </Col>
                   <Col
                     xs="6"
@@ -99,7 +127,7 @@ function ListFreelancer() {
                           style={{ color: "black" }}
                         >
                           <section className="count">Rate</section>
-                          14$/hr
+                          {e.hourly_rate} $/hr
                         </ListGroupItem>
                         <ListGroupItem
                           className="justify-content-between banner-list-item"
@@ -109,14 +137,14 @@ function ListFreelancer() {
                         </ListGroupItem>
                         
                       </ListGroup>
-                      <Button color="primary" className="mt-3" style={{width:"100%"}} onClick={goToProfileDesc}>
+                      <Button color="primary" className="mt-3" style={{width:"100%"}} onClick={goToProfileDesc()}>
                         View Profile
                       </Button>
                     </CardText>
                   </Col>
                 </Row>
               </Card>
-            
+              )}
             </section>
           </Col>
         </Row>

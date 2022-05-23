@@ -8,11 +8,11 @@ router.route('/').get(accessTokenValidator, (req, res) => {
     let query = `select * from projects`
   connection.query(query, (err, result) => {
     if (err) {
-      return res.status(404).send({
+      return res.send({
         msg: err.message,
       });
     }
-    res.status(200).send(result);
+    res.send(result);
   });
 });
 
@@ -21,7 +21,7 @@ router.get('/:projectId', (req, res) => {
 
     connection.query(query, req.params.projectId, (err, result) => {
         if(err){
-            return res.status(404).send({
+            return res.send({
                 msg : err.message
             });
         }
@@ -34,7 +34,7 @@ router.get('/:projectId', (req, res) => {
                     tRes
                 }
             }
-            res.status(200).send(result);
+            res.send(result);
         });
         
     });
@@ -54,9 +54,9 @@ router.get('/:projectId', (req, res) => {
     ];
 
     connection.query(query, data, (err, result) => {
-        if(err) return res.status(400).send({msg: err.message});
+        if(err) return res.send({msg: err.message});
 
-        return res.status(201).send(result);
+        return res.send(result);
     });
 
 

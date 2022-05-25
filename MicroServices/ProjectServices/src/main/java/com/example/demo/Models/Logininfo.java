@@ -1,28 +1,19 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "logininfo")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
-@JsonIdentityInfo(scope = Logininfo.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Logininfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "login_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_type_id", nullable = false)
     private Usertype userType;
 
@@ -42,57 +33,12 @@ public class Logininfo {
     @Column(name = "verification_code", length = 64)
     private String verificationCode;
 
-    @OneToMany(mappedBy = "login")
-    @JsonBackReference
-    private Set<Userprofile> userprofiles = new LinkedHashSet<>();
-
-
-    public Set<Userprofile> getUserprofiles() {
-        return userprofiles;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserprofiles(Set<Userprofile> userprofiles) {
-        this.userprofiles = userprofiles;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
-    public Statusdetail getStatus() {
-        return status;
-    }
-
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Usertype getUserType() {
@@ -103,11 +49,44 @@ public class Logininfo {
         this.userType = userType;
     }
 
-    public Integer getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public Statusdetail getStatus() {
+        return status;
+    }
+
+    public void setStatus(Statusdetail status) {
+        this.status = status;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
 }

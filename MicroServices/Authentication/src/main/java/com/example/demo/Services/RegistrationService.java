@@ -11,6 +11,8 @@ import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -28,11 +30,14 @@ public class RegistrationService {
 
     @Autowired
     public RegistrationRepository registrationRepository;
+    public BCryptPasswordEncoder passwordEncoder;
 
 
     @Autowired
     StatusRepository statusRepository;
 
+   /* @Autowired
+    private PasswordEncoder passwordEncoder;*/
 
     @Autowired
     private JavaMailSender mailSender;
@@ -62,6 +67,10 @@ public class RegistrationService {
         }
     }
 
+    public Logininfo chkLogin(String email){
+        return registrationRepository.findByEmail(email);
+    }
+
     public void Logout(HttpServletRequest request)
     {
         request.getSession().invalidate();
@@ -74,7 +83,9 @@ public class RegistrationService {
             return  null;
         }
         registration.setVerificationCode(RandomString.make(64));
-        registration.setPassword(encryptionPassword(registration.getPassword()));
+        registration.setPassword(new BCryptPasswordEncoder().encode(registration.getPassword()));
+        //String pwd = registration.getPassword();
+        //registration.setPassword(passwordEncoder.encode(pwd));
         Logininfo reg1=registrationRepository.save(registration);
         if(registration.getUserType().getId() != 1)
         {

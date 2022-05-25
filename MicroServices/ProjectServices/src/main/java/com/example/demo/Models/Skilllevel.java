@@ -1,8 +1,6 @@
 package com.example.demo.Models;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "skilllevel")
@@ -15,26 +13,12 @@ public class Skilllevel {
     @Column(name = "skill_name", nullable = false, length = 20)
     private String skillName;
 
-    @OneToMany(mappedBy = "skillLevel")
-    private Set<Projectskill> projectskills = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "skillLevel")
-    private Set<Freelancerskill> freelancerskills = new LinkedHashSet<>();
-
-    public Set<Freelancerskill> getFreelancerskills() {
-        return freelancerskills;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFreelancerskills(Set<Freelancerskill> freelancerskills) {
-        this.freelancerskills = freelancerskills;
-    }
-
-    public Set<Projectskill> getProjectskills() {
-        return projectskills;
-    }
-
-    public void setProjectskills(Set<Projectskill> projectskills) {
-        this.projectskills = projectskills;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getSkillName() {
@@ -45,11 +29,4 @@ public class Skilllevel {
         this.skillName = skillName;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

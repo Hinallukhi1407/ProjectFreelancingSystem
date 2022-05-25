@@ -35,5 +35,6 @@ app.use((err, req, res) => {
 });
 
 app.listen(process.env.port, () => {
+    console.clear();
     console.log(`Server started at ${process.env.port}`);
 })

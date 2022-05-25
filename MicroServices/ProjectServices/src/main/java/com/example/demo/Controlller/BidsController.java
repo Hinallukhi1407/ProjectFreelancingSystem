@@ -19,7 +19,7 @@ public class BidsController {
     @PostMapping("/add")
     public Bid add(@RequestBody Bid bid)
     {
-        return bid;
+        return bidsServices.insertData(bid);
     }
 
     @PutMapping("/update/{id}")
@@ -40,8 +40,8 @@ public class BidsController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Bid> fetchById(Integer id)
+    public Bid fetchById(@PathVariable Integer id)
     {
-        return bidsServices.getDataById(id);
+        return bidsServices.getDataById(id).get();
     }
 }

@@ -25,10 +25,9 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public  @ResponseBody String DeleteUser(@PathVariable Integer id)
+    public  @ResponseBody Boolean DeleteUser(@PathVariable Integer id)
     {
-        userServices.Delete(id);
-        return "Deleted...";
+        return  userServices.Delete(id);
     }
 
     @PostMapping("/add")

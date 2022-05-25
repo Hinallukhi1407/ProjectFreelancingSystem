@@ -32,7 +32,7 @@ public class TaskServices {
         return true;
     }
 
-    public Task update(Task task,Integer id)
+    public Task update(Task task, Integer id)
     {
         if(taskRepository.existsById(id)){
             Optional<Task> task1 = taskRepository.findById(id);;

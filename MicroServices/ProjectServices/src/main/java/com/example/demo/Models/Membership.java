@@ -2,8 +2,6 @@ package com.example.demo.Models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "membership")
@@ -31,55 +29,12 @@ public class Membership {
     @Column(name = "user_type_id", nullable = false)
     private Integer userTypeId;
 
-    @OneToMany(mappedBy = "plan")
-    private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
-
-    public Set<Subscribersdetail> getSubscribersdetails() {
-        return subscribersdetails;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSubscribersdetails(Set<Subscribersdetail> subscribersdetails) {
-        this.subscribersdetails = subscribersdetails;
-    }
-
-    public Integer getUserTypeId() {
-        return userTypeId;
-    }
-
-    public void setUserTypeId(Integer userTypeId) {
-        this.userTypeId = userTypeId;
-    }
-
-    public Integer getBidLimit() {
-        return bidLimit;
-    }
-
-    public void setBidLimit(Integer bidLimit) {
-        this.bidLimit = bidLimit;
-    }
-
-    public Integer getPostLimit() {
-        return postLimit;
-    }
-
-    public void setPostLimit(Integer postLimit) {
-        this.postLimit = postLimit;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getPlanName() {
-        return planName;
-    }
-
-    public void setPlanName(String planName) {
-        this.planName = planName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getDuration() {
@@ -90,11 +45,44 @@ public class Membership {
         this.duration = duration;
     }
 
-    public Integer getId() {
-        return id;
+    public String getPlanName() {
+        return planName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPlanName(String planName) {
+        this.planName = planName;
     }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Integer getPostLimit() {
+        return postLimit;
+    }
+
+    public void setPostLimit(Integer postLimit) {
+        this.postLimit = postLimit;
+    }
+
+    public Integer getBidLimit() {
+        return bidLimit;
+    }
+
+    public void setBidLimit(Integer bidLimit) {
+        this.bidLimit = bidLimit;
+    }
+
+    public Integer getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setUserTypeId(Integer userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
 }

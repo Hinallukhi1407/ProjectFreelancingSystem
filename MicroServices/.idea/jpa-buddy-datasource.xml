@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="17d6fe7c-0001-45ee-bcae-abf649102d0c" name="MicroServices" url="jdbc:mysql://localhost/freelancingscape?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.jdbc.Driver" />
+      <data-source id="7b21dc4d-0a3a-4535-b607-3d6c0a306644" name="FreelancingScape" url="jdbc:mysql://localhost/freelancingscape?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.jdbc.Driver" />
+      <data-source id="546a852e-c3d3-4857-83df-77cdb89f49fa" name="DB" url="jdbc:mysql://localhost/freelancingscape?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
+    </data-sources>
+  </component>
+</project>

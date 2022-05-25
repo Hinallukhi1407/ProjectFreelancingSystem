@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Client.SkillRepository;
+import com.example.demo.Repository.SkillRepository;
 import com.example.demo.Models.Skill;
 import com.example.demo.Services.SkillServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +14,11 @@ public class SkillController {
 
     @Autowired
     public SkillServices skillServices;
-    @Autowired
+    /*@Autowired
     public SkillRepository skillRepository;
 
     @GetMapping("/all")
-    public List<Skill> getall(){return skillRepository.findAll();}
+    public List<Skill> getall(){return skillRepository.findAll();}*/
 
     @PostMapping("/add")
     public Skill insert(@RequestBody Skill s1)

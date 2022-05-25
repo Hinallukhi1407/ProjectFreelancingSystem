@@ -22,20 +22,12 @@ public class Freelancerskill {
     @JoinColumn(name = "skill_level_id", nullable = false)
     private Skilllevel skillLevel;
 
-    public Skilllevel getSkillLevel() {
-        return skillLevel;
+    public FreelancerskillId getId() {
+        return id;
     }
 
-    public void setSkillLevel(Skilllevel skillLevel) {
-        this.skillLevel = skillLevel;
-    }
-
-    public Userprofile getUser() {
-        return user;
-    }
-
-    public void setUser(Userprofile user) {
-        this.user = user;
+    public void setId(FreelancerskillId id) {
+        this.id = id;
     }
 
     public Skill getSkill() {
@@ -46,11 +38,20 @@ public class Freelancerskill {
         this.skill = skill;
     }
 
-    public FreelancerskillId getId() {
-        return id;
+    public Userprofile getUser() {
+        return user;
     }
 
-    public void setId(FreelancerskillId id) {
-        this.id = id;
+    public void setUser(Userprofile user) {
+        this.user = user;
     }
+
+    public Skilllevel getSkillLevel() {
+        return skillLevel;
+    }
+
+    public void setSkillLevel(Skilllevel skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
 }

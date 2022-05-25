@@ -1,6 +1,5 @@
 package com.example.demo.Controlller;
 
-import com.example.demo.Models.Project;
 import com.example.demo.Models.Task;
 import com.example.demo.Services.TaskServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class TaskController {
     public List<Task> all(){ return taskServices.all();}
 
     @GetMapping("/{id}")
-    public Optional<Task> getDataById(@PathVariable Integer id){ return taskServices.getDataById(id); }
+    public Task getDataById(@PathVariable Integer id){ return taskServices.getDataById(id).get(); }
 
     @DeleteMapping("/{id}")
     public Boolean deleteTask(@PathVariable Integer id)

@@ -32,7 +32,7 @@ public class ProjectServices {
 
     public Boolean DeleteProject(Integer id){
          projectRepository.deleteById(id);
-         if(projectRepository.findById(id)!=null){
+         if(projectRepository.findById(id).isPresent()){
              return false;
          }
          return true;

@@ -1,28 +1,17 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "userprofile")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
-@JsonIdentityInfo(scope = Userprofile.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Userprofile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "login_id", nullable = false)
     private Logininfo login;
 
@@ -38,106 +27,19 @@ public class Userprofile {
     @Column(name = "tag_line", length = 50)
     private String tagLine;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
     @Column(name = "mobile_no", precision = 10)
     private BigDecimal mobileNo;
 
-    @OneToMany(mappedBy = "user")
-    @JsonBackReference
-    private Set<Project> projects = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    @JsonBackReference
-    private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-//    @JsonBackReference
-    private Set<Bid> bids = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<Freelancerskill> freelancerskills = new LinkedHashSet<>();
-
-    public Set<Freelancerskill> getFreelancerskills() {
-        return freelancerskills;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFreelancerskills(Set<Freelancerskill> freelancerskills) {
-        this.freelancerskills = freelancerskills;
-    }
-
-    public Set<Bid> getBids() {
-        return bids;
-    }
-
-    public void setBids(Set<Bid> bids) {
-        this.bids = bids;
-    }
-
-    public Set<Subscribersdetail> getSubscribersdetails() {
-        return subscribersdetails;
-    }
-
-    public void setSubscribersdetails(Set<Subscribersdetail> subscribersdetails) {
-        this.subscribersdetails = subscribersdetails;
-    }
-
-    public Set<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
-    public BigDecimal getMobileNo() {
-        return mobileNo;
-    }
-
-    public void setMobileNo(BigDecimal mobileNo) {
-        this.mobileNo = mobileNo;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public String getTagLine() {
-        return tagLine;
-    }
-
-    public void setTagLine(String tagLine) {
-        this.tagLine = tagLine;
-    }
-
-    public BigDecimal getHourlyRate() {
-        return hourlyRate;
-    }
-
-    public void setHourlyRate(BigDecimal hourlyRate) {
-        this.hourlyRate = hourlyRate;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Logininfo getLogin() {
@@ -148,11 +50,52 @@ public class Userprofile {
         this.login = login;
     }
 
-    public Integer getId() {
-        return id;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public BigDecimal getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(BigDecimal hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    public String getTagLine() {
+        return tagLine;
+    }
+
+    public void setTagLine(String tagLine) {
+        this.tagLine = tagLine;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public BigDecimal getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(BigDecimal mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
 }

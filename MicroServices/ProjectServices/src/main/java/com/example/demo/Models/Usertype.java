@@ -1,20 +1,9 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "usertype")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
-@JsonIdentityInfo(scope = Usertype.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-
 public class Usertype {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +13,12 @@ public class Usertype {
     @Column(name = "user_type", nullable = false, length = 20)
     private String userType;
 
-    @OneToMany(mappedBy = "userType")
-    private Set<Logininfo> logininfos = new LinkedHashSet<>();
-
-    public Set<Logininfo> getLogininfos() {
-        return logininfos;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLogininfos(Set<Logininfo> logininfos) {
-        this.logininfos = logininfos;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUserType() {
@@ -43,11 +29,4 @@ public class Usertype {
         this.userType = userType;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

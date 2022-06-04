@@ -15,5 +15,5 @@ public interface RegistrationRepository extends JpaRepository<Logininfo,Integer>
     @Query(value = "SELECT * FROM logininfo WHERE verification_code = ?1", nativeQuery = true)
     Logininfo findByVerificationCode(String verificationCode);
 
-    Optional<Logininfo> findByEmail(String email);
+    Logininfo findByEmail(String email);
 }

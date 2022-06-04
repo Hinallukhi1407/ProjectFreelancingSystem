@@ -6,6 +6,7 @@ import com.example.demo.Models.Logininfo;
 import com.example.demo.Services.RegistrationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -24,7 +25,8 @@ public class Authentication {
     @Autowired
     public RegistrationService registrationService;
 
-
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/all")
     public  Iterable<Logininfo> getData(){
@@ -35,8 +37,10 @@ public class Authentication {
     @PostMapping("/login")
     boolean Login(@RequestParam String email, @RequestParam String password, HttpServletRequest request)
     {
+
         return registrationService.chklogin(email,password,request);
     }
+
 
     @PostMapping(value = "/reg")
     Logininfo regUser(@RequestBody Logininfo registration, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
@@ -59,7 +63,4 @@ public class Authentication {
             return "verify_fail";
         }
     }
-
-
-
 }

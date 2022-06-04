@@ -39,6 +39,7 @@ public class Logininfo {
     private Statusdetail status;
 
     @Column(name = "verification_code", length = 64)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String verificationCode;
 
     @OneToMany(mappedBy = "login")

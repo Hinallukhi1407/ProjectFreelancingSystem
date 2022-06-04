@@ -2,9 +2,7 @@ package com.example.demo.Models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.sql.Date;
 
 @Entity
 @Table(name = "paymentdetails")
@@ -15,7 +13,7 @@ public class Paymentdetail {
     private Integer id;
 
     @Column(name = "txn_date", nullable = false)
-    private Instant txnDate;
+    private Date txnDate;
 
     @Column(name = "txn_no", nullable = false, length = 20)
     private String txnNo;
@@ -23,23 +21,20 @@ public class Paymentdetail {
     @Column(name = "amount", nullable = false, precision = 8, scale = 2)
     private BigDecimal amount;
 
-    @OneToMany(mappedBy = "payment")
-    private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
-
-    public Set<Subscribersdetail> getSubscribersdetails() {
-        return subscribersdetails;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSubscribersdetails(Set<Subscribersdetail> subscribersdetails) {
-        this.subscribersdetails = subscribersdetails;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public Date getTxnDate() {
+        return txnDate;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setTxnDate(Date txnDate) {
+        this.txnDate = txnDate;
     }
 
     public String getTxnNo() {
@@ -50,19 +45,12 @@ public class Paymentdetail {
         this.txnNo = txnNo;
     }
 
-    public Instant getTxnDate() {
-        return txnDate;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setTxnDate(Instant txnDate) {
-        this.txnDate = txnDate;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

@@ -5,7 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/MicroServices.iml" filepath="$PROJECT_DIR$/.idea/MicroServices.iml" />
       <module fileurl="file://$PROJECT_DIR$/Admin/demo.iml" filepath="$PROJECT_DIR$/Admin/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Authentication/freelancingscape.iml" filepath="$PROJECT_DIR$/Authentication/freelancingscape.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ProjectServices/freelancingscape (1).iml" filepath="$PROJECT_DIR$/ProjectServices/freelancingscape (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/Authentication/freelancingscape (1).iml" filepath="$PROJECT_DIR$/Authentication/freelancingscape (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProjectServices/freelancingscape (2).iml" filepath="$PROJECT_DIR$/ProjectServices/freelancingscape (2).iml" />
       <module fileurl="file://$PROJECT_DIR$/UserManagement/freelancingspace.iml" filepath="$PROJECT_DIR$/UserManagement/freelancingspace.iml" />
     </modules>
   </component>

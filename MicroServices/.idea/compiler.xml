@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="freelancingscape" />
         <module name="freelancingspace" />
+        <module name="freelancingscape (2)" />
         <module name="demo" />
         <module name="freelancingscape (1)" />
       </profile>
@@ -17,6 +18,7 @@
       <module name="demo" target="11" />
       <module name="freelancingscape" target="11" />
       <module name="freelancingscape (1)" target="11" />
+      <module name="freelancingscape (2)" target="11" />
       <module name="freelancingspace" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -25,6 +27,7 @@
       <module name="demo" options="-parameters" />
       <module name="freelancingscape" options="-parameters" />
       <module name="freelancingscape (1)" options="-parameters" />
+      <module name="freelancingscape (2)" options="-parameters" />
       <module name="freelancingspace" options="-parameters" />
     </option>
   </component>

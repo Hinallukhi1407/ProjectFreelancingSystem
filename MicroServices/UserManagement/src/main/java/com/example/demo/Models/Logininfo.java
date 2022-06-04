@@ -44,6 +44,8 @@ public class Logininfo {
     @OneToMany(mappedBy = "login")
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 
+    @Column(name = "last_login", nullable = false)
+    private Date loginDate;
 
     public Set<Userprofile> getUserprofiles() {
         return userprofiles;

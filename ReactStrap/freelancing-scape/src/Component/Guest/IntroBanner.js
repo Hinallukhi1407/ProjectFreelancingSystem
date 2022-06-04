@@ -26,7 +26,7 @@ function IntroBanner() {
               <br />
               <span>
                 Thousands of small businesses use{" "}
-                <strong style={{ color: "#2a41e8" }}>Hireo</strong> to turn
+                <strong style={{ color: "#2a41e8" }}>Freelancing Scape</strong> to turn
                 their ideas into reality.
               </span>
             </h3>
@@ -119,7 +119,7 @@ function IntroBanner() {
           </Col>
         </Row>
         <Row id="job-count">
-          <ListGroup horizontal style={{ display: "flex" }}>
+          <ListGroup horizontal style={{ display: "flex" }} >
             <ListGroupItem className="justify-content-between banner-list-item">
               <section className="count">1000</section>
               Jobs Posted

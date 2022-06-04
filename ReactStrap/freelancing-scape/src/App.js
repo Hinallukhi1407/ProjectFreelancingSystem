@@ -15,6 +15,7 @@ import TaskList from "./Component/Freelancer/TaskList";
 import TaskDescription from "./Component/Freelancer/TaskDescription";
 import { UserContext } from "./UserContext";
 import { useState } from "react";
+import AddTasks from "./Component/Employeer/AddTasks";
 function App() {
   const [loginstatus, setloginstatus] = useState(false);
   const [username, setusername] = useState("");
@@ -32,6 +33,7 @@ function App() {
             <Route path="freelancerlist" element={<ListFreelancer />}/>
             <Route path="freelancerlist/profiledesc" element={<ProfileDescription/>}/>
             <Route path="postproject" element={<PostProject/>}/>
+            <Route path="postproject/posttasks" element={<AddTasks/>}/>
           </Route>
           <Route path="/freelancer" element={<Freelancer />} >
              <Route path="Home" element={<GuestIntroBanner />} />

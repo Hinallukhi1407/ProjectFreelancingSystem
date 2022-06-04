@@ -1,7 +1,7 @@
 import React from "react";
 import { Row } from "reactstrap";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../Images/logo2.png";
+import logo from "../../Images/logo-light.png";
 
 function SideBar() {
   var MenuType = "Employer";
@@ -15,12 +15,11 @@ function SideBar() {
       >
         <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0, delay: 0 }}>
           <Row id="sidebarTitle">
-            <section id="logosection" style={{ border: "none" }}>
+            <section id="sidebar-logo-section">
               <img src={logo} className="logo" />
             </section>
           </Row>
-          {
-            MenuType == "Guest" && (
+          {MenuType == "Guest" && (
             <Row id="sidebarul">
               <ul>
                 <li>Home</li>
@@ -31,8 +30,7 @@ function SideBar() {
               </ul>
             </Row>
           )}
-           {
-            MenuType == "Employer" && (
+          {MenuType == "Employer" && (
             <Row id="sidebarul">
               <ul>
                 <li>Home</li>
@@ -43,8 +41,7 @@ function SideBar() {
               </ul>
             </Row>
           )}
-           {
-            MenuType == "Freelancer" && (
+          {MenuType == "Freelancer" && (
             <Row id="sidebarul">
               <ul>
                 <li>Home</li>

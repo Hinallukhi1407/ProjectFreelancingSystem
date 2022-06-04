@@ -19,7 +19,7 @@ function IntroBanner() {
       <Container fluid className="Employeer-introBanner" style={{padding:"0"}}>
         <section id="background-dark">
         </section>
-        <section id="banner-content">
+        <section id="banner-content-employer">
           <Row className="banner-headline">
             <article>
               <h3>

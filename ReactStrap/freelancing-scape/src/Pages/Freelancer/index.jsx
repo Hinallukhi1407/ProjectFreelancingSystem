@@ -7,7 +7,6 @@ function Freelancer() {
     return (
         <>
             <NavBar pageType="Freelancer"/>
-            {/* <IntroBanner /> */}
             <Outlet/>
         </>
     );

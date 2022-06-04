@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import logo from "../../Images/logo.png";
+import logo from "../../Images/logo-dark.png";
 import { Container, Row, Col,Popover,PopoverHeader,PopoverBody } from "reactstrap";
 import * as AIicons from "react-icons/ai";
 import * as FIicons from "react-icons/fi"
@@ -56,16 +56,12 @@ function NavBar(props) {
             {/***********************Guest Menu***********************/}
             {userLink == "Guest" && (
               <Row>
-                {sideBar ? (
-                  ""
-                ) : (
-                  <Col xs="1">
-                    <section id="logosection">
+                  <Col lg="1" sm="2" xs="3" id="logo-col">
+                    <section id="logo-section">
                       <img src={logo} className="logo" />
                     </section>
                   </Col>
-                )}
-                <Col xs="10">
+                <Col lg="10" sm="8" xs="6">
                   <ul id="ulMain">
                     <li>
                       <a href="#" className="headerLinkStyle">
@@ -127,7 +123,7 @@ function NavBar(props) {
                     </li>
                   </ul>
                 </Col>
-                <Col xs="1">
+                <Col lg="1" sm="2" xs="3" id="login-col">
                   <section id="loginSection">
                     <a onClick={toggleReg}>
                       <FIicons.FiLogIn size={25} id="login-icon" />
@@ -147,19 +143,15 @@ function NavBar(props) {
             {/***********************Employer Menu***********************/}
             {userLink == "Employer" && (
               <Row>
-                {sideBar ? (
-                  ""
-                ) : (
-                  <Col xs="1">
-                    <section id="logosection">
+                <Col lg="1" sm="2" xs="3" id="logo-col">
+                    <section id="logo-section">
                       <img src={logo} className="logo" />
                     </section>
                   </Col>
-                )}
-                <Col xs="10">
+                <Col lg="10" sm="8" xs="5">
                   <ul id="ulMain">
                     <li>
-                      <Link to="Home"  className="headerLinkStyle">
+                      <Link to="Home" className="headerLinkStyle">
                         Home
                       </Link>
                     </li>
@@ -185,7 +177,7 @@ function NavBar(props) {
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
-                       Dashboard
+                        Dashboard
                         <span className="material-icons arrow-icon">
                           arrow_drop_down
                         </span>
@@ -205,53 +197,38 @@ function NavBar(props) {
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
-                       Membership Plans
+                        Membership Plans
                       </a>
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
-                       Contact Us
+                        Contact Us
                       </a>
                     </li>
                   </ul>
                 </Col>
-                <Col xs="1">
+                <Col  lg="1" sm="2" xs="3" id="login-col">
                   <section id="loginSection">
                     <section
-                      style={{
-                        height: "80px",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
                       onMouseEnter={onHover}
                       onMouseLeave={onHoverLeave}
                     >
-                      
                       <img src={"../Images/" + img} alt="" id="userAvatar" />
                       {test && (
-                     
-                        <motion.div
-                        initial={{ scale: 1, width: 100 }}
-                        animate={{ scale: 1, width: 0 }}
-                        exit={{ scale: 0.5, width: 0 }}>
-                             <AnimatePresence>
-                          <span
-                            className="arrow"
-                            style={{ top: "80%", left: "50%" }}/>
-                          <section id="profile-popup">
-                            <h5>{loginstatus?username:""}</h5>
-                            <ul>
-                              <li>Dashboard</li>
-                              <li>Settings</li>
-                              <li onClick={logOutbtnclicked}>Log Out</li>
-                            </ul>
-                          </section>
-                          </AnimatePresence>
-                        </motion.div>
-                       
+                          <aside id="profile-popup">
+                            <span
+                              className="arrow" style={{left:"60%"}}/>
+                            <section >
+                              <h5>{loginstatus ? username : ""}</h5>
+                              <ul>
+                                <li>Dashboard</li>
+                                <li>Settings</li>
+                                <li onClick={logOutbtnclicked}>Log Out</li>
+                              </ul>
+                            </section>
+                          </aside>
                       )}
                     </section>
-
                     <a
                       onClick={() => {
                         setSideBar((v) => !v);
@@ -266,16 +243,14 @@ function NavBar(props) {
             {/**********************Freelancer Menu***********************/}
             {userLink == "Freelancer" && (
               <Row>
-                {sideBar ? (
-                  ""
-                ) : (
-                  <Col xs="1">
+               
+                  <Col xs="1" lg="1" sm="2" xs="3" id="logo-col">
                     <section id="logosection">
                       <img src={logo} className="logo" />
                     </section>
                   </Col>
-                )}
-                <Col xs="10">
+              
+                <Col lg="10" sm="8" xs="5">
                   <ul id="ulMain">
                     <li>
                       <a href="#" className="headerLinkStyle">
@@ -292,7 +267,7 @@ function NavBar(props) {
                       <ul>
                         <span className="arrow" />
                         <li>
-                          <Link to ="browseproject">Browse Project</Link>
+                          <Link to="browseproject">Browse Project</Link>
                         </li>
                         <li>
                           <a href="#">list1</a>
@@ -334,41 +309,28 @@ function NavBar(props) {
                     </li>
                   </ul>
                 </Col>
-                <Col xs="1">
+                <Col  lg="1" sm="2" xs="3" id="login-col">
                   <section id="loginSection">
                     <section
-                      style={{
-                        height: "80px",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
                       onMouseEnter={onHover}
-                      onMouseLeave={onHoverLeave} >
+                      onMouseLeave={onHoverLeave}
+                    >
                       <img src={"../Images/" + img} alt="" id="userAvatar" />
                       {test && (
-                     
-                        <motion.div
-                        initial={{ scale: 1, width: 100 }}
-                        animate={{ scale: 1, width: 0 }}
-                        exit={{ scale: 0.5, width: 0 }}>
-                             <AnimatePresence>
-                          <span
-                            className="arrow"
-                            style={{ top: "80%", left: "50%" }}/>
-                          <section id="profile-popup">
-                          <h5>{loginstatus?username:""}</h5>
-                            <ul>
-                              <li>Dashboard</li>
-                              <li>Settings</li>
-                              <li onClick={logOutbtnclicked}>Log Out</li>
-                            </ul>
-                          </section>
-                          </AnimatePresence>
-                        </motion.div>
-                       
+                          <aside id="profile-popup">
+                            <span
+                              className="arrow" style={{left:"60%"}}/>
+                            <section >
+                              <h5>{loginstatus ? username : ""}</h5>
+                              <ul>
+                                <li>Dashboard</li>
+                                <li>Settings</li>
+                                <li onClick={logOutbtnclicked}>Log Out</li>
+                              </ul>
+                            </section>
+                          </aside>
                       )}
                     </section>
-
                     <a
                       onClick={() => {
                         setSideBar((v) => !v);

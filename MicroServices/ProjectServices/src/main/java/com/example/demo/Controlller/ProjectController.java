@@ -16,7 +16,7 @@ public class ProjectController {
     public ProjectServices projectServices;
 
     @PostMapping("/add")
-    public Project add(@RequestBody Project project)
+    public int add(@RequestBody Project project)
     {
         return  projectServices.insert(project);
     }

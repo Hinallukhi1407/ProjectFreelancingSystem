@@ -19,11 +19,10 @@ public class ProjectServices {
     @Autowired
     TaskServices taskServices;
 
-    public Project insert(Project project)
+    public int insert(Project project)
     {
         Project project1= projectRepository.save(project);
-        taskServices.insertData(new Task(project1,project1.getProjectName(),project1.getProjectDescription(),project1.getPostDate(),project1.getCompletionDate(),project1.getAttachment(),project1.getPostDate(),project1.getStatus(),0.0,0.0,project1.getStatus()));
-        return project1;
+        return project1.getId();
     }
 
     public List<Project> all(){ return projectRepository.findAll();}

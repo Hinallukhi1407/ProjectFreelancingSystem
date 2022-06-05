@@ -44,7 +44,6 @@ public class Authentication {
 
     @PostMapping(value = "/reg")
     Logininfo regUser(@RequestBody Logininfo registration, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-        System.out.println(registration);
         return registrationService.newRegistration(registration, request);
     }
 

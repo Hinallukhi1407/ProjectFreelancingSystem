@@ -25,8 +25,9 @@ function Registration() {
   const [usercred,setusercred] = useState({
     email: "",
     password: "",
-    status:11,
-    usrtype:usrType
+    status:{"id" : 11},
+    userType:{"id" : ""},
+    registrationDate: new Date().toISOString().substring(0,10)
   });
   
 
@@ -42,17 +43,16 @@ function Registration() {
 
   const onRegistrationBtnClick = () => {
     if(userType=="Freelancer"){
-       setusrType(2);
+      usercred.userType.id=2
     }
     else{
-      setusrType(3);
+      usercred.userType.id=3
     }
-    
     if(confirmPassword==usercred.password){
-      axios.post("/auth/register",usercred).then((res) => res.data.data=="Record Inserted." ? registersuccess():"");
+      axios.post("http://localhost:8080/auth/reg",usercred).then((res) => res.status==200 ? registersuccess("Registered") : registersuccess("Something Went wrong!!"));
     }
-    const registersuccess = () =>{
-      alert("User registered successfully.");
+    const registersuccess = (message) =>{
+      alert("User " + message + ".");
       window.location.reload();
     }
   }

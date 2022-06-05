@@ -60,8 +60,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .withSubject(((User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(KEY.getBytes()));
-        res.addHeader(HEADER_NAME, TOKEN_PREFIX + token);
-
+        res.addHeader("Access-Control-Expose-Headers", HEADER_NAME);
+        res.setHeader(HEADER_NAME, TOKEN_PREFIX + token);
 
     }
 }

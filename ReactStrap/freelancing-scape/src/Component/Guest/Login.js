@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import jwt_decode from "jwt-decode"
+
 import {
   Container,
   Row,
@@ -30,13 +32,18 @@ function Login() {
   let navigate = useNavigate();
   
   const check_login = () => {
-    //axios.post("/auth/login",usercred).then((res) => res.data.msg == "Logged in!" ? loginsuccess(res):loginfailure(res));
-    setloginstatus(true);
-    navigate("/Employer/home");
+    axios.post("http://localhost:8080/login", usercred).then((res) => res!="" ? loginsuccess(res):loginfailure(res));
+    //axios.post("http://localhost:8080/login", usercred).then((res) => console.log(res.headers));
+   // setloginstatus(true);
+   // navigate("/Employer/home");
   }
 
   const loginsuccess = (res) =>{
-    setusername(res.data.user[0].first_name + " " + res.data.user[0].last_name); 
+    let token = res.headers.authorization;
+    let user = jwt_decode(token.split(' ')[1])
+    console.log(user);
+
+   /*  setusername(res.data.user[0].first_name + " " + res.data.user[0].last_name); 
     setloginstatus(true);
     settokenstr(res.data.token);
     setid(res.data.user[0].id);
@@ -47,7 +54,7 @@ function Login() {
     }
     else if(res.data.userType=="Freelancer"){
       navigate("/Freelancer/home");
-    }    
+    }    */ 
   }
 
   const loginfailure  = (res) =>{

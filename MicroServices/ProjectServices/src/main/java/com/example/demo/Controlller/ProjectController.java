@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/project")
+@CrossOrigin(origins = "*")
 public class ProjectController {
 
     @Autowired

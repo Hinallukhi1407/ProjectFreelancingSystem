@@ -1,18 +1,16 @@
 package com.gl.docportaldrivergateway;
 
-import com.gl.docportaldrivergateway.filter.Prefilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @EnableZuulProxy
-public class DocportaldriverGatewayApplication {
+public class FreelancingScapeGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DocportaldriverGatewayApplication.class, args);
+		SpringApplication.run(FreelancingScapeGatewayApplication.class, args);
 	}
 
 	/*@Bean

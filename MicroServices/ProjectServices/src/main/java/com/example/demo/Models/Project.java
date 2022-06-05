@@ -33,12 +33,23 @@ public class Project {
     @Column(name = "completion_date", nullable = false)
     private Date completionDate;
 
+    @Column(name = "start_date", nullable = false)
+    private Date startDate;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
     public Integer getId() {
         return id;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public void setId(Integer id) {

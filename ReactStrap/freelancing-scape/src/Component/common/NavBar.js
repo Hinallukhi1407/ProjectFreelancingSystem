@@ -38,15 +38,15 @@ function NavBar(props) {
     settest(false)
   }
   const logOutbtnclicked = () =>{
-    setusername("");
-    setloginstatus(false);
-    settokenstr("");
+    localStorage.setItem("loginStatus",false);
+    localStorage.setItem("user","");
+    navigate("/");
   }
-  useEffect(() =>{
-    if(!loginstatus){
+  /* useEffect(() =>{
+    if(localStorage.getItem('loginstatus')==false){
         navigate("/");
     }
-  },[loginstatus]);
+  },[localStorage.getItem('loginstatus')]); */
   return (
     <React.Fragment>
       <header>

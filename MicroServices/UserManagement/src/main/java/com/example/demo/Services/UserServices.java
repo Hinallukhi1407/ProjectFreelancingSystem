@@ -22,6 +22,9 @@ public class UserServices {
         return repository.findAll();
     }
 
+    public Userprofile findbyLoginId(Integer id){
+        return repository.findByLoginId(id);
+    }
     public  Userprofile add(Userprofile user)
     {
         return repository.save(user);

@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="add City in Admin Services">
-      <change afterPath="$PROJECT_DIR$/MicroServices/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_6_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_6_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_6_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_6_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MicroServices/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_6_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_6_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MicroServices/ProjectServices/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MicroServices/ProjectServices/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="96ecde16-a822-4409-9579-cb558e3a8e2c" name="Changes" comment="add City in Admin Services" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -1,20 +1,36 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Client.loginInfoRepository;
+import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Userprofile;
 import com.example.demo.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
     public UserServices userServices;
 
+    @Autowired
+    public loginInfoRepository loginInfoRepository;
+
     @GetMapping("/all")
     public @ResponseBody Iterable<Userprofile> all()
     {
             return userServices.findAll();
+    }
+
+    @PostMapping("/email")
+    public Userprofile findByEmailId(@RequestBody Logininfo user)
+    {
+        System.out.println(user.getEmail());
+        Logininfo logininfo = loginInfoRepository.findByEmail(user.getEmail());
+        System.out.println(logininfo.getId());
+       return userServices.findbyLoginId(logininfo.getId());
     }
 
     @GetMapping("/{id}")

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -22,45 +22,43 @@ function Login() {
     email: '',
     password: ''
   };
-  const {loginstat,usrname,token,userid,image} = useContext(UserContext);
-  const [username,setusername] = usrname;
+  const {loginstat} = useContext(UserContext);
   const [loginmsg,setloginmsg] = useState("");
-  const [tokenstr, settokenstr] = token;
   const [loginstatus, setloginstatus] = loginstat;
-  const [id, setid] = userid;
-  const [img, setimg] = image;
   let navigate = useNavigate();
   
   const check_login = () => {
     axios.post("http://localhost:8080/login", usercred).then((res) => res!="" ? loginsuccess(res):loginfailure(res));
-    //axios.post("http://localhost:8080/login", usercred).then((res) => console.log(res.headers));
-   // setloginstatus(true);
-   // navigate("/Employer/home");
   }
 
   const loginsuccess = (res) =>{
     let token = res.headers.authorization;
     let user = jwt_decode(token.split(' ')[1])
-    console.log(user);
+    
+    axios.post("http://localhost:8083/email",{"email":user.sub}).then((res) => {
+      setData(res.data);
+    });
+  }
 
-   /*  setusername(res.data.user[0].first_name + " " + res.data.user[0].last_name); 
-    setloginstatus(true);
-    settokenstr(res.data.token);
-    setid(res.data.user[0].id);
-    setimg(res.data.user[0].profile_image);
-    if(res.data.userType=="Employer")
+  const setData = (data) =>{
+    //setloginstatus(true);
+    localStorage.setItem("loginStatus",true);
+    localStorage.setItem("userData",data);
+    if(data.login.userType.userType==="Employer")
     {
       navigate("/Employer/home");
     }
-    else if(res.data.userType=="Freelancer"){
+    else if(data.login.userType.userType==="Freelancer"){
       navigate("/Freelancer/home");
-    }    */ 
+    }    
   }
 
   const loginfailure  = (res) =>{
-    setloginmsg(res.data.data);
+    //setloginstatus(false);
+    setloginmsg("Login Failed...");
     navigate("/");
   }
+  
   return (
     <React.Fragment>
       <Row id="welcome-text">

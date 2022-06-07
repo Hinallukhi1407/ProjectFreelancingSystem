@@ -93,58 +93,65 @@ function FindProject() {
             </InputGroup>
             <section className="mt-5">
               <Row>
-                <Col>
-                {data.map((e) => 
-                  <Card body style={{marginBottom:"10px"}}>
-                    <CardBody>
-                      <CardTitle tag="h5">
-                        {e.projectName}
-                      </CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        {"Duration : "}
-                        <span>{e.duration + "  Months"}</span>
-                        <Aiicons.AiOutlineClockCircle
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />
-                        <span>{e.postDate}</span>
-                      </CardSubtitle>
-                      <CardText className="mt-3">
-                        {e.projectDescription}
-                        <section
-                          className="inline mt-3"
-                          style={{ display: "flex", flexWrap: "wrap" }}
-                        >
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            Html
-                          </span>{" "}
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            Java
-                          </span>
-                        </section>
-                        <Button
-                          color="primary"
-                          className="mt-4"
-                          style={{ width: "100%" }}
-                          onClick={goToTaskList}>
-                          View Tasks
-                        </Button>
-                      </CardText>
-                    </CardBody>
-                  </Card>
-                )}
+                <Col md="12">
+                  {data.map((e) => (
+                    <Card body style={{ marginBottom: "10px" }}>
+                      <CardBody>
+                        <Row>
+                          <Col md="6">
+                          <CardTitle tag="h5">{e.projectName}</CardTitle>
+                            <CardSubtitle className="mb-2 text-muted" tag="h6">
+                              {"Duration : "}
+                              <span>{e.duration + "  Months"}</span>
+                              <Aiicons.AiOutlineClockCircle
+                                size={20}
+                                style={{ margin: "10px" }}
+                              />
+                              <span>{e.postDate}</span>
+                            </CardSubtitle>
+                            <CardText className="mt-3">
+                              {e.projectDescription}
+                              <section
+                                className="inline mt-3"
+                                style={{ display: "flex", flexWrap: "wrap" }}
+                              >
+                                <span
+                                  className="skill-badge"
+                                  style={{ width: "100px" }}
+                                >
+                                  css
+                                </span>
+                                <span
+                                  className="skill-badge"
+                                  style={{ width: "100px" }}
+                                >
+                                  Html
+                                </span>{" "}
+                                <span
+                                  className="skill-badge"
+                                  style={{ width: "100px" }}
+                                >
+                                  Java
+                                </span>
+                              </section>
+                            </CardText>
+                          </Col>
+                          <Col md="6">
+                          <Button
+                              color="primary"
+                              className="mt-4"
+                              style={{ width: "100%" }}
+                              onClick={goToTaskList}
+                            >
+                              Bid Now
+                            </Button>
+                          </Col>
+                        </Row>
+                           
+                           
+                      </CardBody>
+                    </Card>
+                  ))}
                   {/*  <Card body style={{marginBottom:"10px"}}>
                     <CardBody>
                       <CardTitle tag="h5">
@@ -200,7 +207,6 @@ function FindProject() {
                     </CardBody>
                   </Card>  */}
                 </Col>
-                
               </Row>
             </section>
           </Col>

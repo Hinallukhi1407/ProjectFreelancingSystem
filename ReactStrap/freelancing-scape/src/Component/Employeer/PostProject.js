@@ -206,8 +206,7 @@ function PostProject() {
                       <span
                         className="skill-badge"
                         key={index}
-                        style={{ margin: 0, width: "30%", margin: 2 }}
-                      >
+                        style={{ margin: 0, width: "30%", margin: 2 }}>
                         {element}
                         <Mdicons.MdClose
                           size={25}

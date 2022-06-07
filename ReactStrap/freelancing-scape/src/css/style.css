@@ -466,8 +466,9 @@ header {
 }
 #dashboardSidebar
 {
+    position: absolute;
     height: 100vh;
-    width: 100%;
+    width: 20%;
     box-shadow:
     inset 0 -3em 3em rgba(0,0,0,0.1),
           0 0  0 2px rgb(255,255,255),
@@ -494,7 +495,8 @@ header {
     display: none;
 }
 #postproject-form{
-    margin: 5%;
+   margin-top: 5%;
+   margin-left: 10%;
 }
 #single-task{
     display: flex ;
@@ -574,6 +576,10 @@ header {
 #task-list{
     display: flex;
     flex-wrap: wrap;
+}
+#post-project-form{
+    float: right;
+    width: 80%;
 }
 /*End*/
  /*Media starts*/ 

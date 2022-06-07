@@ -2,9 +2,8 @@ package com.example.demo.Services;
 
 import com.example.demo.Client.RegistrationRepository;
 import com.example.demo.Client.StatusRepository;
-import com.example.demo.Models.Logininfo;
-import com.example.demo.Models.Statusdetail;
-import com.example.demo.Models.Usertype;
+import com.example.demo.Client.UserProfileRepository;
+import com.example.demo.Models.*;
 import lombok.extern.java.Log;
 import net.bytebuddy.utility.RandomString;
 import org.hibernate.usertype.UserType;
@@ -32,6 +31,8 @@ public class RegistrationService {
     public RegistrationRepository registrationRepository;
     public BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserProfileRepository userProfileRepository;
 
     @Autowired
     StatusRepository statusRepository;
@@ -87,10 +88,15 @@ public class RegistrationService {
         //String pwd = registration.getPassword();
         //registration.setPassword(passwordEncoder.encode(pwd));
         Logininfo reg1=registrationRepository.save(registration);
-        if(registration.getUserType().getId() != 1)
+        Userprofile userprofile= new Userprofile();
+        userprofile.setLogin(reg1);
+        userprofile.setCity(new City(5));
+        Userprofile user=userProfileRepository.save(userprofile);
+        System.out.println(user);
+        /*if(registration.getUserType().getId() != 1)
         {
             sendVerificationEmail(registration, request.getRequestURL().toString());
-        }
+        }*/
 
         //Logininfo reg1= registrationRepository.save(registration);*/
         return reg1;

@@ -48,6 +48,8 @@ public class Userprofile {
     @OneToMany(mappedBy = "user")
     private Set<Freelancerskill> freelancerskills = new LinkedHashSet<>();
 
+    public Userprofile(){}
+
     public Set<Freelancerskill> getFreelancerskills() {
         return freelancerskills;
     }

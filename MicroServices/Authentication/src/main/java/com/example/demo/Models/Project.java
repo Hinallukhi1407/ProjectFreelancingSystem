@@ -42,6 +42,30 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private Set<Task> tasks = new LinkedHashSet<>();
 
+    @Column(name = "min_budget")
+    private Double minBudget;
+
+    @Column(name = "max_budget")
+    private Double maxBudget;
+
+
+
+    public Double getMinBudget() {
+        return minBudget;
+    }
+
+    public void setMinBudget(Double minBudget) {
+        this.minBudget = minBudget;
+    }
+
+    public Double getMaxBudget() {
+        return maxBudget;
+    }
+
+    public void setMaxBudget(Double maxBudget) {
+        this.maxBudget = maxBudget;
+    }
+
     public Set<Task> getTasks() {
         return tasks;
     }

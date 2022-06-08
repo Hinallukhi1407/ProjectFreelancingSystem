@@ -49,7 +49,8 @@ function Registration() {
       usercred.userType.id=3
     }
     if(confirmPassword==usercred.password){
-      axios.post("http://localhost:8080/auth/reg",usercred).then((res) => res.status==200 ? registersuccess("Registered") : registersuccess("Something Went wrong!!"));
+      axios.post("http://localhost:8080/auth/reg",usercred)
+      .then((res) => res.status==200 ? registersuccess("Registered") : registersuccess("Something Went wrong!!"));
     }
     
   }

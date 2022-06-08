@@ -581,6 +581,11 @@ header {
     float: right;
     width: 80%;
 }
+#budget-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /*End*/
  /*Media starts*/ 
 @media (max-width:1125px) {

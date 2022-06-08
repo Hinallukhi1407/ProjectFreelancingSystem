@@ -55,9 +55,10 @@ function Registration() {
     
   }
 
-  const registersuccess = (message) =>{
+  const registersuccess = (message) => {
     alert("User " + message + ".");
     window.location.reload();
+    }
   }
 
   return (

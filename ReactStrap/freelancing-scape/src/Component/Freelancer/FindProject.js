@@ -36,14 +36,14 @@ function FindProject() {
   }
   const [data, setdata] = useState([]);
   const setList = () => {
-    axios.get("/project", { headers: {"Authorization" : `Bearer ${tokenstr}`} }).then((res) =>{
+    axios.get("http://localhost:8082/project/all", { headers: {"Authorization" : `Bearer ${tokenstr}`} }).then((res) =>{
     setdata(res.data);
     console.log(res.data);
      data.map((e) => console.log(" data : " + e.project_id)); 
     });
   }
   useEffect(() =>{
-    if(!loginstatus){
+    if(localStorage.getItem("loginStatus") === "false"){
         navigate("/");
     }else{
       setList();
@@ -98,7 +98,7 @@ function FindProject() {
                   <Card body style={{marginBottom:"10px"}}>
                     <CardBody>
                       <CardTitle tag="h5">
-                        {e.project_name}
+                        {e.projectName}
                       </CardTitle>
                       <CardSubtitle className="mb-2 text-muted" tag="h6">
                         {"Duration : "}
@@ -107,10 +107,10 @@ function FindProject() {
                           size={20}
                           style={{ margin: "10px" }}
                         />
-                        <span>5 mintues ago</span>
+                        <span>{e.postDate}</span>
                       </CardSubtitle>
                       <CardText className="mt-3">
-                        {e.project_discription}
+                        {e.projectDescription}
                         <section
                           className="inline mt-3"
                           style={{ display: "flex", flexWrap: "wrap" }}

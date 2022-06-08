@@ -37,12 +37,6 @@ public class Task {
     @Column(name = "payment_status", nullable = false)
     private Integer paymentStatus;
 
-    @Column(name = "min_budget", nullable = false, precision = 5, scale = 2)
-    private BigDecimal minBudget;
-
-    @Column(name = "max_budget", nullable = false, precision = 5, scale = 2)
-    private BigDecimal maxBudget;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
@@ -55,21 +49,6 @@ public class Task {
         this.status = status;
     }
 
-    public BigDecimal getMaxBudget() {
-        return maxBudget;
-    }
-
-    public void setMaxBudget(BigDecimal maxBudget) {
-        this.maxBudget = maxBudget;
-    }
-
-    public BigDecimal getMinBudget() {
-        return minBudget;
-    }
-
-    public void setMinBudget(BigDecimal minBudget) {
-        this.minBudget = minBudget;
-    }
 
     public Integer getPaymentStatus() {
         return paymentStatus;

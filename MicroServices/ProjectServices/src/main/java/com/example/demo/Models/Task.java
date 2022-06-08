@@ -1,8 +1,8 @@
 package com.example.demo.Models;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.Instant;
 
 @Entity
 @Table(name = "task")
@@ -38,33 +38,9 @@ public class Task {
     @JoinColumn(name = "payment_status", nullable = false)
     private Statusdetail paymentStatus;
 
-    @Column(name = "min_budget", nullable = false, precision = 5, scale = 2)
-    private BigDecimal minBudget;
-
-    @Column(name = "max_budget", nullable = false, precision = 5, scale = 2)
-    private BigDecimal maxBudget;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
-
-    public Task() {
-    }
-
-    public Task(Project project1, String projectName, String projectDescription, Date postDate, Date completionDate, String attachment, Date postDate1, Statusdetail status, double v, double v1, Statusdetail status1) {
-        this.project=project1;
-        this.taskName = projectName;
-        this.taskDescription = projectDescription;
-        this.startDate = postDate;
-        this.endDate = completionDate;
-        this.attachment= attachment;
-        this.postDate = postDate1;
-        this.paymentStatus=status;
-        this.minBudget = BigDecimal.valueOf(v);
-        this.maxBudget = BigDecimal.valueOf(v1);
-        this.status = status1;
-    }
-
 
     public Integer getId() {
         return id;
@@ -138,22 +114,6 @@ public class Task {
         this.paymentStatus = paymentStatus;
     }
 
-    public BigDecimal getMinBudget() {
-        return minBudget;
-    }
-
-    public void setMinBudget(BigDecimal minBudget) {
-        this.minBudget = minBudget;
-    }
-
-    public BigDecimal getMaxBudget() {
-        return maxBudget;
-    }
-
-    public void setMaxBudget(BigDecimal maxBudget) {
-        this.maxBudget = maxBudget;
-    }
-
     public Statusdetail getStatus() {
         return status;
     }
@@ -161,4 +121,5 @@ public class Task {
     public void setStatus(Statusdetail status) {
         this.status = status;
     }
+
 }

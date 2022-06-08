@@ -52,10 +52,12 @@ function Registration() {
       axios.post("http://localhost:8080/auth/reg",usercred)
       .then((res) => res.status==200 ? registersuccess("Registered") : registersuccess("Something Went wrong!!"));
     }
-    const registersuccess = (message) =>{
-      console.log("sucesswsss")
-      alert("User " + message + ".");
-      navigate("/");
+    
+  }
+
+  const registersuccess = (message) => {
+    alert("User " + message + ".");
+    window.location.reload();
     }
   }
 

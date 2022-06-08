@@ -22,6 +22,9 @@ public class City {
     @OneToMany(mappedBy = "city")
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 
+    public  City(Integer id){
+        this.id=id;
+    }
     public Set<Userprofile> getUserprofiles() {
         return userprofiles;
     }

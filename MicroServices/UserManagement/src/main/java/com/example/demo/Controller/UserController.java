@@ -27,9 +27,7 @@ public class UserController {
     @PostMapping("/email")
     public Userprofile findByEmailId(@RequestBody Logininfo user)
     {
-        System.out.println(user.getEmail());
         Logininfo logininfo = loginInfoRepository.findByEmail(user.getEmail());
-        System.out.println(logininfo.getId());
        return userServices.findbyLoginId(logininfo.getId());
     }
 

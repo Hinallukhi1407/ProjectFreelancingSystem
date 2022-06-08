@@ -59,7 +59,7 @@ function Registration() {
     alert("User " + message + ".");
     window.location.reload();
     }
-  }
+  
 
   return (
     <React.Fragment>

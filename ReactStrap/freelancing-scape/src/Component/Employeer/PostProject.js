@@ -50,15 +50,16 @@ function PostProject() {
     const date2 = new Date(formData.EndDate);
     formData.Duration = daysDiff(date1, date2)
 
-    axios.post('http://localhost:8082/project/add', formData)
-        .then(response => {
-          projectID=response.data.id
-          console.log(projectID)
-        })
-        .catch(error => {
-            console.error('There was an error!', error);
-        });
+    // axios.post('http://localhost:8082/project/add', formData)
+    //     .then(response => {
+    //       projectID=response.data.id
+    //       console.log(projectID)
+    //     })
+    //     .catch(error => {
+    //         console.error('There was an error!', error);
+    //     });
 
+    console.log(formData)
   }
 
   const  addSkill =  () => {

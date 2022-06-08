@@ -10,9 +10,6 @@ import {
   Button,
   InputGroup
 } from "reactstrap";
-import avatar from "../../Images/user-avatar-small-02.jpg";
-import * as AiIcons from "react-icons/ai";
-import * as CgIcons from "react-icons/cg";
 import * as RiIcons from "react-icons/ri";
 import {useLocation} from 'react-router-dom';
 import axios from "axios";
@@ -142,6 +139,9 @@ function TaskDescription() {
                       </Input>
                     </FormGroup>
                   </Col>
+                </Row>
+                <Row>
+                  <Button color="primary">Place Bid</Button>
                 </Row>
               </article>
             </Row>

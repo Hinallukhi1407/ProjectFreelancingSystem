@@ -34,7 +34,6 @@ function Login() {
   const loginsuccess = (res) =>{
     let token = res.headers.authorization;
     let user = jwt_decode(token.split(' ')[1])
-    
     axios.post("http://localhost:8083/email",{"email":user.sub}).then((res) => {
       setData(res.data);
     });
@@ -43,7 +42,8 @@ function Login() {
   const setData = (data) =>{
     //setloginstatus(true);
     localStorage.setItem("loginStatus",true);
-    localStorage.setItem("userData",data);
+    
+    localStorage.setItem("userData",JSON.stringify(data));
     if(data.login.userType.userType==="Employer")
     {
       navigate("/Employer/home");

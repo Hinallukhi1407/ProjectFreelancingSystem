@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import DashboardSideBar from "../common/DashboardSideBar";
 import DashboardTopNav from "../common/DashboardTopNav";
+import { UserContext } from "../../UserContext";
 import {
   Row,
   Col,
@@ -13,59 +14,85 @@ import {
   Label,
   FormText,
   InputGroupText,
+  Alert
 } from "reactstrap";
 import * as Faicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 function PostProject() {
+  var user = JSON.parse(localStorage.getItem("userData"));
   let navigate = useNavigate();
   const GoToTasksPage = () => {
     navigate("posttasks");
   };
 
   const [skill, setSkill] = useState("");
-
   const [skills, setSkills] = useState([]);
-
   const [formData, setFormData] = useState({
-    user:{
-      id:1
-    },
+    user: { id: 4 },
     projectName: "",
-    duration:"",
-    projectDescription:"",
-    attachment:"",
-    postDate:"",
-    completionDate:"",
-    status:{
-      id:5
-    }
+    duration: "",
+    projectDescription: "",
+    attachment: "",
+    postDate: "",
+    completionDate: "",
+    startDate: "",
+    minBudget: "",
+    maxBudget: "",
+    skillLevel: { id: 1 },
+    status: { id: 6 },
   });
 
+  const { userid } = useContext(UserContext);
+  let projectID;
 
-  let projectID
-  const addProject=()=>{
-    const date1 = new Date(formData.FormDate);
-    const date2 = new Date(formData.EndDate);
-    formData.Duration = daysDiff(date1, date2)
+  const [postStatus,setPostStatus]=useState(false)
 
-    // axios.post('http://localhost:8082/project/add', formData)
-    //     .then(response => {
-    //       projectID=response.data.id
-    //       console.log(projectID)
-    //     })
-    //     .catch(error => {
-    //         console.error('There was an error!', error);
-    //     });
+  const addProject = () => {
+    const date1 = new Date(formData.startDate);
+    const date2 = new Date(formData.completionDate);
+    var today = new Date().toISOString().slice(0, 10);
+    formData.duration = daysDiff(date1, date2);
+    formData.skillLevel.id = skillLevel;
+    formData.user.id = user.id;
+    formData.postDate = today;
+    axios
+      .post("http://localhost:8082/project/add", formData)
+      .then((response) => {
+        projectID = response.data.id;
+        console.log(projectID);
+        setPostStatus(true)
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+     clearField();
+  };
 
-    console.log(formData)
-  }
+  const clearField = () => {
+    setFormData({
+      user: { id: 4 },
+      projectName: "",
+      duration: "",
+      projectDescription: "",
+      attachment: "",
+      postDate: "",
+      completionDate: "",
+      startDate: "",
+      minBudget: "",
+      maxBudget: "",
+      skillLevel: { id: 1 },
+      status: { id: 6 },
+    })
 
-  const  addSkill =  () => {
+   
+  };
+
+  const addSkill = () => {
     if (skill != "") {
       setSkills([...skills, skill]);
-      setLevels([...Levels,skillLevel])
+      setLevels([...Levels, skillLevel]);
       setSkill("");
     }
   };
@@ -86,22 +113,18 @@ function PostProject() {
   const handleSkillLevelChange = (e) => {
     setSkillLevel(e.target.value);
   };
-  let [Levels,setLevels]=useState([])
+  let [Levels, setLevels] = useState([]);
 
-  const [checkbox, setCheckBox] = useState(false);
-  const handleDivideCheckBox = () => {
-    setCheckBox(!checkbox);
-  };
-  let name,value
-  const handleChange=(e)=>{
+  let name, value;
+  const handleChange = (e) => {
     name = e.target.name;
-    value=e.target.value;
-    setFormData({...formData,[name]:value})
-  }
+    value = e.target.value;
+    setFormData({ ...formData, [name]: value });
+  };
   function daysDiff(dateFrom, dateTo) {
     const diffInMs = Math.abs(dateTo - dateFrom);
     return diffInMs / (1000 * 60 * 60 * 24);
-   }
+  }
 
   return (
     <React.Fragment>
@@ -109,8 +132,13 @@ function PostProject() {
         <DashboardSideBar />
         <Row id="post-project-form">
           <DashboardTopNav />
-          <Col xs="10" id="form-col">
+          <Col xs="10" id="form-col" className="flex-box">
             <section id="postproject-form">
+              {postStatus && (
+                <Alert color="success" onClick={() => {setPostStatus(false)}}>
+                  Well done ! your project is successfully posted
+                </Alert>
+              )}
               <FormGroup floating>
                 <Input
                   placeholder="Project Name"
@@ -123,24 +151,24 @@ function PostProject() {
               </FormGroup>
               <Row>
                 <Col md="4">
-                <Label>Project Budget</Label>
+                  <Label>Project Budget</Label>
                   <InputGroup>
                     <Input
                       placeholder="Minimum"
-                      name="MinBudget"
-                      //value={formData.MinBudget}
-                      //onChange={handelChange}
+                      name="minBudget"
+                      value={formData.minBudget}
+                      onChange={handleChange}
                     />
                     <InputGroupText className="lead">USD</InputGroupText>
                   </InputGroup>
                 </Col>
-                <Col md="4" style={{marginTop:"2rem"}}>
+                <Col md="4" style={{ marginTop: "2rem" }}>
                   <InputGroup>
                     <Input
                       placeholder="Maximum"
-                      name="MaxBudget"
-                      // value={formData.MaxBudget}
-                      //onChange={handelChange}
+                      name="maxBudget"
+                      value={formData.maxBudget}
+                      onChange={handleChange}
                     />
                     <InputGroupText className="lead">USD</InputGroupText>
                   </InputGroup>
@@ -154,7 +182,7 @@ function PostProject() {
                     onChange={handleSkillLevelChange}
                   >
                     {skillLevels.map((Level) => (
-                      <option value={Level.value} key={Level.key}>
+                      <option value={Level.key} key={Level.key}>
                         {Level.value}
                       </option>
                     ))}
@@ -166,8 +194,8 @@ function PostProject() {
                   <Label>Project Start Date</Label>
                   <Input
                     type="date"
-                    name="postDate"
-                    value={formData.postDate}
+                    name="startDate"
+                    value={formData.startDate}
                     onChange={handleChange}
                   />
                 </Col>
@@ -175,7 +203,7 @@ function PostProject() {
                   <Label>Project End Date</Label>
                   <Input
                     type="date"
-                    name="EndDate"
+                    name="completionDate"
                     value={formData.completionDate}
                     onChange={handleChange}
                   />
@@ -192,37 +220,36 @@ function PostProject() {
                       onChange={(e) => setSkill(e.target.value)}
                     />
                     <Button
-                    style={{ backgroundColor: "white", color: "#2A41E8" }}
-                    onClick={addSkill}
-                  >
-                    ADD
-                  </Button>
+                      style={{ backgroundColor: "white", color: "#2A41E8" }}
+                      onClick={addSkill}
+                    >
+                      ADD
+                    </Button>
                   </InputGroup>
                 </Col>
 
                 <Col md="6" style={{ marginTop: "2rem" }}>
                   <section style={{ display: "flex", flexWrap: "wrap" }}>
-                  {skills.map((element, index) => {
-                    return (
-                      <span
-                        className="skill-badge"
-                        key={index}
-                        style={{ margin: 0, width: "30%", margin: 2 }}>
-                        {element}
-                        <Mdicons.MdClose
-                          size={25}
-                          style={{ margin: 10 }}
-                          onClick={() => deleteSkill(index)}
-                        />
-                      </span>
-                    );
-                  })}
-                </section>
+                    {skills.map((element, index) => {
+                      return (
+                        <span
+                          className="skill-badge"
+                          key={index}
+                          style={{ margin: 0, width: "30%", margin: 2 }}
+                        >
+                          {element}
+                          <Mdicons.MdClose
+                            size={25}
+                            style={{ margin: 10 }}
+                            onClick={() => deleteSkill(index)}
+                          />
+                        </span>
+                      );
+                    })}
+                  </section>
                 </Col>
               </Row>
-              <Row className="mt-3">
-             
-              </Row>
+              <Row className="mt-3"></Row>
               <Row className="mt-2">
                 <Col xs="12">
                   <Label>Project Description</Label>

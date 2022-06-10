@@ -9,8 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="freelancingscape" />
         <module name="freelancingspace" />
-        <module name="freelancingscape (2)" />
         <module name="demo" />
+        <module name="freelancingscape (2)" />
         <module name="freelancingscape (1)" />
       </profile>
     </annotationProcessing>

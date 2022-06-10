@@ -12,7 +12,7 @@ import ProfileDescription from "./Component/Employeer/ProfileDescription";
 import PostProject from "./Component/Employeer/PostProject";
 import FindProject from "./Component/Freelancer/FindProject";
 import TaskList from "./Component/Freelancer/TaskList";
-import TaskDescription from "./Component/Freelancer/TaskDescription";
+import TaskDescription from "./Component/Freelancer/ProjectDescription";
 import { UserContext } from "./UserContext";
 import { useState } from "react";
 import AddTasks from "./Component/Employeer/AddTasks";
@@ -39,7 +39,7 @@ function App() {
              <Route path="Home" element={<GuestIntroBanner />} />
              <Route path="browseproject" element={<FindProject/>}/>
              <Route path="browseproject/tasklist" element={<TaskList/>}/>
-             <Route path="browseproject/tasklist/taskdescription" element={<TaskDescription/>}/>
+             <Route path="browseproject/projectdescription" element={<TaskDescription/>}/>
           </Route>
         </Routes>
       </Router>

@@ -28,7 +28,10 @@ function ProfileDescription(props) {
     setOfferForm(!offerForm);
     console.log(offerForm);
   };
-
+  const [range,setRange] = useState("")
+  const handleBudgetRange=(e)=>{
+    setRange(e.target.value)
+  }
   return (
     <React.Fragment>
       <Container fluid>

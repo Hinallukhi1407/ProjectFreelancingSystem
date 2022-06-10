@@ -466,18 +466,17 @@ header {
 }
 #dashboardSidebar
 {
+    float: left;
     height: 100vh;
-    width: 100%;
+    width: 20%;
     box-shadow:
     inset 0 -3em 3em rgba(0,0,0,0.1),
           0 0  0 2px rgb(255,255,255),
           0.3em 0.3em 1em rgba(0,0,0,0.3);
     padding: 0%;
 }
-
 #dashboardSidebar li 
 {
-  padding-left: 5%;
   border: none;
   display: block;
   
@@ -487,14 +486,19 @@ header {
   color: #0B5ED7;
   background-color: #F7F8FE;
 }
-#dashboard-topnav{
+#dashboard-topnav {
     background-color: #333333;
-    margin: 1% ;
+    margin: 1%;
     border-radius: 10px;
     display: none;
 }
-#postproject-form{
-    margin: 5%;
+
+#postproject-form {
+    margin-top: 8%;
+}
+.flex-box{
+    margin-left: auto;
+    margin-right: auto;
 }
 #single-task{
     display: flex ;
@@ -575,6 +579,15 @@ header {
     display: flex;
     flex-wrap: wrap;
 }
+#post-project-form{
+
+}
+#budget-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /*End*/
  /*Media starts*/ 
 @media (max-width:1125px) {

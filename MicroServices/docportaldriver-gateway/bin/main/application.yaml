@@ -1,11 +1,6 @@
 server:
   port: 8100
 
-spring:
-  security:
-    user:
-      name : user
-      password : bbd6597c-bff3-48be-baa9-c646253d823b
 zuul:
   routes:
     admin:

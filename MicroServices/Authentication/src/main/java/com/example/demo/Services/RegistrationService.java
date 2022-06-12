@@ -85,20 +85,16 @@ public class RegistrationService {
         }
         registration.setVerificationCode(RandomString.make(64));
         registration.setPassword(new BCryptPasswordEncoder().encode(registration.getPassword()));
-        //String pwd = registration.getPassword();
-        //registration.setPassword(passwordEncoder.encode(pwd));
         Logininfo reg1=registrationRepository.save(registration);
-        Userprofile userprofile= new Userprofile();
-        userprofile.setLogin(reg1);
-        userprofile.setCity(new City(5));
-        Userprofile user=userProfileRepository.save(userprofile);
-        System.out.println(user);
+
         /*if(registration.getUserType().getId() != 1)
         {
             sendVerificationEmail(registration, request.getRequestURL().toString());
         }*/
 
         //Logininfo reg1= registrationRepository.save(registration);*/
+
+
         return reg1;
     }
 

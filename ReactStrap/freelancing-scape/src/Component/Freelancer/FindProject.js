@@ -25,6 +25,8 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 
 function FindProject() {
   const navigate = useNavigate();
@@ -42,7 +44,6 @@ function FindProject() {
       })
       .then((res) => {
         setdata(res.data);
-        console.log(res.data);
       });
   };
   useEffect(() => {
@@ -50,7 +51,6 @@ function FindProject() {
       navigate("/");
     } else {
       setList();
-      console.log(data);
     }
   }, [loginstatus]);
 
@@ -75,6 +75,17 @@ function FindProject() {
   const handleBudgetRange=(e)=>{
     setRange(e.target.value)
   }
+  const [state,setState] = useState({
+    
+  });
+  const fetchMoreData = () => {
+    setTimeout(() => {
+      setState({
+        
+      });
+    }, 1500);
+  };
+
 
   return (
     <React.Fragment>
@@ -133,6 +144,13 @@ function FindProject() {
             <section className="mt-2">
               <Row>
                 <Col md="12">
+                  <InfiniteScroll
+                    dataLength={data.length}
+                    next={fetchMoreData}
+                    hasMore={true}
+                    loader={<h4>Loading...</h4>}
+                  >
+
                   {data.map((e) => (
                     <Card body style={{ marginBottom: ".5rem" }} key={e.id}>
                       <CardBody>
@@ -181,15 +199,15 @@ function FindProject() {
                                 Budget of the project
                               </ToastHeader>
                               <ToastBody className="text-center">
-                                1000$ - 2000$
+                                {e.minBudget + "$" + e.maxBudget + "$"}
                               </ToastBody>
                             </Toast>
-                            
+
                             <Button
                               color="primary"
                               className="mt-4"
                               style={{ width: "100%" }}
-                              onClick={()=>goToProjectDesc(e.id)}
+                              onClick={() => goToProjectDesc(e.id)}
                             >
                               Bid Now
                             </Button>
@@ -198,60 +216,8 @@ function FindProject() {
                       </CardBody>
                     </Card>
                   ))}
-                  {/*  <Card body style={{marginBottom:"10px"}}>
-                    <CardBody>
-                      <CardTitle tag="h5">
-                        Food Delivery Mobile Application
-                      </CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        <Mdicons.MdOutlineLocationOn
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />{" "}
-                        <span>London</span>
-                        <Aiicons.AiOutlineClockCircle
-                          size={20}
-                          style={{ margin: "10px" }}
-                        />
-                        <span>5 mintues ago</span>
-                      </CardSubtitle>
-                      <CardText className="mt-3">
-                        Leverage agile frameworks to provide a robust synopsis
-                        for high level overviews. Iterative approaches to
-                        corporate strategy foste
-                        <section
-                          className="inline mt-3"
-                          style={{ display: "flex", flexWrap: "wrap" }}
-                        >
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>{" "}
-                          <span
-                            className="skill-badge"
-                            style={{ width: "100px" }}
-                          >
-                            css
-                          </span>
-                        </section>
-                        <Button
-                          color="primary"
-                          className="mt-4"
-                          style={{ width: "100%" }}
-                        >
-                          View Tasks
-                        </Button>
-                      </CardText>
-                    </CardBody>
-                  </Card>  */}
+                  </InfiniteScroll>
+                 
                 </Col>
               </Row>
             </section>

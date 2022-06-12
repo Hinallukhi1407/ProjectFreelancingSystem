@@ -17,9 +17,10 @@ import { useNavigate,Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 
 function TaskDescription() {
+  var user = JSON.parse(localStorage.getItem("userData"));
   const navigate = useNavigate()
   const location = useLocation()
-  const [range,setRange] = useState("")
+  const [range,setRange] = useState(0)
   const handleBudgetRange=(e)=>{
     setRange(e.target.value)
   }
@@ -30,7 +31,7 @@ function TaskDescription() {
       .get("http://localhost:8082/project/"+location.state.id)
       .then((res) => {
         setProjectData(res.data);
-        console.log(projectData)
+        setRange(res.data.minBudget)
       });
   };
   const { loginstat, usrname, token } = useContext(UserContext);
@@ -43,18 +44,58 @@ function TaskDescription() {
       setList();
     }
   }, [loginstatus]);
-  //console.log(projectData.startDate)
+
   function daysDiff(dateTo) {
-    var today = new Date(),
-    dateToday = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    const diffInMs = Math.abs(dateTo - dateToday);
+      let today = new Date();
+      var cmas = new Date(today.getFullYear(),today.getMonth(), today.getDate()).toISOString().slice(0,10);
+      console.log(cmas)
+      // var today = new Date().toISOString().slice(0, 10);
+      // let t = new Date(today);
+      // console.log(t);
+      // const diffInMs = Math.abs(dateTo - t);
+      // var x = diffInMs / (1000 * 60 * 60 * 24);
+      // console.log(x);
+  }
 
-    console.log( "min"+diffInMs)
-    console.log("aaj ka date" + today)
-    console.log("bus date" + dateToday)
-    return diffInMs / (1000 * 60 * 60 * 24);
-   }
+  const [deleveryTime,setDelevryTime] = useState(1)
+  const [typeDuration,setTypeDuration] = useState()
 
+  
+
+  const [formData, setFormData] = useState({
+    project: { id: location.state.id },
+    user: { id: user.id },
+    amount: range,
+    bidDate: new Date().toISOString().slice(0,10),
+    deliveryTime: 1,
+    status: { id: 9 },
+  });
+  const [postStatus,setPostStatus]=useState(false)
+  const insertBid=()=>{
+    axios
+    .post("http://localhost:8082/bids/add", formData)
+    .then((response) => {
+      setPostStatus(true)
+    })
+    .catch((error) => {
+      console.error("There was an error!", error);
+    });
+  }
+
+  const setValues=()=>{
+    formData.amount = range;
+    if (typeDuration == "Months") {
+      formData.deliveryTime = deleveryTime * 30;
+    } else if (typeDuration == "Year") {
+      formData.deliveryTime = deleveryTime * 365;
+    } else {
+      formData.deliveryTime = deleveryTime;
+    }
+    addBid();
+  }
+  const addBid=()=>{
+    insertBid()
+  }
   return (
     <div>
       <Container fluid>
@@ -97,7 +138,7 @@ function TaskDescription() {
           <Col id="free-job-details">
             <Row id="days-left">{daysDiff(projectData.startDate)}</Row>
             <Row id="budget" className="mt-2">
-              1000$ - 2000$
+            {projectData.minBudget+"$ - "+projectData.maxBudget+"$"}
             </Row>
             <Row id="bid-form" className="mt-2">
               <section id="bid-header">
@@ -108,11 +149,11 @@ function TaskDescription() {
                   <h5>
                     <span className="text-muted">Set You'r Minimal</span> Rate
                   </h5>
-                  <Label for="exampleRange">0$ - {range}$</Label>
+                  <Label for="exampleRange">{range} $</Label>
                   <Input
                     id="exampleRange"
-                    max={1000}
-                    min={0}
+                    max={projectData.maxBudget}
+                    min={projectData.minBudget}
                     name="range"
                     type="range"
                     value={range}
@@ -122,17 +163,25 @@ function TaskDescription() {
                 <h5>
                   <span className="text-muted">Set You'r </span> delivery time
                 </h5>
-                <Row className="mt-4">
+                <Row className="mt-4 display-flex">
                   <Col md="6">
                     <InputGroup>
-                      <Button color="primary">-</Button>
-                      <Input placeholder="" className="text-center" />
-                      <Button color="primary">+</Button>
+                      <Button color="primary" onClick={()=>setDelevryTime((deleveryTime)-1)}>-</Button>
+                      <Input className="text-center" style={{width:"10%"}}
+                        readOnly
+                        name="deleveryTime" 
+                        value={deleveryTime}
+                        onChange={(e)=>setDelevryTime(e.target.value)}
+                        />
+                      <Button color="primary"onClick={()=>setDelevryTime(parseInt(deleveryTime)+1)}>+</Button>
                     </InputGroup>
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <Input id="exampleSelect" name="select" type="select">
+                      <Input id="exampleSelect" name="select" type="select" 
+                        onChange={(e)=>{
+                          setTypeDuration(e.target.value)
+                        }}>
                         <option>Days</option>
                         <option>Months</option>
                         <option>Year</option>
@@ -140,9 +189,9 @@ function TaskDescription() {
                     </FormGroup>
                   </Col>
                 </Row>
-                <Row>
-                  <Button color="primary">Place Bid</Button>
-                </Row>
+                <section className="display-flex" >
+                  <Button color="primary" style={{width:"60%"}} onClick={setValues}>Place Bid</Button>
+                </section>
               </article>
             </Row>
           </Col>

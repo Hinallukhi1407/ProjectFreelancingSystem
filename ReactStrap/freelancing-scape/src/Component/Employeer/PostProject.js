@@ -30,7 +30,7 @@ function PostProject() {
   const [skill, setSkill] = useState("");
   const [skills, setSkills] = useState([]);
   const [formData, setFormData] = useState({
-    user: { id: 4 },
+    user: { id: 0 },
     projectName: "",
     duration: "",
     projectDescription: "",
@@ -44,7 +44,6 @@ function PostProject() {
     status: { id: 6 },
   });
 
-  const { userid } = useContext(UserContext);
   let projectID;
 
   const [postStatus,setPostStatus]=useState(false)
@@ -72,7 +71,7 @@ function PostProject() {
 
   const clearField = () => {
     setFormData({
-      user: { id: 4 },
+      user: { id: 0 },
       projectName: "",
       duration: "",
       projectDescription: "",

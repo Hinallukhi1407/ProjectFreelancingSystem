@@ -14,11 +14,9 @@ public class SkillController {
 
     @Autowired
     public SkillServices skillServices;
-    /*@Autowired
-    public SkillRepository skillRepository;
 
-    @GetMapping("/all")
-    public List<Skill> getall(){return skillRepository.findAll();}*/
+    @GetMapping("/")
+    public List<Skill> all(){return  skillServices.all();}
 
     @PostMapping("/add")
     public Skill insert(@RequestBody Skill s1)

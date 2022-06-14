@@ -5,8 +5,9 @@ import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Userprofile;
 import com.example.demo.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -55,4 +56,11 @@ public class UserController {
     {
         return userServices.Update(userprofile,id);
     }
+
+    @GetMapping("/freelancer")
+    public @ResponseBody List<Logininfo> displayFreelancer()
+    {
+        return  userServices.listfreelancer();
+    }
+
 }

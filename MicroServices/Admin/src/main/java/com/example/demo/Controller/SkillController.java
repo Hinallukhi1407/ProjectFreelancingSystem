@@ -15,7 +15,7 @@ public class SkillController {
     @Autowired
     public SkillServices skillServices;
 
-    @GetMapping("/")
+    @GetMapping("/getall")
     public List<Skill> all(){return  skillServices.all();}
 
     @PostMapping("/add")

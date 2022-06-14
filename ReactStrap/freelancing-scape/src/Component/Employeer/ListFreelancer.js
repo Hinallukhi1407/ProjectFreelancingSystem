@@ -24,29 +24,34 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 function ListFreelancer() {
   const navigate = useNavigate();
-  const {loginstat,usrname,token} = useContext(UserContext);
-  const [loginstatus] = loginstat;
-  const [tokenstr] = token;
+  const [tokenstr] = localStorage.getItem("token"); 
   const goToProfileDesc = () => {
-    /* console.log("ajbdashj")
-    navigate('profiledesc'); */
+    console.log("xjhxhx")
+    console.log(data)
+    /* console.log("ajbdashj")*/
+    navigate('profiledesc'); 
   }
+  const [spinner, SetSpinner] = useState(true);
   const [data, setdata] = useState([]);
   const setList = () => {
-    axios.get("/freelancer", { headers: {"Authorization" : `Bearer ${tokenstr}`} }).then((res) =>{
-    setdata(res.data);
-    /* console.log(data);
-     data.map((e) => console.log(" data : " + e[0]));  */
-    });
-  }
-  useEffect(() =>{
-    if(!loginstatus){
-        navigate("/");
-    }else{
+    setTimeout(()=>{
+      axios
+      .get("http://localhost:8083/freelancer",{
+      })
+      .then((res) => {
+        setdata(res.data);
+        console.log(res.data)
+        SetSpinner(false);
+      });
+    },1500)
+  };
+  useEffect(() => {
+    if (localStorage.getItem("loginStatus") === "false") {
+      navigate("/");
+    } else {
       setList();
-      console.log(data);
     }
-  },[loginstatus]);
+  }, [localStorage.getItem("loginStatus")]);
   
 
   const [skill,setSkill] = useState("");
@@ -127,7 +132,7 @@ function ListFreelancer() {
                   <Row>
                     <Col xs="1" id="free-avatar">
                       <img
-                        src={"../Images/" + e.profile_image}
+                        src={"../Images/" + e.userprofiles.profileImage}
                         alt=""
                         style={{
                           borderRadius: "100px",
@@ -169,7 +174,7 @@ function ListFreelancer() {
                           color="primary"
                           className="mt-3"
                           style={{ width: "100%" }}
-                          onClick={goToProfileDesc()}
+                          onClick={goToProfileDesc}
                         >
                           View Profile
                         </Button>

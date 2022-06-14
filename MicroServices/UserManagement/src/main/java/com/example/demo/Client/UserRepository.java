@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<Userprofile,Integer> {
     Userprofile findUserById(Integer id);
 
     Userprofile findByLoginId(Integer id);
+
+
 }

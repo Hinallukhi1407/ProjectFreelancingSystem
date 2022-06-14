@@ -15,11 +15,12 @@ import {
   Toast,
   ToastBody,
   ToastHeader,
+  Spinner,
 } from "reactstrap";
 import * as FAicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
 import * as Aiicons from "react-icons/ai";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { useEffect } from "react";
 import { useContext } from "react";
@@ -27,24 +28,24 @@ import { useState } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-
 function FindProject() {
   const navigate = useNavigate();
-  const { loginstat, usrname, token } = useContext(UserContext);
-  const [loginstatus] = loginstat;
-  const [tokenstr] = token;
+  const [tokenstr] = localStorage.getItem("token"); 
   const goToProjectDesc = (id) => {
-    navigate('projectdescription',{state:{id:id}});
+    navigate("projectdescription", { state: { id: id } });
   };
   const [data, setdata] = useState([]);
   const setList = () => {
-    axios
+    setTimeout(()=>{
+      axios
       .get("http://localhost:8082/project/all", {
         headers: { Authorization: `Bearer ${tokenstr}` },
       })
       .then((res) => {
         setdata(res.data);
+        SetSpinner(false);
       });
+    },1500)
   };
   useEffect(() => {
     if (localStorage.getItem("loginStatus") === "false") {
@@ -52,17 +53,17 @@ function FindProject() {
     } else {
       setList();
     }
-  }, [loginstatus]);
+  }, [localStorage.getItem("loginStatus")]);
 
   const [skill, setSkill] = useState("");
   const [skills, setSkills] = useState([]);
-  const  addSkill =  () => {
-    console.log("hello")
+  const addSkill = () => {
+    console.log("hello");
     if (skill != "") {
       setSkills([...skills, skill]);
       setSkill("");
     }
-    console.log(skills)
+    console.log(skills);
   };
   const deleteSkill = (index) => {
     const updatedSkills = skills.filter((element, id) => {
@@ -71,26 +72,22 @@ function FindProject() {
     setSkills(updatedSkills);
   };
 
-  const [range,setRange] = useState("")
-  const handleBudgetRange=(e)=>{
-    setRange(e.target.value)
-  }
-  const [state,setState] = useState({
-    
-  });
+  const [range, setRange] = useState("");
+  const handleBudgetRange = (e) => {
+    setRange(e.target.value);
+  };
+  const [state, setState] = useState({});
   const fetchMoreData = () => {
     setTimeout(() => {
-      setState({
-        
-      });
+      setState({});
     }, 1500);
   };
 
-
+  const [spinner, SetSpinner] = useState(true);
   return (
     <React.Fragment>
       <Container tag={"section"} className="list-freelancer-form">
-        <Row className="mt-2">
+        <Row className="mt-2" id="FindProject">
           <Col xs="3" id="filter-form">
             <h3>Search</h3>
             <InputGroup>
@@ -141,86 +138,100 @@ function FindProject() {
             </section>
           </Col>
           <Col xs="9" id="list-freelancer">
-            <section className="mt-2">
-              <Row>
-                <Col md="12">
-                  <InfiniteScroll
-                    dataLength={data.length}
-                    next={fetchMoreData}
-                    hasMore={true}
-                    loader={<h4>Loading...</h4>}
-                  >
-
-                  {data.map((e) => (
-                    <Card body style={{ marginBottom: ".5rem" }} key={e.id}>
-                      <CardBody>
-                        <Row>
-                          <Col md="6">
-                            <CardTitle tag="h5">{e.projectName}</CardTitle>
-                            <CardSubtitle className="mb-2 text-muted" tag="h6">
-                              {"Duration : "}
-                              <span>{e.duration + "  Days"}</span>
-                              <Aiicons.AiOutlineClockCircle
-                                size={20}
-                                style={{ margin: "10px" }}
-                              />
-                              <span>{e.postDate}</span>
-                            </CardSubtitle>
-                            <CardText className="mt-3">
-                              {e.projectDescription}
-                              <section
-                                className="inline mt-3"
-                                style={{ display: "flex", flexWrap: "wrap" }}
+            {spinner ? (
+              <section style={{ marginTop: "20%",marginLeft:"50%" }}>
+                <Spinner>Loading...</Spinner>
+              </section>
+            ) : (
+              <section className="mt-2">
+                <Row>
+                  <Col md="12">
+                    <InfiniteScroll
+                      dataLength={data.length}
+                      next={fetchMoreData}
+                      hasMore={true}
+                      loader={<h4>Loading...</h4>}
+                    >
+                      {data.map((e) => (
+                        <Card body style={{ marginBottom: ".5rem" }} key={e.id}>
+                          <CardBody>
+                            <Row>
+                              <Col md="6">
+                                <CardTitle tag="h5">{e.projectName}</CardTitle>
+                                <CardSubtitle
+                                  className="mb-2 text-muted"
+                                  tag="h6"
+                                >
+                                  {"Duration : "}
+                                  <span>{e.duration + "  Days"}</span>
+                                  <Aiicons.AiOutlineClockCircle
+                                    size={20}
+                                    style={{ margin: "10px" }}
+                                  />
+                                  <span>{e.postDate}</span>
+                                </CardSubtitle>
+                                <CardText className="mt-3">
+                                  {e.projectDescription}
+                                  <section
+                                    className="inline mt-3"
+                                    style={{
+                                      display: "flex",
+                                      flexWrap: "wrap",
+                                    }}
+                                  >
+                                    <span
+                                      className="skill-badge"
+                                      style={{ width: "100px" }}
+                                    >
+                                      css
+                                    </span>
+                                    <span
+                                      className="skill-badge"
+                                      style={{ width: "100px" }}
+                                    >
+                                      Html
+                                    </span>{" "}
+                                    <span
+                                      className="skill-badge"
+                                      style={{ width: "100px" }}
+                                    >
+                                      Java
+                                    </span>
+                                  </section>
+                                </CardText>
+                              </Col>
+                              <Col
+                                md="6"
+                                className="p-3  rounded"
+                                id="budget-card"
                               >
-                                <span
-                                  className="skill-badge"
-                                  style={{ width: "100px" }}
-                                >
-                                  css
-                                </span>
-                                <span
-                                  className="skill-badge"
-                                  style={{ width: "100px" }}
-                                >
-                                  Html
-                                </span>{" "}
-                                <span
-                                  className="skill-badge"
-                                  style={{ width: "100px" }}
-                                >
-                                  Java
-                                </span>
-                              </section>
-                            </CardText>
-                          </Col>
-                          <Col md="6" className="p-3  rounded" id="budget-card">
-                            <Toast>
-                              <ToastHeader className="text-center">
-                                Budget of the project
-                              </ToastHeader>
-                              <ToastBody className="text-center">
-                                {e.minBudget + "$" + e.maxBudget + "$"}
-                              </ToastBody>
-                            </Toast>
+                                <Toast>
+                                  <ToastHeader className="text-center">
+                                    Budget of the project
+                                  </ToastHeader>
+                                  <ToastBody className="text-center">
+                                    {e.minBudget + "$ - " + e.maxBudget + "$"}
+                                  </ToastBody>
+                                </Toast>
 
-                            <Button
-                              color="primary"
-                              className="mt-4"
-                              style={{ width: "100%" }}
-                              onClick={() => goToProjectDesc(e.id)}
-                            >
-                              Bid Now
-                            </Button>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  ))}
-                  </InfiniteScroll>
-                 
-                </Col>
-              </Row>
-            </section>
+                                <Button
+                                  color="primary"
+                                  className="mt-4"
+                                  style={{ width: "100%" }}
+                                  onClick={() => goToProjectDesc(e.id)}
+                                >
+                                  Bid Now
+                                </Button>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      ))}
+                    </InfiniteScroll>
+                  </Col>
+                </Row>
+              </section>
+            )}
           </Col>
         </Row>
       </Container>

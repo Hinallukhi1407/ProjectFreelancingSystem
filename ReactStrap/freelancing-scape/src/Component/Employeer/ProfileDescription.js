@@ -34,10 +34,10 @@ function ProfileDescription(props) {
   }
   return (
     <React.Fragment>
-      <Container fluid>
+      <Container fluid >
             { offerForm && (<OfferForm formOpen={toggleOfferForm}/>)}
-        <Row id="single-freelancer">
-          <section id="background-white">
+        <Row id="single-freelancer"  >
+          <section id="background-white" className="mt-5">
             <Col
               xs="2"
               id="profile-section"

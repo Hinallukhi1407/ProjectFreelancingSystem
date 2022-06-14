@@ -34,16 +34,13 @@ function TaskDescription() {
         setRange(res.data.minBudget)
       });
   };
-  const { loginstat, usrname, token } = useContext(UserContext);
-  const [loginstatus] = loginstat;
-  const [tokenstr] = token;
   useEffect(() => {
     if (localStorage.getItem("loginStatus") === "false") {
       navigate("/");
     } else {
       setList();
     }
-  }, [loginstatus]);
+  }, [localStorage.getItem("loginStatus")]);
 
   function daysDiff(dateTo) {
       let today = new Date();
@@ -98,7 +95,7 @@ function TaskDescription() {
   }
   return (
     <div>
-      <Container fluid>
+      <Container fluid style={{paddingTop:"4rem"}}>
         <Row id="single-task">
           <Col id="single-task-name" xs="6">
             <h3>{projectData.projectName}</h3>

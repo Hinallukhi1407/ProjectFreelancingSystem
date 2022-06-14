@@ -16,15 +16,11 @@ import TaskDescription from "./Component/Freelancer/ProjectDescription";
 import { UserContext } from "./UserContext";
 import { useState } from "react";
 import AddTasks from "./Component/Employeer/AddTasks";
+import ManageBidders from "./Component/Employeer/ManageBidders";
 function App() {
-  const [loginstatus, setloginstatus] = useState(false);
-  const [username, setusername] = useState("");
-  const [token, settoken] = useState("");
-  const [userid, setuserid] = useState("");
-  const [image, setimage] = useState("");
+
   return (
     <React.Fragment>
-      <UserContext.Provider value={{loginstat: [loginstatus,setloginstatus], usrname : [username,setusername], token:[token,settoken],userid:[userid,setuserid],image:[image,setimage]}}>
       <Router>
         <Routes>
           <Route path="/" exact element={<Guest />} />
@@ -33,7 +29,7 @@ function App() {
             <Route path="freelancerlist" element={<ListFreelancer />}/>
             <Route path="freelancerlist/profiledesc" element={<ProfileDescription/>}/>
             <Route path="postproject" element={<PostProject/>}/>
-            <Route path="postproject/posttasks" element={<AddTasks/>}/>
+            <Route path="managebidders" element={<ManageBidders/>}/>
           </Route>
           <Route path="/freelancer" element={<Freelancer />} >
              <Route path="Home" element={<GuestIntroBanner />} />
@@ -43,7 +39,6 @@ function App() {
           </Route>
         </Routes>
       </Router>
-      </UserContext.Provider>
     </React.Fragment>
   );
 }

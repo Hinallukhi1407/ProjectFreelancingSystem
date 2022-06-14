@@ -4,6 +4,9 @@ html{
     font-family: "Nunito", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 header {
+    position: fixed;
+    top: 0%;
+    width: 100%;
     z-index: 5;
     height: 4rem;
     background-color: white;
@@ -349,6 +352,7 @@ header {
     width: 100vw;
     height: 600px;
     opacity: 0.75;
+   
 }
 #userAvatar{
     position: relative;
@@ -358,19 +362,10 @@ header {
  
 }
 #profile-popup{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    position: absolute;
-    top: 7%;
-    right: 1%;
+    position: relative;
     background-color:  #303030;
     color: white;
     border-radius: 0.5rem;
-    height: 15%;
-    width: 10%;
-    z-index: 11;
 }
 #profile-popup ul{
     list-style: none;
@@ -386,8 +381,10 @@ header {
     color: white;
 }
 .list-freelancer-form{
-    padding-left: 5rem !important;
-    padding-right: 5rem !important;
+}
+#FindProject{
+    position: relative;
+    padding-top: 5rem;
 }
 .list-freelancer-form h3{  
     font-size: 1.4rem;
@@ -466,6 +463,8 @@ header {
 }
 #dashboardSidebar
 {
+    position: fixed;
+    top: 4rem;
     float: left;
     height: 100vh;
     width: 20%;
@@ -479,7 +478,6 @@ header {
 {
   border: none;
   display: block;
-  
 }
 #dashboardSidebar li:hover
 {
@@ -487,14 +485,18 @@ header {
   background-color: #F7F8FE;
 }
 #dashboard-topnav {
+    position: fixed;
     background-color: #333333;
-    margin: 1%;
     border-radius: 10px;
     display: none;
+    margin-top: 4.5rem;
+    width: 98%;
+    z-index: 4;
 }
-
 #postproject-form {
-    margin-top: 8%;
+    margin-top: 5%;
+    padding: 10%;
+    background-color: white;
 }
 .flex-box{
     margin-left: auto;
@@ -503,7 +505,6 @@ header {
 .display-flex{
     display: flex !important;
     justify-content: center !important;
-  
 }
 #single-task{
     display: flex ;
@@ -585,15 +586,192 @@ header {
     flex-wrap: wrap;
 }
 #post-project-form{
-
+float: right ;
+width: 80%;
+background-color: #FAFAFA;
+box-shadow: -5px -23px 30px 6px rgba(0,0,0,0.09);
+-webkit-box-shadow: -5px -23px 30px 6px rgba(0,0,0,0.09);
+-moz-box-shadow: -5px -23px 30px 6px rgba(0,0,0,0.09);
 }
 #budget-card{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
+#filter-form{
+    position: sticky;
+    bottom: 0%;
+    top: 15%;
+    left: 0%;
+    right: 0%;
+        box-shadow: -5px -23px 30px 6px rgba(0, 0, 0, 0.09);
+        -webkit-box-shadow: -5px -23px 30px 6px rgba(0, 0, 0, 0.09);
+        -moz-box-shadow: -5px -23px 30px 6px rgba(0, 0, 0, 0.09);
+    height: 30rem;
+    border-radius: 0.2rem;
+}
 /*End*/
+
+
+/*Footer*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 100%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 10px;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	background-color: white;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px) {
+    .footer-col {
+        width: 100%;
+    }
+}
+
+
+
+
+/*End Footer*/
+
+/*City card*/
+#city-contaner{
+    background-color: #F9F9F9;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#city-main{
+    display: flex;
+    background-color: red ;
+}
+#city{
+   margin-top: 5%;
+   margin-bottom: 5%;
+}
+.city-toast{
+    width: 20rem !important;
+    height: 25rem;
+    margin: 10px;
+    
+}
+#cityOne{
+    background-image: url("../Images/featured-city-01.jpg");
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+#cityTwo{
+    background-image: url("../Images/featured-city-02.jpg");
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+#cityThree{
+    background-image: url("../Images/featured-city-03.jpg");
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+#cityFour{
+    background-image: url("../Images/featured-city-04.jpg");
+    background-position: center;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+/*City Card End*/
+
+
+
+
+
+
+
+
+
+
  /*Media starts*/ 
 @media (max-width:1125px) {
     #sidebarnav{
@@ -670,7 +848,7 @@ header {
         display: none;
     }
     #profile-popup{
-        position: absolute;
+        position: relative;
         top: 100%;
     }
     #filter-form{
@@ -731,10 +909,9 @@ header {
     #task-card{
         width: 100% !important;
     }
+    #post-project-form{
+        width: 100%;
+    }
+   
 }
-.wrongcred{
-    margin-top: 3%;
-    font-size: 1.1rem;
-    color: red;
-  }
 /*Media Ends*/

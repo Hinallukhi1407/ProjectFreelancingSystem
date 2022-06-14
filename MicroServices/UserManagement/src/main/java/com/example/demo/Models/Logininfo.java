@@ -41,7 +41,7 @@ public class Logininfo {
     @Column(name = "verification_code", length = 64)
     private String verificationCode;
 
-    @OneToMany(mappedBy = "login")
+    @OneToMany(mappedBy = "login",fetch = FetchType.EAGER)
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 
     @Column(name = "last_login", nullable = false)

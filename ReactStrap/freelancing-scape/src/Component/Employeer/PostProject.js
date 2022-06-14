@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashboardSideBar from "../common/DashboardSideBar";
 import DashboardTopNav from "../common/DashboardTopNav";
@@ -19,13 +19,21 @@ import {
 import * as Faicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
 function PostProject() {
   var user = JSON.parse(localStorage.getItem("userData"));
   let navigate = useNavigate();
   const GoToTasksPage = () => {
     navigate("posttasks");
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("loginStatus") === "false") {
+      navigate("/");
+    } else {
+      loadSkills()
+    }
+  }, [localStorage.getItem("loginStatus")]);
 
   const [skill, setSkill] = useState("");
   const [skills, setSkills] = useState([]);
@@ -47,6 +55,18 @@ function PostProject() {
   let projectID;
 
   const [postStatus,setPostStatus]=useState(false)
+
+  const [allSkills,setAllSkills] = useState()
+  const loadSkills=()=>{
+    axios
+      .get("http://localhost:8081/skill/getall", {
+      })
+      .then((res) => {
+        setAllSkills(res.data);
+        console.log("inside")
+        console.log(allSkills)
+      });
+  }
 
   const addProject = () => {
     const date1 = new Date(formData.startDate);
@@ -127,7 +147,7 @@ function PostProject() {
 
   return (
     <React.Fragment>
-      <Container fluid style={{ padding: "0px" }}>
+      <Container fluid style={{ padding: "0px" }} >
         <DashboardSideBar />
         <Row id="post-project-form">
           <DashboardTopNav />
@@ -213,18 +233,24 @@ function PostProject() {
                   <Label>Skills Required For Project</Label>
                   <InputGroup>
                     <Input
-                      type="text"
+                      type="select"
                       placeholder="eg. CSS,HTML,JAVA"
                       value={skill}
                       onChange={(e) => setSkill(e.target.value)}
-                    />
-                    <Button
-                      style={{ backgroundColor: "white", color: "#2A41E8" }}
-                      onClick={addSkill}
                     >
+                    {skillLevels.map((Level) => (
+                      <option value={Level.key} key={Level.key}>
+                        {Level.value}
+                      </option>
+                    ))}
+                   </Input>
+                   <Button
+                      style={{ backgroundColor: "white", color: "#2A41E8" }}
+                      onClick={addSkill} >
                       ADD
                     </Button>
                   </InputGroup>
+                 
                 </Col>
 
                 <Col md="6" style={{ marginTop: "2rem" }}>

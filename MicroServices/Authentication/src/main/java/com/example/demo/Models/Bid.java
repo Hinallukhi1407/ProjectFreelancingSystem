@@ -1,90 +1,43 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "bids")
+@Getter@Setter
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bid_id", nullable = false)
     private Integer id;
 
-    @Column(name = "project_id", nullable = false)
-    private Integer projectId;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Userprofile user;
-
-    @Column(name = "amount", nullable = false, precision = 8, scale = 2)
+    @Column(name = "amount", precision = 8, scale = 2)
     private BigDecimal amount;
 
-    @Column(name = "bid_date", nullable = false)
-    private Instant bidDate;
+    @Column(name = "bid_date")
+    private Date bidDate;
 
-    @Column(name = "delivery_time", nullable = false)
+    @Column(name = "delivery_time")
     private Integer deliveryTime;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
-    public Statusdetail getStatus() {
-        return status;
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Logininfo user;
 
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
-
-    public Integer getDeliveryTime() {
-        return deliveryTime;
-    }
-
-    public void setDeliveryTime(Integer deliveryTime) {
-        this.deliveryTime = deliveryTime;
-    }
-
-    public Instant getBidDate() {
-        return bidDate;
-    }
-
-    public void setBidDate(Instant bidDate) {
-        this.bidDate = bidDate;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Userprofile getUser() {
-        return user;
-    }
-
-    public void setUser(Userprofile user) {
-        this.user = user;
-    }
-
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 }

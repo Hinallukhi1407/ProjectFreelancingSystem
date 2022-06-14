@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -15,6 +17,8 @@ import java.util.Set;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Getter
+@Setter
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +28,7 @@ public class City {
     @Column(name = "city_name", nullable = false, length = 20)
     private String cityName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "state_id", nullable = false)
     private Statedetail state;
 
@@ -32,35 +36,4 @@ public class City {
     @JsonBackReference
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 
-    public Set<Userprofile> getUserprofiles() {
-        return userprofiles;
-    }
-
-    public void setUserprofiles(Set<Userprofile> userprofiles) {
-        this.userprofiles = userprofiles;
-    }
-
-    public Statedetail getState() {
-        return state;
-    }
-
-    public void setState(Statedetail state) {
-        this.state = state;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

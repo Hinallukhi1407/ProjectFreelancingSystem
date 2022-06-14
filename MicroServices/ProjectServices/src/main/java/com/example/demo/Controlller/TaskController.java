@@ -1,7 +1,7 @@
 package com.example.demo.Controlller;
 
 import com.example.demo.Models.Task;
-import com.example.demo.Services.TaskServices;
+import com.example.demo.Models.Services.TaskServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +35,7 @@ public class TaskController {
     @PutMapping("/update/{id}")
     public Task updateTask(@RequestBody Task task,@PathVariable Integer id)
     {
-        //return taskServices.update(task,id);
-        return task;
+        return taskServices.update(task,id);
     }
 
     @GetMapping("/project/{id}")

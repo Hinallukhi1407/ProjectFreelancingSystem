@@ -1,27 +1,33 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "projects")
-@JsonIdentityInfo(scope = Project.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+@Getter@Setter
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private Userprofile user;
+    private Logininfo user;
 
     @Column(name = "project_name", nullable = false, length = 100)
     private String projectName;
@@ -36,95 +42,38 @@ public class Project {
     private String attachment;
 
     @Column(name = "post_date", nullable = false)
-    private Instant postDate;
+    private Date postDate;
 
     @Column(name = "completion_date", nullable = false)
-    private Instant completionDate;
+    private Date completionDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
-    @OneToMany(mappedBy = "project")
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "min_budget", precision = 10)
+    private BigDecimal minBudget;
+
+    @Column(name = "max_budget", precision = 10)
+    private BigDecimal maxBudget;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "skill_level_id")
+    private Skilllevel skillLevel;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Task> tasks = new LinkedHashSet<>();
 
-    public Set<Task> getTasks() {
-        return tasks;
-    }
+    @ManyToMany
+    @JoinTable(name = "projectskills",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    private List<Skill> skills;
 
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public Statusdetail getStatus() {
-        return status;
-    }
-
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
-
-    public Instant getCompletionDate() {
-        return completionDate;
-    }
-
-    public void setCompletionDate(Instant completionDate) {
-        this.completionDate = completionDate;
-    }
-
-    public Instant getPostDate() {
-        return postDate;
-    }
-
-    public void setPostDate(Instant postDate) {
-        this.postDate = postDate;
-    }
-
-    public String getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
-    }
-
-    public String getProjectDescription() {
-        return projectDescription;
-    }
-
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public Userprofile getUser() {
-        return user;
-    }
-
-    public void setUser(Userprofile user) {
-        this.user = user;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @JsonManagedReference
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    private List<Bid> bids;
 }

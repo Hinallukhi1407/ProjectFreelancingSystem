@@ -1,6 +1,5 @@
 package com.example.demo.Services;
 
-import com.example.demo.Models.City;
 import com.example.demo.Models.Statedetail;
 import com.example.demo.Repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;

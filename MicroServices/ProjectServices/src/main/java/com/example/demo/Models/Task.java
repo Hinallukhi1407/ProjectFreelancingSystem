@@ -1,18 +1,24 @@
 package com.example.demo.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.Instant;
 
 @Entity
 @Table(name = "task")
+@Getter
+@Setter
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
@@ -34,92 +40,8 @@ public class Task {
     @Column(name = "post_date", nullable = false)
     private Date postDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "payment_status", nullable = false)
-    private Statusdetail paymentStatus;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
-    }
-
-    public Date getPostDate() {
-        return postDate;
-    }
-
-    public void setPostDate(Date postDate) {
-        this.postDate = postDate;
-    }
-
-    public Statusdetail getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(Statusdetail paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    public Statusdetail getStatus() {
-        return status;
-    }
-
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
 
 }

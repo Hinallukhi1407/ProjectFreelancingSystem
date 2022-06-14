@@ -1,7 +1,7 @@
 package com.example.demo.Controlller;
 
 import com.example.demo.Models.Project;
-import com.example.demo.Services.ProjectServices;
+import com.example.demo.Models.Services.ProjectServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +42,10 @@ public class ProjectController {
     @GetMapping("/user/{id}")
     public List<Project> getDataByUser(@PathVariable  Integer id){
         return projectServices.displayByUser(id);
+    }
+
+    @GetMapping("/activeProjects/{id}")
+    public List<Project> getActiveProject(@PathVariable  Integer id){
+        return projectServices.displayActiveProject(id);
     }
 }

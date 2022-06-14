@@ -1,32 +1,28 @@
 package com.example.demo.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "skills")
+@Getter
+@Setter
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "skill_id", nullable = false)
     private Integer id;
 
-    @Column(name = "skill_name", nullable = false, length = 20)
+        @Column(name = "skill_name", nullable = false, length = 20)
     private String skillName;
 
-    public Integer getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "skill")
+    private Set<Projectskill> projectskills = new LinkedHashSet<>();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getSkillName() {
-        return skillName;
-    }
-
-    public void setSkillName(String skillName) {
-        this.skillName = skillName;
-    }
-
+    @OneToMany(mappedBy = "skill")
+    private Set<Freelancerskill> freelancerskills = new LinkedHashSet<>();
 }

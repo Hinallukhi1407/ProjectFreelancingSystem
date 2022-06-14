@@ -1,23 +1,33 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "projects")
+@Getter@Setter
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private Userprofile user;
+    private Logininfo user;
 
     @Column(name = "project_name", nullable = false, length = 100)
     private String projectName;
@@ -54,141 +64,16 @@ public class Project {
     @JoinColumn(name = "skill_level_id")
     private Skilllevel skillLevel;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Task> tasks = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "project")
-    private Set<Projectskill> projectskills = new LinkedHashSet<>();
+    @ManyToMany
+    @JoinTable(name = "projectskills",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    private List<Skill> skills;
 
-    @OneToMany(mappedBy = "project")
-    private Set<Bid> bids = new LinkedHashSet<>();
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Userprofile getUser() {
-        return user;
-    }
-
-    public void setUser(Userprofile user) {
-        this.user = user;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public String getProjectDescription() {
-        return projectDescription;
-    }
-
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }
-
-    public String getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
-    }
-
-    public Date getPostDate() {
-        return postDate;
-    }
-
-    public void setPostDate(Date postDate) {
-        this.postDate = postDate;
-    }
-
-    public Date getCompletionDate() {
-        return completionDate;
-    }
-
-    public void setCompletionDate(Date completionDate) {
-        this.completionDate = completionDate;
-    }
-
-    public Statusdetail getStatus() {
-        return status;
-    }
-
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public BigDecimal getMinBudget() {
-        return minBudget;
-    }
-
-    public void setMinBudget(BigDecimal minBudget) {
-        this.minBudget = minBudget;
-    }
-
-    public BigDecimal getMaxBudget() {
-        return maxBudget;
-    }
-
-    public void setMaxBudget(BigDecimal maxBudget) {
-        this.maxBudget = maxBudget;
-    }
-
-    public Skilllevel getSkillLevel() {
-        return skillLevel;
-    }
-
-    public void setSkillLevel(Skilllevel skillLevel) {
-        this.skillLevel = skillLevel;
-    }
-
-    public Set<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public Set<Projectskill> getProjectskills() {
-        return projectskills;
-    }
-
-    public void setProjectskills(Set<Projectskill> projectskills) {
-        this.projectskills = projectskills;
-    }
-
-    public Set<Bid> getBids() {
-        return bids;
-    }
-
-    public void setBids(Set<Bid> bids) {
-        this.bids = bids;
-    }
-
+    @JsonManagedReference
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    private List<Bid> bids;
 }

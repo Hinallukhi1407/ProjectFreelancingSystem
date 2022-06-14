@@ -1,11 +1,18 @@
 package com.example.demo.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "paymentdetails")
+@Getter
+@Setter
 public class Paymentdetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,36 +28,6 @@ public class Paymentdetail {
     @Column(name = "amount", nullable = false, precision = 8, scale = 2)
     private BigDecimal amount;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getTxnDate() {
-        return txnDate;
-    }
-
-    public void setTxnDate(Date txnDate) {
-        this.txnDate = txnDate;
-    }
-
-    public String getTxnNo() {
-        return txnNo;
-    }
-
-    public void setTxnNo(String txnNo) {
-        this.txnNo = txnNo;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
+    @OneToMany(mappedBy = "payment")
+    private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
 }

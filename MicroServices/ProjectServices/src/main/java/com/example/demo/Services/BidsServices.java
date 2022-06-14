@@ -1,4 +1,4 @@
-package com.example.demo.Services;
+package com.example.demo.Models.Services;
 
 import com.example.demo.Client.BidSRepository;
 import com.example.demo.Models.Bid;
@@ -41,8 +41,8 @@ public class BidsServices {
         }
     }
 
-   /* public List<Bid> DisplayByProjectID(Integer id)
+   public List<Bid> DisplayByProjectID(Integer id)
     {
         return bidSRepository.findByProjectId(id);
-    }*/
+    }
 }

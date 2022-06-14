@@ -1,19 +1,23 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "logininfo")
-@JsonIdentityInfo(scope = Logininfo.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Getter
+@Setter
 public class Logininfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,71 +47,4 @@ public class Logininfo {
 
     @OneToMany(mappedBy = "login",fetch = FetchType.EAGER)
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
-
-    @Column(name = "last_login", nullable = false)
-    private Date loginDate;
-
-    public Set<Userprofile> getUserprofiles() {
-        return userprofiles;
-    }
-
-    public void setUserprofiles(Set<Userprofile> userprofiles) {
-        this.userprofiles = userprofiles;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
-    public Statusdetail getStatus() {
-        return status;
-    }
-
-    public void setStatus(Statusdetail status) {
-        this.status = status;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Usertype getUserType() {
-        return userType;
-    }
-
-    public void setUserType(Usertype userType) {
-        this.userType = userType;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

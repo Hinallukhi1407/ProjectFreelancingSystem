@@ -1,9 +1,24 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "country")
+@JsonIdentityInfo(scope = Country.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Getter
+@Setter
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,31 +28,8 @@ public class Country {
     @Column(name = "country_name", nullable = false, length = 20)
     private String countryName;
 
-    @Column(name = "coumtry_name")
-    private String coumtryName;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    public String getCoumtryName() {
-        return coumtryName;
-    }
-
-    public void setCoumtryName(String coumtryName) {
-        this.coumtryName = coumtryName;
-    }
-
+    @OneToMany(mappedBy = "country")
+    @JsonBackReference
+    private Set<Statedetail> statedetails = new LinkedHashSet<>();
 }

@@ -20,16 +20,13 @@ import * as FAicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
 
 import { UserContext } from "../../UserContext";
-
+import Footer from "../common/Footer";
 import axios from "axios";
 function ListFreelancer() {
   const navigate = useNavigate();
   const [tokenstr] = localStorage.getItem("token"); 
-  const goToProfileDesc = () => {
-    console.log("xjhxhx")
-    console.log(data)
-    /* console.log("ajbdashj")*/
-    navigate('profiledesc'); 
+  const goToProfileDesc = (id) => {
+    navigate('profiledesc',{ state: { id: id } }); 
   }
   const [spinner, SetSpinner] = useState(true);
   const [data, setdata] = useState([]);
@@ -132,7 +129,7 @@ function ListFreelancer() {
                   <Row>
                     <Col xs="1" id="free-avatar">
                       <img
-                        src={"../Images/" + e.userprofiles.profileImage}
+                        src={e.userprofiles[0].profileImage}
                         alt=""
                         style={{
                           borderRadius: "100px",
@@ -142,7 +139,7 @@ function ListFreelancer() {
                       />
                     </Col>
                     <Col xs="5" className=" text-align-center" id="free-name">
-                      <h5>{e.first_name + " " + e.last_name}</h5>
+                      <h5>{e.userprofiles[0].firstName + " " +e.userprofiles[0].lastName }</h5>
                       <h6 className="fw-lighter">{e.tag_line}</h6>
                     </Col>
                     <Col xs="6" id="free-list-button">
@@ -160,7 +157,7 @@ function ListFreelancer() {
                             style={{ color: "black" }}
                           >
                             <section className="count">Rate</section>
-                            {e.hourly_rate} $/hr
+                            {e.userprofiles[0].hourlyRate} $/hr
                           </ListGroupItem>
                           <ListGroupItem
                             className="justify-content-between banner-list-item"
@@ -174,7 +171,7 @@ function ListFreelancer() {
                           color="primary"
                           className="mt-3"
                           style={{ width: "100%" }}
-                          onClick={goToProfileDesc}
+                          onClick={()=>goToProfileDesc(e.id)}
                         >
                           View Profile
                         </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Row,
@@ -22,7 +22,14 @@ import * as AiIcons from "react-icons/ai";
 import * as CgIcons from "react-icons/cg";
 import StarRatingComponent from "react-star-rating-component";
 import OfferForm from "./OfferForm";
+import Footer from "../common/Footer";
+import {useLocation} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 function ProfileDescription(props) {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [offerForm, setOfferForm] = useState(false);
   const toggleOfferForm = () => {
     setOfferForm(!offerForm);
@@ -32,6 +39,31 @@ function ProfileDescription(props) {
   const handleBudgetRange=(e)=>{
     setRange(e.target.value)
   }
+  const [spinner, SetSpinner] = useState(true);
+  const [data, setdata] = useState([]);
+  const setList = async () => {
+    let response = await axios
+      .get("http://localhost:8083/"+location.state.id,{
+      })
+      .then((res) => {
+        setdata(res.data);
+        console.log(res.data)
+        SetSpinner(false);
+      });
+  };
+  var FirstName;
+  const setData=()=>{
+      //FirstName = data.userprofiles[0].firstName
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("loginStatus") === "false") {
+      navigate("/");
+    } else {
+      setList();
+      setData();
+    }
+  },[localStorage.getItem("loginStatus")]);
   return (
     <React.Fragment>
       <Container fluid >
@@ -43,10 +75,10 @@ function ProfileDescription(props) {
               id="profile-section"
               style={{ backgroundColor: "", textAlign: "center" }}
             >
-              <img src={avatar} alt="" id="big-avatar" />
+              <img src="" alt="" id="big-avatar" />
             </Col>
             <Col id="single-free-name">
-              <h3>David Peterson</h3>
+              {/* <h3>{data.userprofiles[0].firstName}</h3> */}
               <h4 className="text-muted">iOS Expert + Node Dev</h4>
 
               <List type="inline">

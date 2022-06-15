@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Client.RegistrationRepository;
 import com.example.demo.Models.Logininfo;
+import com.example.demo.Models.Userprofile;
 import com.example.demo.Services.RegistrationService;
 
 import org.springframework.beans.factory.annotation.Autowired;

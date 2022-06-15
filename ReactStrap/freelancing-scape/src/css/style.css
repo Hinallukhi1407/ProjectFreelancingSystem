@@ -362,22 +362,29 @@ header {
  
 }
 #profile-popup{
-    position: relative;
+    position: fixed;
+    height: 8rem;
+    top: 4.2rem;
+    right: 2rem;
     background-color:  #303030;
     color: white;
     border-radius: 0.5rem;
 }
 #profile-popup ul{
+    width: 10rem;
     list-style: none;
     padding: 0%;
     line-height: 1.5rem;
+    
 }
 #profile-popup ul li{
     border-bottom: white solid .1em;
+    padding-left: 10%;
     display: block;
     width: 10em;
 }
 #profile-popup :hover{
+    cursor: default;
     color: white;
 }
 .list-freelancer-form{
@@ -848,8 +855,7 @@ ul{
         display: none;
     }
     #profile-popup{
-        position: relative;
-        top: 100%;
+        
     }
     #filter-form{
         min-width: 100%;

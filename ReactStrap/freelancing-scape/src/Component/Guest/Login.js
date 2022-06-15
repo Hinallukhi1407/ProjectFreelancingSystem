@@ -19,14 +19,13 @@ import * as Hiicons from "react-icons/hi";
 import * as Aiicons from "react-icons/ai";
 import { UserContext } from "../../UserContext";
 function Login() {
-  const usercred = {
+  const [usercred,setUserCred] = useState({
     email: '',
     password: ''
-  };
+  });
 
   const [errorAlert,setErrorAlert] = useState(false)
-  
-  const [loginmsg,setloginmsg] = useState("");
+
   let navigate = useNavigate();
   
   const check_login = () => {
@@ -39,7 +38,6 @@ function Login() {
   }
 
   const loginsuccess = (res) =>{
-    console.log(res);
     let token = res.headers.authorization;
     localStorage.setItem("token",token);
     let user = jwt_decode(token.split(' ')[1])
@@ -49,25 +47,27 @@ function Login() {
   }
 
   const setData = (data) =>{
-    //setloginstatus(true);
     localStorage.setItem("loginStatus",true);
-    
     localStorage.setItem("userData",JSON.stringify(data));
-    if(data.login.userType.userType==="Employer")
+    if(data.userType.userType==="Employer")
     {
       navigate("/Employer/home");
     }
-    else if(data.login.userType.userType==="Freelancer"){
+    else if(data.userType.userType==="Freelancer"){
       navigate("/Freelancer/home");
     }    
   }
 
   const loginfailure  = (res) =>{
-    console.log("Login Failed...");
-    setloginmsg("Login Failed...");
     navigate("/");
   }
   
+  const onValueChange=(e)=>{
+    var name = e.target.name;
+    var value = e.target.value;
+    setUserCred({ ...usercred, [name]: value });
+  }
+
   return (
     <React.Fragment>
       <Row id="welcome-text">
@@ -84,7 +84,7 @@ function Login() {
           <Input
             placeholder="Email"
             name="email"
-            onChange={(e) => (usercred.email = e.target.value)}
+            onChange={onValueChange}
             style={{ padding: "10px" }}
           />
         </InputGroup>
@@ -96,7 +96,7 @@ function Login() {
             type="password"
             placeholder="Password"
             name="password"
-            onChange={(e) => (usercred.password = e.target.value)}
+            onChange={onValueChange}
             style={{ padding: "10px" }}
           />
         </InputGroup>

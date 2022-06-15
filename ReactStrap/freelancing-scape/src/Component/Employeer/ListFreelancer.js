@@ -11,7 +11,6 @@ import {
   Button,
   Label,
   Card,
-  CardTitle,
   CardText,
   ListGroup,
   ListGroupItem,
@@ -40,7 +39,7 @@ function ListFreelancer() {
         console.log(res.data)
         SetSpinner(false);
       });
-    },1500)
+    })
   };
   useEffect(() => {
     if (localStorage.getItem("loginStatus") === "false") {
@@ -184,6 +183,7 @@ function ListFreelancer() {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </React.Fragment>
   );
 }

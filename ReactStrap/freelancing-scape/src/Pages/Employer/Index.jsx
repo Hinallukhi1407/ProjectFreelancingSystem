@@ -9,7 +9,6 @@ function Employeer() {
     <React.Fragment>
       <NavBar pageType="Employer"/>
       <Outlet/>
-      <Footer/>
     </React.Fragment>
   );
 }

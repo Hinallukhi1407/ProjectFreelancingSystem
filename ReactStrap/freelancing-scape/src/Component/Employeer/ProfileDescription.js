@@ -41,29 +41,30 @@ function ProfileDescription(props) {
   }
   const [spinner, SetSpinner] = useState(true);
   const [data, setdata] = useState([]);
-  const setList = async () => {
-    let response = await axios
+  const [profile, setProfile] = useState({});
+  const setList =  () => {
+    let response =  axios
       .get("http://localhost:8083/"+location.state.id,{
       })
       .then((res) => {
         setdata(res.data);
+        setProfile(res.data.userprofiles[0]);
         console.log(res.data)
         SetSpinner(false);
       });
   };
+
+
   var FirstName;
-  const setData=()=>{
-      //FirstName = data.userprofiles[0].firstName
-  }
+  
 
   useEffect(() => {
     if (localStorage.getItem("loginStatus") === "false") {
       navigate("/");
     } else {
       setList();
-      setData();
     }
-  },[localStorage.getItem("loginStatus")]);
+  },[location.state.id]);
   return (
     <React.Fragment>
       <Container fluid >
@@ -75,11 +76,11 @@ function ProfileDescription(props) {
               id="profile-section"
               style={{ backgroundColor: "", textAlign: "center" }}
             >
-              <img src="" alt="" id="big-avatar" />
+              <img src={profile.profileImage} alt="" id="big-avatar" />
             </Col>
             <Col id="single-free-name">
-              {/* <h3>{data.userprofiles[0].firstName}</h3> */}
-              <h4 className="text-muted">iOS Expert + Node Dev</h4>
+              <h3>{profile.firstName + " " +profile.lastName}</h3>
+              <h4 className="text-muted">{profile.tagLine}</h4>
 
               <List type="inline">
                 <ListInlineItem>
@@ -102,15 +103,7 @@ function ProfileDescription(props) {
           <Col xs="6" id="free-aboutme">
             <h3 style={{ fontWeight: "400", marginBottom: "3%" }}>About Me</h3>
             <p style={{ lineHeight: "35px", textAlign: "left" }}>
-              Leverage agile frameworks to provide a robust synopsis for high
-              level overviews. Iterative approaches to corporate strategy foster
-              collaborative thinking to further the overall value proposition.
-              Organically grow the holistic world view of disruptive innovation
-              via workplace diversity and empowerment. Capitalize on low hanging
-              fruit to identify a ballpark value added activity to beta test.
-              Override the digital divide with additional clickthroughs from
-              DevOps. Nanotechnology immersion along the information highway
-              will close the loop on focusing solely on the bottom line.
+             {profile.userDescription}
             </p>
             <section id="free-work-exp">
               <h3 style={{ fontWeight: "400", marginBottom: "3%" }}>
@@ -195,7 +188,7 @@ function ProfileDescription(props) {
                   style={{ color: "black", textAlign: "center" }}
                 >
                   <section className="count">Hourly Rate</section>
-                  14$
+                  {profile.hourlyRate}$
                 </ListGroupItem>
                 <ListGroupItem
                   className="justify-content-between banner-list-item"

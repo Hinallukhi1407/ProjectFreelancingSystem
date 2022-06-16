@@ -26,7 +26,6 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 function FindProject() {
   const navigate = useNavigate();
@@ -146,12 +145,7 @@ function FindProject() {
               <section className="mt-2">
                 <Row>
                   <Col md="12">
-                    <InfiniteScroll
-                      dataLength={data.length}
-                      next={fetchMoreData}
-                      hasMore={true}
-                      loader={<h4>Loading...</h4>}
-                    >
+                   
                       {data.map((e) => (
                         <Card body style={{ marginBottom: ".5rem" }} key={e.id}>
                           <CardBody>
@@ -227,7 +221,6 @@ function FindProject() {
                           </CardBody>
                         </Card>
                       ))}
-                    </InfiniteScroll>
                   </Col>
                 </Row>
               </section>

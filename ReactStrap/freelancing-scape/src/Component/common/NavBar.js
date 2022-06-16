@@ -22,13 +22,7 @@ function NavBar(props) {
   };
   
   const userLink = props.pageType ? props.pageType : "DropDown";
- /*  const {loginstat,usrname,image,token} = useContext(UserContext);
-  const [loginstatus,setloginstatus] = loginstat;
-  const [username,setusername] = usrname;
-  const [img] = image;
-  const [tokenstr,settokenstr] = token; */
   const user=JSON.parse(localStorage.getItem("userData"));
- 
 
   let navigate = useNavigate();
 
@@ -212,18 +206,17 @@ function NavBar(props) {
                   </ul>
                 </Col>
                 <Col  lg="1" sm="2" xs="3" id="login-col">
-                  <section id="loginSection">
+                  <section id="loginSection" >
                     <section
                       onMouseEnter={onHover}
-                      onMouseLeave={onHoverLeave}
-                    >
-                      <img src={"../Images/" + user.profile_image} alt="" id="userAvatar" />
+                      onMouseLeave={onHoverLeave}>
+                      <img src={user.userprofiles[0].profileImage} alt="" id="userAvatar"/>
                       {test && (
                           <aside id="profile-popup">
                             <span
                               className="arrow" style={{left:"60%"}}/>
                             <section >
-                              <h5>{user.first_name}</h5>
+                              <h5>{user.userprofiles[0].firstName}</h5>
                               <ul>
                                 <li>Dashboard</li>
                                 <li>Settings</li>
@@ -304,13 +297,13 @@ function NavBar(props) {
                       onMouseEnter={onHover}
                       onMouseLeave={onHoverLeave}
                     >
-                      <img src={"../Images/" + user.profile_image} alt="" id="userAvatar" />
+                      <img src={user.userprofiles[0].profileImage} alt="" id="userAvatar" />
                       {test && (
                           <aside id="profile-popup">
                             <span
                               className="arrow" style={{left:"60%"}}/>
                             <section >
-                              <h5>{user.first_name}</h5>
+                              <h5>{user.userprofiles[0].firstName}</h5>
                               <ul>
                                 <li>Dashboard</li>
                                 <li>Settings</li>

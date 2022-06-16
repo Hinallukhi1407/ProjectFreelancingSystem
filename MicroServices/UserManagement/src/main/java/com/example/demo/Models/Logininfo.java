@@ -1,9 +1,6 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.Instant;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,5 +44,6 @@ public class Logininfo {
     private String verificationCode;
 
     @OneToMany(mappedBy = "login",fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<Userprofile> userprofiles = new LinkedHashSet<>();
 }

@@ -38,6 +38,9 @@ public class Userprofile {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @Column(name = "user_description")
+    private String userDescription;
+
     @Column(name = "mobile_no", precision = 10)
     private BigDecimal mobileNo;
 

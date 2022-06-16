@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Row,
@@ -22,7 +22,14 @@ import * as AiIcons from "react-icons/ai";
 import * as CgIcons from "react-icons/cg";
 import StarRatingComponent from "react-star-rating-component";
 import OfferForm from "./OfferForm";
+import Footer from "../common/Footer";
+import {useLocation} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 function ProfileDescription(props) {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [offerForm, setOfferForm] = useState(false);
   const toggleOfferForm = () => {
     setOfferForm(!offerForm);
@@ -32,6 +39,32 @@ function ProfileDescription(props) {
   const handleBudgetRange=(e)=>{
     setRange(e.target.value)
   }
+  const [spinner, SetSpinner] = useState(true);
+  const [data, setdata] = useState([]);
+  const [profile, setProfile] = useState({});
+  const setList =  () => {
+    let response =  axios
+      .get("http://localhost:8083/"+location.state.id,{
+      })
+      .then((res) => {
+        setdata(res.data);
+        setProfile(res.data.userprofiles[0]);
+        console.log(res.data)
+        SetSpinner(false);
+      });
+  };
+
+
+  var FirstName;
+  
+
+  useEffect(() => {
+    if (localStorage.getItem("loginStatus") === "false") {
+      navigate("/");
+    } else {
+      setList();
+    }
+  },[location.state.id]);
   return (
     <React.Fragment>
       <Container fluid >
@@ -43,11 +76,11 @@ function ProfileDescription(props) {
               id="profile-section"
               style={{ backgroundColor: "", textAlign: "center" }}
             >
-              <img src={avatar} alt="" id="big-avatar" />
+              <img src={profile.profileImage} alt="" id="big-avatar" />
             </Col>
             <Col id="single-free-name">
-              <h3>David Peterson</h3>
-              <h4 className="text-muted">iOS Expert + Node Dev</h4>
+              <h3>{profile.firstName + " " +profile.lastName}</h3>
+              <h4 className="text-muted">{profile.tagLine}</h4>
 
               <List type="inline">
                 <ListInlineItem>
@@ -70,15 +103,7 @@ function ProfileDescription(props) {
           <Col xs="6" id="free-aboutme">
             <h3 style={{ fontWeight: "400", marginBottom: "3%" }}>About Me</h3>
             <p style={{ lineHeight: "35px", textAlign: "left" }}>
-              Leverage agile frameworks to provide a robust synopsis for high
-              level overviews. Iterative approaches to corporate strategy foster
-              collaborative thinking to further the overall value proposition.
-              Organically grow the holistic world view of disruptive innovation
-              via workplace diversity and empowerment. Capitalize on low hanging
-              fruit to identify a ballpark value added activity to beta test.
-              Override the digital divide with additional clickthroughs from
-              DevOps. Nanotechnology immersion along the information highway
-              will close the loop on focusing solely on the bottom line.
+             {profile.userDescription}
             </p>
             <section id="free-work-exp">
               <h3 style={{ fontWeight: "400", marginBottom: "3%" }}>
@@ -163,7 +188,7 @@ function ProfileDescription(props) {
                   style={{ color: "black", textAlign: "center" }}
                 >
                   <section className="count">Hourly Rate</section>
-                  14$
+                  {profile.hourlyRate}$
                 </ListGroupItem>
                 <ListGroupItem
                   className="justify-content-between banner-list-item"

@@ -1,5 +1,7 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +20,16 @@ public class Userprofile {
     @Column(name = "user_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "login_id", nullable = false)
+    @JsonBackReference
     private Logininfo login;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "profile_image", length = 100)
     private String profileImage;
@@ -33,6 +42,9 @@ public class Userprofile {
 
     @Column(name = "tag_line", length = 50)
     private String tagLine;
+
+    @Column(name = "user_description")
+    private String userDescription;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "city_id", nullable = false)
@@ -47,9 +59,9 @@ public class Userprofile {
     @OneToMany(mappedBy = "user")
     private Set<Subscribersdetail> subscribersdetails = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Bid> bids = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Freelancerskill> freelancerskills = new LinkedHashSet<>();
 }

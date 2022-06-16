@@ -1,4 +1,4 @@
-package com.example.demo.Models.Services;
+package com.example.demo.Services;
 
 import com.example.demo.Client.TaskRepository;
 import com.example.demo.Models.Task;

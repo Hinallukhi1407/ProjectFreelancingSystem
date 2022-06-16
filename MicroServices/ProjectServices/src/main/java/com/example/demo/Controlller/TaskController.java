@@ -1,7 +1,7 @@
 package com.example.demo.Controlller;
 
 import com.example.demo.Models.Task;
-import com.example.demo.Models.Services.TaskServices;
+import com.example.demo.Services.TaskServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

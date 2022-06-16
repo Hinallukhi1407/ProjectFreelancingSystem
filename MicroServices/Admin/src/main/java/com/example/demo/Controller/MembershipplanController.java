@@ -22,6 +22,7 @@ public class MembershipplanController {
     @PostMapping("/add")
     public Membership insertData(@RequestBody Membership membership)
     {
+        System.out.println(membership.getPlanName());
         return memberShipPlanServices.insertPlan(membership);
     }
 

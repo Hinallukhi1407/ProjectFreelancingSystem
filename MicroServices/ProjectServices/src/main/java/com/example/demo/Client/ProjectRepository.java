@@ -11,5 +11,5 @@ public interface ProjectRepository extends JpaRepository<Project,Integer> {
     List<Project> findByUserId(Integer id);
 
     @Query(value = "select * from projects where user_id=?1 and status_id=5", nativeQuery = true)
-    List<Project> findActiveProjectById(Integer id);
+    List<Project> findActiveProjectByUserId(Integer id);
 }

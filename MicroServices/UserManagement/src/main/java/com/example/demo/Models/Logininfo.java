@@ -45,5 +45,5 @@ public class Logininfo {
 
     @OneToMany(mappedBy = "login",fetch = FetchType.EAGER)
     @JsonManagedReference
-    private Set<Userprofile> userprofiles = new LinkedHashSet<>();
+    private Set<Userprofile> userprofiles;
 }

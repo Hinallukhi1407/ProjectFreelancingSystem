@@ -36,7 +36,6 @@ function ListFreelancer() {
       })
       .then((res) => {
         setdata(res.data);
-        console.log(res.data)
         SetSpinner(false);
       });
     })

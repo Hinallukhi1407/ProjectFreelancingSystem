@@ -1,4 +1,4 @@
-package com.example.demo.Models.Services;
+package com.example.demo.Services;
 
 import com.example.demo.Client.ProjectRepository;
 import com.example.demo.Models.Project;
@@ -16,7 +16,7 @@ public class ProjectServices {
     public ProjectRepository projectRepository;
 
     @Autowired
-    com.example.demo.Models.Services.TaskServices taskServices;
+    TaskServices taskServices;
 
     public int insert(Project project)
     {
@@ -49,7 +49,7 @@ public class ProjectServices {
 
     public List<Project> displayActiveProject(Integer id)
     {
-        return projectRepository.findActiveProjectById(id);
+        return projectRepository.findActiveProjectByUserId(id);
     }
 
 }

@@ -2,7 +2,7 @@ package com.example.demo.Controlller;
 
 
 import com.example.demo.Models.Bid;
-import com.example.demo.Models.Services.BidsServices;
+import com.example.demo.Services.BidsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,8 +41,8 @@ public class BidsController {
     }
 
     @GetMapping("/{id}")
-    public Bid fetchById(@PathVariable Integer id)
+    public List<Bid> fetchById(@PathVariable Integer id)
     {
-        return bidsServices.getDataById(id).get();
+        return bidsServices.DisplayByProjectID(id);
     }
 }

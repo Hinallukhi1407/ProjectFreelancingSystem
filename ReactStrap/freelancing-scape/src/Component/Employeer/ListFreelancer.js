@@ -11,7 +11,6 @@ import {
   Button,
   Label,
   Card,
-  CardTitle,
   CardText,
   ListGroup,
   ListGroupItem,
@@ -20,33 +19,35 @@ import * as FAicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
 
 import { UserContext } from "../../UserContext";
-
+import Footer from "../common/Footer";
 import axios from "axios";
 function ListFreelancer() {
   const navigate = useNavigate();
-  const {loginstat,usrname,token} = useContext(UserContext);
-  const [loginstatus] = loginstat;
-  const [tokenstr] = token;
-  const goToProfileDesc = () => {
-    /* console.log("ajbdashj")
-    navigate('profiledesc'); */
+  const [tokenstr] = localStorage.getItem("token"); 
+  const goToProfileDesc = (id) => {
+    navigate('profiledesc',{ state: { id: id } }); 
   }
+  const [spinner, SetSpinner] = useState(true);
   const [data, setdata] = useState([]);
   const setList = () => {
-    axios.get("/freelancer", { headers: {"Authorization" : `Bearer ${tokenstr}`} }).then((res) =>{
-    setdata(res.data);
-    /* console.log(data);
-     data.map((e) => console.log(" data : " + e[0]));  */
-    });
-  }
-  useEffect(() =>{
-    if(!loginstatus){
-        navigate("/");
-    }else{
+    setTimeout(()=>{
+      axios
+      .get("http://localhost:8083/freelancer",{
+      })
+      .then((res) => {
+        setdata(res.data);
+        console.log(res.data)
+        SetSpinner(false);
+      });
+    })
+  };
+  useEffect(() => {
+    if (localStorage.getItem("loginStatus") === "false") {
+      navigate("/");
+    } else {
       setList();
-      console.log(data);
     }
-  },[loginstatus]);
+  }, [localStorage.getItem("loginStatus")]);
   
 
   const [skill,setSkill] = useState("");
@@ -127,7 +128,7 @@ function ListFreelancer() {
                   <Row>
                     <Col xs="1" id="free-avatar">
                       <img
-                        src={"../Images/" + e.profile_image}
+                        src={e.userprofiles[0].profileImage}
                         alt=""
                         style={{
                           borderRadius: "100px",
@@ -137,7 +138,7 @@ function ListFreelancer() {
                       />
                     </Col>
                     <Col xs="5" className=" text-align-center" id="free-name">
-                      <h5>{e.first_name + " " + e.last_name}</h5>
+                      <h5>{e.userprofiles[0].firstName + " " +e.userprofiles[0].lastName }</h5>
                       <h6 className="fw-lighter">{e.tag_line}</h6>
                     </Col>
                     <Col xs="6" id="free-list-button">
@@ -155,7 +156,7 @@ function ListFreelancer() {
                             style={{ color: "black" }}
                           >
                             <section className="count">Rate</section>
-                            {e.hourly_rate} $/hr
+                            {e.userprofiles[0].hourlyRate} $/hr
                           </ListGroupItem>
                           <ListGroupItem
                             className="justify-content-between banner-list-item"
@@ -169,7 +170,7 @@ function ListFreelancer() {
                           color="primary"
                           className="mt-3"
                           style={{ width: "100%" }}
-                          onClick={goToProfileDesc()}
+                          onClick={()=>goToProfileDesc(e.id)}
                         >
                           View Profile
                         </Button>
@@ -182,6 +183,7 @@ function ListFreelancer() {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </React.Fragment>
   );
 }

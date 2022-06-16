@@ -4,9 +4,12 @@ import com.example.demo.Client.loginInfoRepository;
 import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Userprofile;
 import com.example.demo.Services.UserServices;
+import lombok.extern.java.Log;
+import org.aspectj.lang.annotation.DeclareWarning;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,15 +28,17 @@ public class UserController {
     }
 
     @PostMapping("/email")
-    public Userprofile findByEmailId(@RequestBody Logininfo user)
+    public @ResponseBody Logininfo findByEmailId(@RequestBody Logininfo user)
     {
-        Logininfo logininfo = loginInfoRepository.findByEmail(user.getEmail());
-       return userServices.findbyLoginId(logininfo.getId());
+        System.out.println(user.getEmail());
+
+         Logininfo l1=loginInfoRepository.findByEmail(user.getEmail());
+        return l1;
     }
 
     @GetMapping("/{id}")
     public @ResponseBody
-    Userprofile findById(@PathVariable Integer id)
+    Logininfo findById(@PathVariable Integer id)
     {
         return  userServices.findDataById(id);
     }
@@ -55,4 +60,11 @@ public class UserController {
     {
         return userServices.Update(userprofile,id);
     }
+
+    @GetMapping("/freelancer")
+    public @ResponseBody List<Logininfo> displayFreelancer()
+    {
+        return  userServices.listfreelancer();
+    }
+
 }

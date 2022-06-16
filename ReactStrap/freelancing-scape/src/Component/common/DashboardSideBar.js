@@ -4,8 +4,9 @@ import DashboardTopNav from "./DashboardTopNav";
 import * as Mdicons from "react-icons/md";
 import * as Aiicons from "react-icons/ai";
 import * as Riicons from "react-icons/ri";
-
+import {Link,useNavigate} from "react-router-dom"
 function DashboardSideBar() {
+  const navigate = useNavigate()
   return (
     <React.Fragment>
         <section id="dashboardSidebar" className="hide-in-small-screen">
@@ -16,15 +17,15 @@ function DashboardSideBar() {
             </li>
             <li>
               <Aiicons.AiFillProject size={25} style={{ margin: "6%" }} />
-              Manage task
+              Manage Project
             </li>
-            <li>
-              <Riicons.RiAuctionFill size={25} style={{ margin: "6%" }} />
-              Manage Bidder
+            <li onClick={()=>navigate("/employer/managebidders")}>
+                  <Riicons.RiAuctionFill size={25} style={{ margin: "6%" }} />
+                  Manage Bidder
             </li>
-            <li>
+            <li onClick={()=>navigate("/employer/postproject")}>
               <Mdicons.MdPostAdd size={25} style={{ margin: "6%" }} />
-              Post Task
+              Post Project
             </li>
             <li>
               <Aiicons.AiFillSetting size={25} style={{ margin: "6%" }} />

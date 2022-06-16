@@ -51,6 +51,9 @@ public class Project {
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
+    @Column(name = "user_description")
+    private String userDescription;
+
     @Column(name = "start_date")
     private Date startDate;
 

@@ -62,4 +62,5 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         res.setHeader(HEADER_NAME, TOKEN_PREFIX + token);
 
     }
+
 }

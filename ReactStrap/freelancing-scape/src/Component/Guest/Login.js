@@ -13,26 +13,33 @@ import {
   InputGroup,
   InputGroupText,
   Input,
+  Alert
 } from "reactstrap";
 import * as Hiicons from "react-icons/hi";
 import * as Aiicons from "react-icons/ai";
 import { UserContext } from "../../UserContext";
 function Login() {
-  const usercred = {
+  const [usercred,setUserCred] = useState({
     email: '',
     password: ''
-  };
-  const {loginstat} = useContext(UserContext);
-  const [loginmsg,setloginmsg] = useState("");
-  const [loginstatus, setloginstatus] = loginstat;
+  });
+
+  const [errorAlert,setErrorAlert] = useState(false)
+
   let navigate = useNavigate();
   
   const check_login = () => {
-    axios.post("http://localhost:8080/login", usercred).then((res) => res!="" ? loginsuccess(res):loginfailure(res));
+    axios
+      .post("http://localhost:8080/login", usercred)
+      .then((res) => (res != "" ? loginsuccess(res) : loginfailure(res)))
+      .catch(function (error) {
+        setErrorAlert(true)
+      });
   }
 
   const loginsuccess = (res) =>{
     let token = res.headers.authorization;
+    localStorage.setItem("token",token);
     let user = jwt_decode(token.split(' ')[1])
     axios.post("http://localhost:8083/email",{"email":user.sub}).then((res) => {
       setData(res.data);
@@ -40,25 +47,27 @@ function Login() {
   }
 
   const setData = (data) =>{
-    //setloginstatus(true);
     localStorage.setItem("loginStatus",true);
-    
     localStorage.setItem("userData",JSON.stringify(data));
-    if(data.login.userType.userType==="Employer")
+    if(data.userType.userType==="Employer")
     {
       navigate("/Employer/home");
     }
-    else if(data.login.userType.userType==="Freelancer"){
+    else if(data.userType.userType==="Freelancer"){
       navigate("/Freelancer/home");
     }    
   }
 
   const loginfailure  = (res) =>{
-    //setloginstatus(false);
-    setloginmsg("Login Failed...");
     navigate("/");
   }
   
+  const onValueChange=(e)=>{
+    var name = e.target.name;
+    var value = e.target.value;
+    setUserCred({ ...usercred, [name]: value });
+  }
+
   return (
     <React.Fragment>
       <Row id="welcome-text">
@@ -72,27 +81,47 @@ function Login() {
           <InputGroupText style={{ padding: "15px" }}>
             <Hiicons.HiOutlineMail />
           </InputGroupText>
-          <Input placeholder="Email" name="email" onChange={(e) => usercred.email = e.target.value}  style={{ padding: "10px" }} />
+          <Input
+            placeholder="Email"
+            name="email"
+            onChange={onValueChange}
+            style={{ padding: "10px" }}
+          />
         </InputGroup>
         <InputGroup className="mt-3">
           <InputGroupText>
             <Aiicons.AiOutlineLock></Aiicons.AiOutlineLock>
           </InputGroupText>
-          <Input type="password" placeholder="Password" name="password" onChange={(e) => usercred.password = e.target.value} style={{ padding: "10px" }} />
+          <Input
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={onValueChange}
+            style={{ padding: "10px" }}
+          />
         </InputGroup>
-        <p className="wrongcred">
-          {loginmsg}
-        </p> 
+        <p className="mt-3">
+          {errorAlert &&
+            <Alert color="danger text-center">Your email or password is wrong</Alert>
+          } 
+        </p>
         <a
           href="#"
           style={{
             textDecoration: "none",
-            position: "relative",
-            marginTop: "5%",
-          }}>
+          }}
+        >
           Forgot Password ?
         </a>
-        <Button color="primary" style={{marginTop:"5%",padding:"2%"}} onClick={() => { check_login() }}>Login</Button>
+        <Button
+          color="primary"
+          style={{ marginTop: "5%", padding: "2%" }}
+          onClick={() => {
+            check_login();
+          }}
+        >
+          Login
+        </Button>
       </Row>
     </React.Fragment>
   );

@@ -1,11 +1,15 @@
 package com.example.demo.Services;
 
 import com.example.demo.Client.UserRepository;
+import com.example.demo.Client.loginInfoRepository;
+import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Userprofile;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +17,9 @@ public class UserServices {
 
     @Autowired
     public UserRepository repository;
+
+    @Autowired
+    public loginInfoRepository  loginInfoRepository;
 
     public void initEmpProfile(Userprofile newProfile) {
         repository.save(newProfile);
@@ -29,9 +36,12 @@ public class UserServices {
     {
         return repository.save(user);
     }
-    public Userprofile findDataById(Integer id){
-        return repository.findUserById(id);
+    public Logininfo findDataById(Integer id){
+        return loginInfoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Given user is not available!!"));
     }
+
+    public List<Logininfo> listfreelancer(){return loginInfoRepository.findFreelancer();}
 
     public Boolean Delete(Integer id)
     {

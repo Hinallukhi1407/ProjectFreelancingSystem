@@ -85,14 +85,13 @@ public class RegistrationService {
         }
         registration.setVerificationCode(RandomString.make(64));
         registration.setPassword(new BCryptPasswordEncoder().encode(registration.getPassword()));
-        Logininfo reg1=registrationRepository.save(registration);
 
-        /*if(registration.getUserType().getId() != 1)
+        if(registration.getUserType().getId() != 1)
         {
             sendVerificationEmail(registration, request.getRequestURL().toString());
-        }*/
+        }
 
-        //Logininfo reg1= registrationRepository.save(registration);*/
+        Logininfo reg1= registrationRepository.save(registration);
 
 
         return reg1;

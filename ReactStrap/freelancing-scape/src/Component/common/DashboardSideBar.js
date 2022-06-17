@@ -5,10 +5,11 @@ import * as Mdicons from "react-icons/md";
 import * as Aiicons from "react-icons/ai";
 import * as Riicons from "react-icons/ri";
 import {Link,useNavigate} from "react-router-dom"
-function DashboardSideBar() {
+function DashboardSideBar(props) {
   const navigate = useNavigate()
   return (
     <React.Fragment>
+        {props.pageType=="employer" &&
         <section id="dashboardSidebar" className="hide-in-small-screen">
           <ul >
             <li>
@@ -27,7 +28,7 @@ function DashboardSideBar() {
               <Mdicons.MdPostAdd size={25} style={{ margin: "6%" }} />
               Post Project
             </li>
-            <li>
+            <li onClick={()=>navigate("/employer/userprofile")}>
               <Aiicons.AiFillSetting size={25} style={{ margin: "6%" }} />
               Settings
             </li>
@@ -37,6 +38,33 @@ function DashboardSideBar() {
             </li>
           </ul>
         </section>
+        }
+        {props.pageType=="freelancer" &&
+        <section id="dashboardSidebar" className="hide-in-small-screen">
+          <ul >
+            <li>
+              <Mdicons.MdDashboard size={25} style={{ margin: "6%" }} />
+              Dashboard
+            </li>
+            <li onClick={()=>navigate("/freelancer/assignedprojects")}>
+              <Aiicons.AiFillProject size={25} style={{ margin: "6%" }} />
+              My Projects
+            </li>
+            <li onClick={()=>navigate("/freelancer/managebids")}>
+                <Riicons.RiAuctionFill size={25} style={{ margin: "6%" }} />
+                 Manage Bids
+            </li>
+            <li onClick={()=>navigate("/freelancer/userprofile")}>
+              <Aiicons.AiFillSetting size={25} style={{ margin: "6%" }} />
+              Settings
+            </li>
+            <li>
+              <Mdicons.MdLogout size={25} style={{ margin: "6%" }} />
+              Logout
+            </li>
+          </ul>
+        </section>
+        }
     </React.Fragment>
   );
 }

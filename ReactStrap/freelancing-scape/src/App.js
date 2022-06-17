@@ -17,25 +17,43 @@ import { UserContext } from "./UserContext";
 import { useState } from "react";
 import AddTasks from "./Component/Employeer/AddTasks";
 import ManageBidders from "./Component/Employeer/ManageBidders";
+import Plans from "./Component/common/Plans";
+import ContactUs from "./Component/common/ContactUs";
+import AssignedProject from "./Component/Freelancer/AssignedProject";
+import ManageBids from "./Component/Freelancer/ManageBids";
+import UserProfile from "./Component/Freelancer/UserProfile";
+import UserProfileEmployer from "./Component/Employeer/UserProfile";
 function App() {
 
   return (
     <React.Fragment>
       <Router>
         <Routes>
-          <Route path="/" exact element={<Guest />} />
+          <Route path="/" exact element={<Guest />} >
+            <Route path="home"  element={<GuestIntroBanner />} />
+            <Route path="plans" element={<Plans />} />
+            <Route path="contactus" element={<ContactUs />}/>
+          </Route>
           <Route path="Employer" element={<Employer />}>
             <Route path="Home" element={<IntroBanner />} />
             <Route path="freelancerlist" element={<ListFreelancer />}/>
             <Route path="freelancerlist/profiledesc" element={<ProfileDescription/>}/>
             <Route path="postproject" element={<PostProject/>}/>
             <Route path="managebidders" element={<ManageBidders/>}/>
+            <Route path="plans" element={<Plans />} />
+            <Route path="contactus" element={<ContactUs />}/>
+            <Route path="userprofile" element={<UserProfileEmployer />}/>
           </Route>
           <Route path="/freelancer" element={<Freelancer />} >
              <Route path="Home" element={<GuestIntroBanner />} />
              <Route path="browseproject" element={<FindProject/>}/>
              <Route path="browseproject/tasklist" element={<TaskList/>}/>
              <Route path="browseproject/projectdescription" element={<TaskDescription/>}/>
+             <Route path="plans" element={<Plans />} />
+             <Route path="contactus" element={<ContactUs />}/>
+             <Route path="assignedprojects" element={<AssignedProject />}/>
+             <Route path="managebids" element={<ManageBids />}/>
+             <Route path="userprofile" element={<UserProfile />}/>
           </Route>
         </Routes>
       </Router>

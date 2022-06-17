@@ -13,8 +13,10 @@ import {
   ListGroupItem,
   Badge,
 } from "reactstrap";
+import FeaturedCities from "./FeaturedCities";
 function IntroBanner() {
   return (
+    <React.Fragment>
     <Container fluid className="introBanner" tag={"section"}>
       <section id="banner-content">
         <Row className="banner-headline">
@@ -71,13 +73,7 @@ function IntroBanner() {
         </Row>
         <Row id="search-bar">
           <Col>
-            <Badge
-              id="badge1-color"
-              className={"mb-2"}
-              style={{ height: "30px", width: "100px", fontSize: "16px" }}
-            >
-              Where ?
-            </Badge>
+           
             <InputGroup style={{ height: "50px", marginRight: "0px",position:"relative" }}>
               <InputGroupText
                 style={{
@@ -97,13 +93,7 @@ function IntroBanner() {
             </InputGroup>
           </Col>
           <Col>
-            <Badge
-              className={"mb-2"}
-              id="badge2-color"
-              style={{ height: "30px", width: "auto", fontSize: "16px" }}
-            >
-              What Job You Want ?
-            </Badge>
+            
             <InputGroup
               style={{ height: "50px", position: "relative", right: "5%" }}
             >
@@ -136,6 +126,8 @@ function IntroBanner() {
         </Row>
       </section>
     </Container>
+    <FeaturedCities/>
+    </React.Fragment>
   );
 }
 export default IntroBanner;

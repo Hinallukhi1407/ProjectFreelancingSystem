@@ -7,14 +7,11 @@ import * as BSicons from "react-icons/bs"
 import SideBar from "./SideBar";
 import RegistrationContainer from "../Guest/RegistrationContainer";
 import { motion, AnimatePresence } from "framer-motion";
-import avatar from '../../Images/user-avatar-small-02.jpg'
 import { Link } from "react-router-dom";
-import { UserContext } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
 
 function NavBar(props) {
   const [sideBar, setSideBar] = useState(false);
-
   const [RegVisible, SetRegVisible] = useState(false);
 
   const toggleReg = () => {
@@ -54,20 +51,17 @@ function NavBar(props) {
             {/***********************Guest Menu***********************/}
             {userLink == "Guest" && (
               <Row>
-                  <Col lg="1" sm="2" xs="3" id="logo-col">
-                    <section id="logo-section">
-                      <img src={logo} className="logo" />
-                    </section>
-                  </Col>
+                <Col lg="1" sm="2" xs="3" id="logo-col">
+                  <section id="logo-section">
+                    <img src={logo} className="logo" />
+                  </section>
+                </Col>
                 <Col lg="10" sm="8" xs="6">
                   <ul id="ulMain">
                     <li>
-                      <a href="#" className="headerLinkStyle">
+                      <Link to="home" className="headerLinkStyle">
                         Home
-                        <span className="material-icons arrow-icon">
-                          arrow_drop_down
-                        </span>
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
@@ -110,14 +104,14 @@ function NavBar(props) {
                       </ul>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
-                        Menu item 3
-                      </a>
+                      <Link to="plans" className="headerLinkStyle">
+                        Membership Plans
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
-                        Menu item 4
-                      </a>
+                      <Link to="contactus" className="headerLinkStyle">
+                        Contact Us
+                      </Link>
                     </li>
                   </ul>
                 </Col>
@@ -142,10 +136,10 @@ function NavBar(props) {
             {userLink == "Employer" && (
               <Row>
                 <Col lg="1" sm="2" xs="3" id="logo-col">
-                    <section id="logo-section">
-                      <img src={logo} className="logo" />
-                    </section>
-                  </Col>
+                  <section id="logo-section">
+                    <img src={logo} className="logo" />
+                  </section>
+                </Col>
                 <Col lg="10" sm="8" xs="5">
                   <ul id="ulMain">
                     <li>
@@ -174,56 +168,42 @@ function NavBar(props) {
                       </ul>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
+                      <Link to="managebidders" className="headerLinkStyle">
                         Dashboard
-                        <span className="material-icons arrow-icon">
-                          arrow_drop_down
-                        </span>
-                      </a>
-                      <ul>
-                        <span className="arrow" />
-                        <li>
-                          <a href="#">list1</a>
-                        </li>
-                        <li>
-                          <a href="#">list1</a>
-                        </li>
-                        <li>
-                          <a href="#">list1</a>
-                        </li>
-                      </ul>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
+                      <Link to="plans" className="headerLinkStyle">
                         Membership Plans
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
+                      <Link to="contactus" className="headerLinkStyle">
                         Contact Us
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </Col>
-                <Col  lg="1" sm="2" xs="3" id="login-col">
-                  <section id="loginSection" >
-                    <section
-                      onMouseEnter={onHover}
-                      onMouseLeave={onHoverLeave}>
-                      <img src={user.userprofiles[0].profileImage} alt="" id="userAvatar"/>
+                <Col lg="1" sm="2" xs="3" id="login-col">
+                  <section id="loginSection">
+                    <section onMouseEnter={onHover} onMouseLeave={onHoverLeave}>
+                      <img
+                        src={user.userprofiles[0].profileImage}
+                        alt=""
+                        id="userAvatar"
+                      />
                       {test && (
-                          <aside id="profile-popup">
-                            <span
-                              className="arrow" style={{left:"60%"}}/>
-                            <section >
-                              <h5>{user.userprofiles[0].firstName}</h5>
-                              <ul>
-                                <li>Dashboard</li>
-                                <li>Settings</li>
-                                <li onClick={logOutbtnclicked}>Log Out</li>
-                              </ul>
-                            </section>
-                          </aside>
+                        <aside id="profile-popup">
+                          <span className="arrow" style={{ left: "60%" }} />
+                          <section>
+                            <h5>{user.userprofiles[0].firstName}</h5>
+                            <ul>
+                              <li>Dashboard</li>
+                              <li>Settings</li>
+                              <li onClick={logOutbtnclicked}>Log Out</li>
+                            </ul>
+                          </section>
+                        </aside>
                       )}
                     </section>
                     <a
@@ -240,19 +220,18 @@ function NavBar(props) {
             {/**********************Freelancer Menu***********************/}
             {userLink == "Freelancer" && (
               <Row>
-               
-                  <Col xs="1" lg="1" sm="2"  id="logo-col">
-                    <section id="logosection">
-                      <img src={logo} className="logo" />
-                    </section>
-                  </Col>
-              
+                <Col xs="1" lg="1" sm="2" id="logo-col">
+                  <section id="logosection">
+                    <img src={logo} className="logo" />
+                  </section>
+                </Col>
+
                 <Col lg="10" sm="8" xs="5">
                   <ul id="ulMain">
                     <li>
-                      <a href="#" className="headerLinkStyle">
+                      <Link to="home" className="headerLinkStyle">
                         Home
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="#" className="headerLinkStyle">
@@ -275,42 +254,42 @@ function NavBar(props) {
                       </ul>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
-                       Dashboard
-                      </a>
+                      <Link to="assignedprojects" className="headerLinkStyle">
+                        Dashboard
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
-                       Membership Plans
-                      </a>
+                      <Link to="plans" className="headerLinkStyle">
+                        Membership Plans
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" className="headerLinkStyle">
-                        Contact Us  
-                      </a>
+                      <Link to="contactus" className="headerLinkStyle">
+                        Contact Us
+                      </Link>
                     </li>
                   </ul>
                 </Col>
-                <Col  lg="1" sm="2" xs="3" id="login-col">
+                <Col lg="1" sm="2" xs="3" id="login-col">
                   <section id="loginSection">
-                    <section
-                      onMouseEnter={onHover}
-                      onMouseLeave={onHoverLeave}
-                    >
-                      <img src={user.userprofiles[0].profileImage} alt="" id="userAvatar" />
+                    <section onMouseEnter={onHover} onMouseLeave={onHoverLeave}>
+                      <img
+                        src={user.userprofiles[0].profileImage}
+                        alt=""
+                        id="userAvatar"
+                      />
                       {test && (
-                          <aside id="profile-popup">
-                            <span
-                              className="arrow" style={{left:"60%"}}/>
-                            <section >
-                              <h5>{user.userprofiles[0].firstName}</h5>
-                              <ul>
-                                <li>Dashboard</li>
-                                <li>Settings</li>
-                                <li onClick={logOutbtnclicked}>Log Out</li>
-                              </ul>
-                            </section>
-                          </aside>
+                        <aside id="profile-popup">
+                          <span className="arrow" style={{ left: "60%" }} />
+                          <section>
+                            <h5>{user.userprofiles[0].firstName}</h5>
+                            <ul>
+                              <li>Dashboard</li>
+                              <li>Settings</li>
+                              <li onClick={logOutbtnclicked}>Log Out</li>
+                            </ul>
+                          </section>
+                        </aside>
                       )}
                     </section>
                     <a

@@ -54,19 +54,6 @@ public class UserServices {
     }
     public Userprofile Update(Userprofile user,Integer id)
     {
-//        user.setId(id);
-//        Optional<Userprofile> emp1= repository.findById(id);
-//        if(emp1.isPresent())
-//        {
-//            Userprofile e1=emp1.get();
-//            e1.setCompanyName(user.getCompanyName());
-//            e1.setProfileImage(user.getProfileImage());
-//            e1.setCity(user.getCity());
-//            e1.setMobileNo(user.getMobileNo());
-//            return repository.save(e1);
-//        }
-//
-//        return  null;
         if(repository.existsById(id)){
             Userprofile currentProfile = repository.findUserById(id);
             user.setId(id);

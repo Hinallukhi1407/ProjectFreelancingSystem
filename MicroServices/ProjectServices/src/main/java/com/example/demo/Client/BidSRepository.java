@@ -10,6 +10,4 @@ import java.util.List;
 public interface BidSRepository extends JpaRepository<Bid,Integer> {
     @Query(value = "select * from bids where project_id=?1", nativeQuery = true)
     List<Bid> findByProjectId(Integer id);
-
-    List<Bid> findByUserId(Integer id);
 }

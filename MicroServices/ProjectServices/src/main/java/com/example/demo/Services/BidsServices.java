@@ -45,8 +45,4 @@ public class BidsServices {
     {
         return bidSRepository.findByProjectId(id);
     }
-
-    public List<Bid> displayByFreelancer(Integer id) {
-        return bidSRepository.findByUserId(id);
-    }
 }

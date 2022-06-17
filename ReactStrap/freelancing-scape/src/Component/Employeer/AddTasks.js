@@ -87,7 +87,7 @@ function AddTasks() {
         <DashboardTopNav />
         <Row>
           <Col id="sidebarul" style={{ color: "gray", margin: "0%" }} xs="2">
-            <DashboardSideBar />
+            <DashboardSideBar pageType="employer" />
           </Col>
           <Col xs="10" id="form-col">
             <aside style={{ backgroundColor: "", margin: "2%" }}>

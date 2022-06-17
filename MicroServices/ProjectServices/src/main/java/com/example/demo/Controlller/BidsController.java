@@ -29,7 +29,7 @@ public class BidsController {
         return bidsServices.update(bid,id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public Boolean DeleteBid(@PathVariable Integer id)
     {
         return bidsServices.DeleteTask(id);
@@ -40,14 +40,15 @@ public class BidsController {
         return bidsServices.all();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/project/{id}")
     public List<Bid> fetchById(@PathVariable Integer id)
     {
         return bidsServices.DisplayByProjectID(id);
     }
 
-    @GetMapping("/freelancer/{id}")
-    public List<Bid> fetchByUserId(@PathVariable Integer id) {
-        return bidsServices.displayByFreelancer(id);
+    @PutMapping("/accept/{id}")
+    public void acceptBid(@PathVariable Integer id)
+    {
+        bidsServices.acceptBid(id);
     }
 }

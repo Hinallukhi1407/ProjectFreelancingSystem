@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import com.example.demo.Client.BidSRepository;
+import com.example.demo.Client.ProjectRepository;
 import com.example.demo.Models.Bid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class BidsServices {
 
     @Autowired
     public BidSRepository bidSRepository;
+
+    @Autowired
+    public ProjectRepository projectRepository;
 
     public Bid insertData(Bid bid) {
         return bidSRepository.save(bid);
@@ -46,7 +50,12 @@ public class BidsServices {
         return bidSRepository.findByProjectId(id);
     }
 
-    public List<Bid> displayByFreelancer(Integer id) {
-        return bidSRepository.findByUserId(id);
+    public  void acceptBid(Integer id)
+    {
+        bidSRepository.acceptBid(id);
+        Bid bid = bidSRepository.findById(id).get();
+        bidSRepository.rejectedAllBids(bid.getProject().getId());
+        projectRepository.updateStatusTOActive(bid.getProject().getId());
+        
     }
 }

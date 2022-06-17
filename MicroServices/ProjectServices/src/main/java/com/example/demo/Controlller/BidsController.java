@@ -49,6 +49,6 @@ public class BidsController {
     @PutMapping("/accept/{id}")
     public void acceptBid(@PathVariable Integer id)
     {
-        return;
+        bidsServices.acceptBid(id);
     }
 }

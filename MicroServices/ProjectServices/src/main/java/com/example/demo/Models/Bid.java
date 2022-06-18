@@ -28,16 +28,16 @@ public class Bid {
     @Column(name = "delivery_time")
     private Integer deliveryTime;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "project_id", nullable = false)
+    @JsonBackReference
+    private Project project;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private Logininfo user;
-
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
 }

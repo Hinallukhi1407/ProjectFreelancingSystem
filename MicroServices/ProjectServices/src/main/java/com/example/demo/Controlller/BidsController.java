@@ -47,9 +47,9 @@ public class BidsController {
     }
 
     @PutMapping("/accept/{id}")
-    public void acceptBid(@PathVariable Integer id)
+    public Bid acceptBid(@PathVariable Integer id)
     {
-        bidsServices.acceptBid(id);
+        return bidsServices.acceptBid(id);
     }
 
     @GetMapping("/freelancer/{id}")

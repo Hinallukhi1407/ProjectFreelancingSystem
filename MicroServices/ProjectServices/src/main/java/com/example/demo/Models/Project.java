@@ -76,7 +76,8 @@ public class Project {
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private List<Skill> skills;
 
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
-    private List<Bid> bids;
+    @JsonManagedReference
+    private Set<Bid> bids;
 }

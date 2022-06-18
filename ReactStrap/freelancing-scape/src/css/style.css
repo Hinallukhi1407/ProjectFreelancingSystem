@@ -1039,6 +1039,9 @@ b {
    
 }
 /*end*/
+#modalHeight{
+    height: 20rem;
+}
  /*Media starts*/ 
 @media (max-width:1125px) {
     #sidebarnav{

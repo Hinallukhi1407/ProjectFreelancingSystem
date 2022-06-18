@@ -504,9 +504,8 @@ header {
     margin-top: 8%;
     padding: 10%;
     background-color: white;
-    box-shadow: -1px 4px 73px 8px rgba(0,0,0,0.75);
-    -webkit-box-shadow: -1px 4px 73px 8px rgba(0,0,0,0.75);
-    -moz-box-shadow: -1px 4px 73px 8px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -2px -1px 33px 8px rgba(190,190,190,0.78); 
+    box-shadow: -2px -1px 33px 8px rgba(190,190,190,0.78);
 }
 .flex-box{
     margin-left: auto;

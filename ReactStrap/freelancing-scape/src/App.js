@@ -23,6 +23,8 @@ import AssignedProject from "./Component/Freelancer/AssignedProject";
 import ManageBids from "./Component/Freelancer/ManageBids";
 import UserProfile from "./Component/Freelancer/UserProfile";
 import UserProfileEmployer from "./Component/Employeer/UserProfile";
+import MyAllProjects from "./Component/Employeer/AllProjects"
+import EditProject from "./Component/Employeer/EditProject";
 function App() {
 
   return (
@@ -43,6 +45,7 @@ function App() {
             <Route path="plans" element={<Plans />} />
             <Route path="contactus" element={<ContactUs />}/>
             <Route path="userprofile" element={<UserProfileEmployer />}/>
+            <Route path="allprojects" element={<MyAllProjects />}/>
           </Route>
           <Route path="/freelancer" element={<Freelancer />} >
              <Route path="Home" element={<GuestIntroBanner />} />

@@ -12,17 +12,17 @@ function DashboardSideBar(props) {
         {props.pageType=="employer" &&
         <section id="dashboardSidebar" className="hide-in-small-screen">
           <ul >
-            <li>
+            <li >
               <Mdicons.MdDashboard size={25} style={{ margin: "6%" }} />
               Dashboard
             </li>
-            <li>
+            <li onClick={()=>navigate("/employer/allprojects")}>
               <Aiicons.AiFillProject size={25} style={{ margin: "6%" }} />
               Manage Project
             </li>
             <li onClick={()=>navigate("/employer/managebidders")}>
                   <Riicons.RiAuctionFill size={25} style={{ margin: "6%" }} />
-                  Manage Bidder
+              Manage Bidder
             </li>
             <li onClick={()=>navigate("/employer/postproject")}>
               <Mdicons.MdPostAdd size={25} style={{ margin: "6%" }} />

@@ -12,7 +12,7 @@ function Employeer() {
       <NavBar pageType="Employer"/>
       <Outlet/>
       {
-       (location.pathname !=="/employer/postproject" && location.pathname !=="/employer/managebidders" && location.pathname !=="/employer/userprofile") && <Footer/>
+       (location.pathname !=="/employer/postproject" && location.pathname !=="/employer/managebidders" && location.pathname !=="/employer/userprofile" && location.pathname !=="/employer/allprojects") && <Footer/>
       } 
     </React.Fragment>
   );

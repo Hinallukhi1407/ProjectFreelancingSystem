@@ -58,4 +58,8 @@ public class BidsServices {
         projectRepository.updateStatusTOActive(bid.getProject().getId());
         
     }
+
+    public List<Bid> displayBidsByFreelancer(Integer id) {
+        return bidSRepository.findByUserId(id);
+    }
 }

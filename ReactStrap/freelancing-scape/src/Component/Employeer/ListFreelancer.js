@@ -17,13 +17,10 @@ import {
 } from "reactstrap";
 import * as FAicons from "react-icons/fa";
 import * as Mdicons from "react-icons/md";
-
-import { UserContext } from "../../UserContext";
 import Footer from "../common/Footer";
 import axios from "axios";
 function ListFreelancer() {
   const navigate = useNavigate();
-  const [tokenstr] = localStorage.getItem("token"); 
   const goToProfileDesc = (id) => {
     navigate('profiledesc',{ state: { id: id } }); 
   }

@@ -52,4 +52,7 @@ public class ProjectServices {
         return projectRepository.findActiveProjectByUserId(id);
     }
 
+//    public List<Project> acceptedProjects(Integer id) {
+//        return projectRepository.acceptedProjects(id);
+//    }
 }

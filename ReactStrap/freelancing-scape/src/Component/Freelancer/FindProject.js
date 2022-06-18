@@ -29,22 +29,22 @@ import axios from "axios";
 
 function FindProject() {
   const navigate = useNavigate();
-  const [tokenstr] = localStorage.getItem("token"); 
+  const [tokenstr] = localStorage.getItem("token");
   const goToProjectDesc = (id) => {
     navigate("projectdescription", { state: { id: id } });
   };
   const [data, setdata] = useState([]);
   const setList = () => {
-    setTimeout(()=>{
+    setTimeout(() => {
       axios
-      .get("http://localhost:8082/project/all", {
-        headers: { Authorization: `Bearer ${tokenstr}` },
-      })
-      .then((res) => {
-        setdata(res.data);
-        SetSpinner(false);
-      });
-    },1500)
+        .get("http://localhost:8082/project/all", {
+          headers: { Authorization: `Bearer ${tokenstr}` },
+        })
+        .then((res) => {
+          setdata(res.data);
+          SetSpinner(false);
+        });
+    }, 1500);
   };
   useEffect(() => {
     if (localStorage.getItem("loginStatus") === "false") {
@@ -138,89 +138,88 @@ function FindProject() {
           </Col>
           <Col xs="9" id="list-freelancer">
             {spinner ? (
-              <section style={{ marginTop: "20%",marginLeft:"50%" }}>
+              <section style={{ marginTop: "20%", marginLeft: "50%" }}>
                 <Spinner>Loading...</Spinner>
               </section>
             ) : (
               <section className="mt-2">
                 <Row>
                   <Col md="12">
-                   
-                      {data.map((e) => (
-                        <Card body style={{ marginBottom: ".5rem" }} key={e.id}>
-                          <CardBody>
-                            <Row>
-                              <Col md="6">
-                                <CardTitle tag="h5">{e.projectName}</CardTitle>
-                                <CardSubtitle
-                                  className="mb-2 text-muted"
-                                  tag="h6"
-                                >
-                                  {"Duration : "}
-                                  <span>{e.duration + "  Days"}</span>
-                                  <Aiicons.AiOutlineClockCircle
-                                    size={20}
-                                    style={{ margin: "10px" }}
-                                  />
-                                  <span>{e.postDate}</span>
-                                </CardSubtitle>
-                                <CardText className="mt-3">
-                                  {e.projectDescription}
-                                  <section
-                                    className="inline mt-3"
-                                    style={{
-                                      display: "flex",
-                                      flexWrap: "wrap",
-                                    }}
-                                  >
-                                    <span
-                                      className="skill-badge"
-                                      style={{ width: "100px" }}
-                                    >
-                                      css
-                                    </span>
-                                    <span
-                                      className="skill-badge"
-                                      style={{ width: "100px" }}
-                                    >
-                                      Html
-                                    </span>{" "}
-                                    <span
-                                      className="skill-badge"
-                                      style={{ width: "100px" }}
-                                    >
-                                      Java
-                                    </span>
-                                  </section>
-                                </CardText>
-                              </Col>
-                              <Col
-                                md="6"
-                                className="p-3  rounded"
-                                id="budget-card"
+                    {data.map((e) => (
+                      <Card body style={{ marginBottom: ".5rem" }} key={e.id}>
+                        <CardBody>
+                          <Row>
+                            <Col md="6">
+                              <CardTitle tag="h5">{e.projectName}</CardTitle>
+                              <CardSubtitle
+                                className="mb-2 text-muted"
+                                tag="h6"
                               >
-                                <Toast>
-                                  <ToastHeader className="text-center">
-                                    Budget of the project
-                                  </ToastHeader>
-                                  <ToastBody className="text-center">
-                                    {e.minBudget + "$ - " + e.maxBudget + "$"}
-                                  </ToastBody>
-                                </Toast>
-
-                                <Button
-                                  color="primary"
-                                  className="mt-4"
-                                  style={{ width: "100%" }}
-                                  onClick={() => goToProjectDesc(e.id)}
+                                {"Duration : "}
+                                <span>{e.duration + "  Days"}</span>
+                                <Aiicons.AiOutlineClockCircle
+                                  size={20}
+                                  style={{ margin: "10px" }}
+                                />
+                                <span>{e.postDate}</span>
+                              </CardSubtitle>
+                              <CardText className="mt-3">
+                                {e.projectDescription}
+                                <section
+                                  className="inline mt-3"
+                                  style={{
+                                    display: "flex",
+                                    flexWrap: "wrap",
+                                  }}
                                 >
-                                  Bid Now
-                                </Button>
-                              </Col>
-                            </Row>
-                          </CardBody>
-                        </Card>
-                      ))}
+                                  <span
+                                    className="skill-badge"
+                                    style={{ width: "100px" }}
+                                  >
+                                    css
+                                  </span>
+                                  <span
+                                    className="skill-badge"
+                                    style={{ width: "100px" }}
+                                  >
+                                    Html
+                                  </span>{" "}
+                                  <span
+                                    className="skill-badge"
+                                    style={{ width: "100px" }}
+                                  >
+                                    Java
+                                  </span>
+                                </section>
+                              </CardText>
+                            </Col>
+                            <Col
+                              md="6"
+                              className="p-3  rounded"
+                              id="budget-card"
+                            >
+                              <Toast>
+                                <ToastHeader className="text-center">
+                                  Budget of the project
+                                </ToastHeader>
+                                <ToastBody className="text-center">
+                                  {e.minBudget + "$ - " + e.maxBudget + "$"}
+                                </ToastBody>
+                              </Toast>
+
+                              <Button
+                                color="primary"
+                                className="mt-4"
+                                style={{ width: "100%" }}
+                                onClick={() => goToProjectDesc(e.id)}
+                              >
+                                Bid Now
+                              </Button>
+                            </Col>
+                          </Row>
+                        </CardBody>
+                      </Card>
+                    ))}
                   </Col>
                 </Row>
               </section>

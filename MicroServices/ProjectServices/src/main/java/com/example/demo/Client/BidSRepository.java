@@ -17,5 +17,6 @@ public interface BidSRepository extends JpaRepository<Bid,Integer> {
     @Query(value = "update bids set status_id=8 where project_id=?1 and status_id!=7",nativeQuery = true)
     void rejectedAllBids(Integer id);
 
-    List<Bid> findByUserId(Integer id);
+    @Query(value = "select * from bids where user_id=?1",nativeQuery = true)
+    List<Bid> findByFreelanceId(Integer id);
 }

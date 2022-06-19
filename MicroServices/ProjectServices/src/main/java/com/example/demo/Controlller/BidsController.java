@@ -46,11 +46,14 @@ public class BidsController {
     }
 
     @PutMapping("/accept/{id}")
-    public void acceptBid(@PathVariable Integer id)
+    public Bid acceptBid(@PathVariable Integer id)
     {
-        bidsServices.acceptBid(id);
+        return bidsServices.acceptBid(id);
     }
 
     @GetMapping("/freelancer/{id}")
-    public List<Bid> listFreelancerBids(@PathVariable Integer id){return bidsServices.displayBidsByFreelancer(id);}
+    public List<Bid> fetchByFreelanceId(@PathVariable Integer id)
+    {
+        return bidsServices.DisplayByFreelanceID(id);
+    }
 }

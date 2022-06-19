@@ -62,6 +62,6 @@ public class Userprofile {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Bid> bids = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "freelancer")
     private Set<Freelancerskill> freelancerskills = new LinkedHashSet<>();
 }

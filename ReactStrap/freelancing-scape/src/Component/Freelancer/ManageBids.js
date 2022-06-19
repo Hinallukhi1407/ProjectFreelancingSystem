@@ -24,6 +24,8 @@ import * as Biicons from "react-icons/bi";
 import EditBids from "./../Freelancer/EditBids";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import * as RiIcons from 'react-icons/ri'
+
 function ManageBids() {
   const navigate = useNavigate();
   const [tokenstr] = localStorage.getItem("token");
@@ -54,7 +56,11 @@ function ManageBids() {
           <DashboardTopNav />
           <Col xs="10" id="form-col" className="flex-box">
             <section id="postproject-form">
-              <Card style={{ marginBottom: ".5rem", borderRadius: "1rem" }}>
+            <section id="dashboardTitle" className="dashboardTitleText">
+                Your Bids !
+                <RiIcons.RiAuctionLine size={30} style={{marginLeft:"1rem"}} color="blue"/>
+              </section>
+              <Card style={{ marginBottom: ".5rem", borderRadius: "1rem" }} className="mt-4">
                 <CardBody>
                   <Row>
                     <Col md="6">

@@ -47,7 +47,7 @@ public class Project {
     @Column(name = "completion_date", nullable = false)
     private Date completionDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Statusdetail status;
 
@@ -63,11 +63,11 @@ public class Project {
     @Column(name = "max_budget", precision = 10)
     private BigDecimal maxBudget;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "skill_level_id")
     private Skilllevel skillLevel;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Task> tasks = new LinkedHashSet<>();
 
     @ManyToMany

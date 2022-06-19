@@ -51,4 +51,11 @@ public class BidsController {
     {
         bidsServices.acceptBid(id);
     }
+
+    @GetMapping("/freelancer/{id}")
+    public List<Bid> fetchByFreelanceId(@PathVariable Integer id)
+    {
+        return bidsServices.DisplayByFreelanceID(id);
+    }
+
 }

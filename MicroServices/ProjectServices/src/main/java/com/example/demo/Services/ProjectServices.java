@@ -1,7 +1,9 @@
 package com.example.demo.Services;
 
 import com.example.demo.Client.ProjectRepository;
+import com.example.demo.Client.ProjectskillRepository;
 import com.example.demo.Models.Project;
+import com.example.demo.Models.Projectskill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,8 @@ public class ProjectServices {
     public ProjectRepository projectRepository;
 
     @Autowired
-    TaskServices taskServices;
+    public ProjectskillRepository projectskillRepository;
+
 
     public int insert(Project project)
     {
@@ -36,7 +39,7 @@ public class ProjectServices {
          return true;
     }
 
-    public  Project update(Project project,Integer id)
+    public Project update(Project project, Integer id)
     {
         project.setId(id);
         return  projectRepository.save(project);
@@ -52,4 +55,11 @@ public class ProjectServices {
         return projectRepository.findActiveProjectByUserId(id);
     }
 
+    public Projectskill addSkills(Projectskill projectskill){
+        return projectskillRepository.save(projectskill);
+    }
+
+    public  List<Projectskill> displayBidProjectId(Integer id){
+        return projectskillRepository.displaySkill(id);
+    }
 }

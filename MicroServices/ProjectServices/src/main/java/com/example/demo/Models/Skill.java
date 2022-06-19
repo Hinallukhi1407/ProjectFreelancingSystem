@@ -17,10 +17,10 @@ public class Skill {
     @Column(name = "skill_id", nullable = false)
     private Integer id;
 
-        @Column(name = "skill_name", nullable = false, length = 20)
+    @Column(name = "skill_name", nullable = true, length = 20)
     private String skillName;
 
-    @OneToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "skill",fetch = FetchType.LAZY)
     private Set<Projectskill> projectskills = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "skill")

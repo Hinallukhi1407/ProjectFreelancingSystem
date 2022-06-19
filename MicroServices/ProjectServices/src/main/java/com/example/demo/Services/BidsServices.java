@@ -125,4 +125,9 @@ public class BidsServices {
 
         mailSender.send(message);
     }
+
+    public List<Bid> DisplayByFreelanceID(Integer id)
+    {
+        return bidSRepository.findByFreelanceId(id);
+    }
 }

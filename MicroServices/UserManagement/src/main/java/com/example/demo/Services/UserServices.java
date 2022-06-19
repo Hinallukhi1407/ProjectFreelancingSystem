@@ -1,16 +1,15 @@
 package com.example.demo.Services;
 
+import com.example.demo.Client.FreelancerSkillRepository;
 import com.example.demo.Client.UserRepository;
 import com.example.demo.Client.loginInfoRepository;
+import com.example.demo.Models.Freelancerskill;
 import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Userprofile;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServices {
@@ -20,6 +19,9 @@ public class UserServices {
 
     @Autowired
     public loginInfoRepository  loginInfoRepository;
+
+    @Autowired
+    public FreelancerSkillRepository freelancerSkillRepository;
 
     public void initEmpProfile(Userprofile newProfile) {
         repository.save(newProfile);
@@ -65,5 +67,15 @@ public class UserServices {
         }
 
 
+    }
+
+    public Freelancerskill addSkill(Freelancerskill freelancerskill)
+    {
+        return freelancerSkillRepository.save(freelancerskill);
+    }
+
+    public List<Freelancerskill> displaySkill(Integer id)
+    {
+        return freelancerSkillRepository.displaySkill(id);
     }
 }

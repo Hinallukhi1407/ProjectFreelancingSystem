@@ -1,14 +1,15 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Client.loginInfoRepository;
+import com.example.demo.Models.Freelancerskill;
 import com.example.demo.Models.Logininfo;
 import com.example.demo.Models.Userprofile;
 import com.example.demo.Services.UserServices;
-import lombok.extern.java.Log;
-import org.aspectj.lang.annotation.DeclareWarning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -67,4 +68,21 @@ public class UserController {
         return  userServices.listfreelancer();
     }
 
+    @PostMapping("/addSkills")
+    public List<Freelancerskill> addSkills(@RequestBody List<Freelancerskill> freelancerskills)
+    {
+        List<Freelancerskill> freelancerskillList= new ArrayList<>();
+        for (Freelancerskill skill:freelancerskills) {
+            freelancerskillList.add(userServices.addSkill(skill));
+        }
+        return freelancerskillList;
+
+    }
+
+    @GetMapping("/skill/{id}")
+    public  List<Freelancerskill> displaySkill(@PathVariable Integer id)
+    {
+        System.out.println(id);
+        return userServices.displaySkill(id);
+    }
 }

@@ -1,10 +1,12 @@
 package com.example.demo.Controlller;
 
 import com.example.demo.Models.Project;
+import com.example.demo.Models.Projectskill;
 import com.example.demo.Services.ProjectServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -49,4 +51,20 @@ public class ProjectController {
         return projectServices.displayActiveProject(id);
     }
 
+    @PostMapping("/addSkills")
+    public List<Projectskill> addSkills(@RequestBody List<Projectskill> projectskill)
+    {
+        List<Projectskill> projectskillList= new ArrayList<>();
+        for (Projectskill skill:projectskill) {
+            projectskillList.add(projectServices.addSkills(skill));
+        }
+        return projectskillList;
+
+    }
+
+    @GetMapping("/skill/{id}")
+    public List<Projectskill> getSkill(@PathVariable Integer id)
+    {
+        return projectServices.displayBidProjectId(id);
+    }
 }

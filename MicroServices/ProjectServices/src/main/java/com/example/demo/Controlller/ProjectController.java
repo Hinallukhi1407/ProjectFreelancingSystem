@@ -47,7 +47,7 @@ public class ProjectController {
     }
 
     @GetMapping("/activeprojects/{id}")
-    public List<Project> getActiveproject(@PathVariable  Integer id){
+    public List<Project> getActiveproject(@PathVariable Integer id){
         return projectServices.displayActiveProject(id);
     }
 

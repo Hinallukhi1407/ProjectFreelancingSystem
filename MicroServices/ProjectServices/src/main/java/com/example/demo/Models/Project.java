@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.Instant;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -65,11 +66,12 @@ public class Project {
     private String userDescription;
 
     @OneToMany(mappedBy = "project")
-    private Set<Task> tasks = new LinkedHashSet<>();
+    private List<Task> tasks;
 
     @OneToMany(mappedBy = "project",fetch = FetchType.LAZY)
-    private Set<Projectskill> projectskills = new LinkedHashSet<>();
+    private List<Projectskill> projectskills;
 
-    @OneToMany(mappedBy = "project")
-    private Set<Bid> bids = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "project" ,fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Bid> bids;
 }

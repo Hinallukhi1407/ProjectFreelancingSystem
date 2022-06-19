@@ -91,9 +91,6 @@ public class BidsServices {
         return acceptedBid;
     }
 
-    public List<Bid> displayBidsByFreelancer(Integer id) {
-        return bidSRepository.findByFreelancerId(id);
-    }
 
     private void sendNotificationEmail(Logininfo registration)
             throws MessagingException, UnsupportedEncodingException {
@@ -124,5 +121,10 @@ public class BidsServices {
         helper.setText(content, true);
 
         mailSender.send(message);
+    }
+
+    public List<Bid> DisplayByFreelanceID(Integer id)
+    {
+        return bidSRepository.findByFreelanceId(id);
     }
 }

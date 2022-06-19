@@ -72,5 +72,4 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     private Set<Bid> bids = new LinkedHashSet<>();
-
 }

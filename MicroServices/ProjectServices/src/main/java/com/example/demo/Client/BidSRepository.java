@@ -19,5 +19,4 @@ public interface BidSRepository extends JpaRepository<Bid,Integer> {
 
     @Query(value = "select * from bids where user_id=?1",nativeQuery = true)
     List<Bid> findByFreelanceId(Integer id);
-
 }

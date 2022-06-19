@@ -26,7 +26,7 @@ function ManageBidders() {
   return (
     <React.Fragment>
       <Container fluid style={{ padding: "0px" }}>
-        <DashboardSideBar />
+        <DashboardSideBar pageType='employer'/>
         <Row id="post-project-form">
           <DashboardTopNav />
           <Col xs="10" id="form-col" className="flex-box">

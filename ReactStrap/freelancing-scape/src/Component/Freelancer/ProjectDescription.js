@@ -1,14 +1,15 @@
 import React,{useState,useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Row,
-  Col,
-  Container,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  InputGroup
+    Row,
+    Col,
+    Container,
+    FormGroup,
+    Label,
+    Input,
+    Button,
+    InputGroup,
+    Alert
 } from "reactstrap";
 import * as RiIcons from "react-icons/ri";
 import {useLocation} from 'react-router-dom';
@@ -24,7 +25,7 @@ function TaskDescription() {
     setRange(e.target.value)
   }
   const [projectData, setProjectData] = useState([]);
-
+  const [isAlertOn,setAlert] = useState(false);
   const setList = () => {
    let response =  axios
       .get("http://localhost:8082/project/"+location.state.id)
@@ -67,6 +68,7 @@ function TaskDescription() {
     status: { id: 9 },
   });
   const [postStatus,setPostStatus]=useState(false)
+
   const insertBid=()=>{
     axios
     .post("http://localhost:8082/bids/add", formData)
@@ -94,7 +96,7 @@ function TaskDescription() {
   }
   return (
     <div>
-      <Container fluid style={{paddingTop:"4rem"}}>
+      <Container fluid style={{ paddingTop: "4rem" }}>
         <Row id="single-task">
           <Col id="single-task-name" xs="6">
             <h3>{projectData.projectName}</h3>
@@ -132,9 +134,14 @@ function TaskDescription() {
             </section>
           </Col>
           <Col id="free-job-details">
-            <Row id="days-left">{daysDiff(projectData.startDate)}</Row>
+            <Row>
+              {postStatus &&
+              <Alert color="success" className="text-center" onClick={()=>setPostStatus(!postStatus)}>Your Bid Has Been Placed Sucessfully !</Alert>
+              }
+            </Row>
+            <Row id="days-left">{daysDiff(projectData.startDate)} 6 days</Row>
             <Row id="budget" className="mt-2">
-            {projectData.minBudget+"$ - "+projectData.maxBudget+"$"}
+              {projectData.minBudget + "$ - " + projectData.maxBudget + "$"}
             </Row>
             <Row id="bid-form" className="mt-2">
               <section id="bid-header">
@@ -162,22 +169,40 @@ function TaskDescription() {
                 <Row className="mt-4 display-flex">
                   <Col md="6">
                     <InputGroup>
-                      <Button color="primary" onClick={()=>setDelevryTime((deleveryTime)-1)}>-</Button>
-                      <Input className="text-center" style={{width:"10%"}}
+                      <Button
+                        color="primary"
+                        onClick={() => setDelevryTime(deleveryTime - 1)}
+                      >
+                        -
+                      </Button>
+                      <Input
+                        className="text-center"
+                        style={{ width: "10%" }}
                         readOnly
-                        name="deleveryTime" 
+                        name="deleveryTime"
                         value={deleveryTime}
-                        onChange={(e)=>setDelevryTime(e.target.value)}
-                        />
-                      <Button color="primary"onClick={()=>setDelevryTime(parseInt(deleveryTime)+1)}>+</Button>
+                        onChange={(e) => setDelevryTime(e.target.value)}
+                      />
+                      <Button
+                        color="primary"
+                        onClick={() =>
+                          setDelevryTime(parseInt(deleveryTime) + 1)
+                        }
+                      >
+                        +
+                      </Button>
                     </InputGroup>
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <Input id="exampleSelect" name="select" type="select" 
-                        onChange={(e)=>{
-                          setTypeDuration(e.target.value)
-                        }}>
+                      <Input
+                        id="exampleSelect"
+                        name="select"
+                        type="select"
+                        onChange={(e) => {
+                          setTypeDuration(e.target.value);
+                        }}
+                      >
                         <option>Days</option>
                         <option>Months</option>
                         <option>Year</option>
@@ -185,8 +210,14 @@ function TaskDescription() {
                     </FormGroup>
                   </Col>
                 </Row>
-                <section className="display-flex" >
-                  <Button color="primary" style={{width:"60%"}} onClick={setValues}>Place Bid</Button>
+                <section className="display-flex">
+                  <Button
+                    color="primary"
+                    style={{ width: "60%" }}
+                    onClick={setValues}
+                  >
+                    Place Bid
+                  </Button>
                 </section>
               </article>
             </Row>
